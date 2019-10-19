@@ -1,0 +1,109 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Pokemon</h1>
+
+<div class="row">
+  <div class="col-10 offset-1">
+    <div class="topnav">
+      <form action="pokemons_path">
+        <input type="text" placeholder="Search Pokemon" name="search">
+      </form>
+    </div>
+  </div>
+</div>
+
+<br />
+
+<div class="row">
+  <div class="col-6 offset-6 drop-box">
+    <div class="col-5 drop-box-1">
+      Box1
+    </div>
+    <div class="col-5 offset-1 drop-box-2">
+      Box2
+    </div>
+  </div>
+
+  <div class="col-2 offset-1 poke-box-all">
+    <% @pokemons.each_with_index do |pokemon, index| %>
+      <div class="col-12 poke-box-home">
+        <div id="pb<%= index %>" class="poke-box">
+          <div class="poke-box-number"><%= pokemon.pokedex_number %></div>
+          <div class="poke-box-name"><%= pokemon.name %></div>
+          <div class="poke-box-type">
+            <div class="poke-box-type-1 ptype<%= pokemon.type1 %>"><%= pokemon.type1 %></div>
+            <% if pokemon.type2 != "N/A" %>
+              <div class="poke-box-type-2 ptype<%= pokemon.type2 %>"><%= pokemon.type2 %></div>
+            <% end %>
+          </div>
+        </div>
+      </div>
+      <br /><br />
+    <% end %>
+
+  </div>
+
+  
+
+</div>
+
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script>
+  $(function(e) {
+    $('.poke-box').click(function( event ) {
+      var pokeName = $(this).children('.poke-box-name').text();
+    });
+
+    $(function() {
+      $('.poke-box').draggable({
+        snap: ".drop-box-1, .drop-box-2, .poke-box-home", snapMode: "inner"
+      });
+    });
+
+    $(function() {
+      $('.drop-box-1').droppable({
+        drop: function(event, ui) {
+          $(this).toggleClass('.dropped');
+          console.log('Box1 Dropped');
+        }
+      });
+    });
+
+    $(function() {
+      $('.drop-box-2').droppable({
+        drop: function(event, ui) {
+          $(this).toggleClass('.dropped');
+          console.log('Box2 Dropped');
+        }
+      });
+    });
+
+    // $('.new-lesson-button').click(function( event ) {
+    //   var lessonUrl = $( event.target ).data('lesson-url');
+    //   $('#newLessonForm').attr('action', lessonUrl );
+    // });
+
+    // $('.lessons').sortable({
+    //   update: function( event, ui ) {
+    //     $.ajax({
+    //       type: 'PUT',
+    //       url: ui.item.data('update-url'),
+    //       dataType: 'json',
+    //       data: { lesson: { row_order_position: ui.item.index() } }
+    //     });
+    //   }
+    // });
+
+    // $('.sections').sortable({
+    //   update: function( event, ui ) {
+    //     $.ajax({
+    //       type: 'PUT',
+    //       url: ui.item.data('update-url'),
+    //       dataType: 'json',
+    //       data: { section: { row_order_position: ui.item.index() } }
+    //     });
+    //   }
+    // });
+  });
+</script>

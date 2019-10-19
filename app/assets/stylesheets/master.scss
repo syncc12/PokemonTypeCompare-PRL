@@ -1,1 +1,70 @@
 @import "bootstrap";
+
+.static-header {
+  background-color: #010101;
+  color: #FEFEFE;
+  height: 60px;
+}
+
+.banner-text {
+  text-align: center;
+  font-size: 40px;
+  padding-top: 20px;
+}
+
+.poke-box-all {
+  position: absolute;
+  padding: 0px;
+}
+
+.poke-box-home {
+  padding: 0px;
+}
+
+.poke-box {
+  border: 1px solid black;
+  padding-top: 20px;
+  padding-bottom: 0px;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+.poke-box-number {
+  text-align: left;
+  vertical-align: bottom;
+}
+
+.poke-box-name {
+  text-align: center;
+  vertical-align: bottom;
+}
+
+.poke-box-number, .poke-box-name {
+  display: inline-block;
+}
+
+.poke-box-type-1, .poke-box-type-2 {
+  display: inline-block;
+}
+
+.poke-box-type, .poke-box-type-1, .poke-box-type-2 {
+  text-align: center;
+  vertical-align: bottom;
+}
+
+.drop-box {
+  vertical-align: top;
+}
+
+.drop-box-1, .drop-box-2 {
+  border: 1px solid black;
+  display: inline-block;
+}
+
+.drop-box, .drop-box-1, .drop-box-2 {
+  height: 100px;
+}
+
+.dropped {
+  background-color: green;
+}
