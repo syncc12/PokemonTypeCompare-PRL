@@ -5,9 +5,7 @@
 <div class="row">
   <div class="col-10 offset-1">
     <div class="topnav">
-      <form action="pokemons_path">
-        <input type="text" placeholder="Search Pokemon" name="search">
-      </form>
+      <input id="poke-filter" type="text" placeholder="Search Pokemon" name="search">
     </div>
   </div>
 </div>
@@ -24,17 +22,22 @@
     </div>
   </div>
 
-  <div class="col-2 offset-1 poke-box-all">
+  <div id="poke-box-all" class="col-2 offset-1">
     <% @pokemons.each_with_index do |pokemon, index| %>
       <div class="col-12 poke-box-home">
         <div id="pb<%= index %>" class="poke-box">
-          <div class="poke-box-number"><%= pokemon.pokedex_number %></div>
-          <div class="poke-box-name"><%= pokemon.name %></div>
-          <div class="poke-box-type">
-            <div class="poke-box-type-1 ptype<%= pokemon.type1 %>"><%= pokemon.type1 %></div>
-            <% if pokemon.type2 != "N/A" %>
-              <div class="poke-box-type-2 ptype<%= pokemon.type2 %>"><%= pokemon.type2 %></div>
-            <% end %>
+          <div class="poke-box-image">
+            Pokemon Image
+          </div>
+          <div class="poke-box-text">
+            <div class="poke-box-number"><%= pokemon.pokedex_number %></div>
+            <div class="poke-box-name"><%= pokemon.name %></div>
+            <div class="poke-box-type">
+              <div class="poke-box-type-1 ptype<%= pokemon.type1 %>"><%= pokemon.type1 %></div>
+              <% if pokemon.type2 != "N/A" %>
+                <div class="poke-box-type-2 ptype<%= pokemon.type2 %>"><%= pokemon.type2 %></div>
+              <% end %>
+            </div>
           </div>
         </div>
       </div>
@@ -55,29 +58,35 @@
       var pokeName = $(this).children('.poke-box-name').text();
     });
 
-    $(function() {
+    $(function(drag) {
       $('.poke-box').draggable({
-        snap: ".drop-box-1, .drop-box-2, .poke-box-home", snapMode: "inner"
+        snap: ".drop-box-1, .drop-box-2, .poke-box-home", snapMode: "inner", revert: 'invalid'
       });
     });
 
-    $(function() {
-      $('.drop-box-1').droppable({
-        drop: function(event, ui) {
-          $(this).toggleClass('.dropped');
-          console.log('Box1 Dropped');
-        }
+    $(function(drop) {
+      $('.drop-box-1, .drop-box-2, .poke-box-home').droppable({
+        accept: '.poke-box'
       });
     });
 
-    $(function() {
-      $('.drop-box-2').droppable({
-        drop: function(event, ui) {
-          $(this).toggleClass('.dropped');
-          console.log('Box2 Dropped');
-        }
+    // $(function(pokeFilter) {
+    //   $("#poke-filter").submit(function(e2) {
+    //     e2.preventDefault();
+    //   });
+    //   var filterText = $('#poke-filter').val();
+    //   $('.poke-box:contains("'+filterText+'")').show();
+    // });
+
+    $(document).ready(function(){
+      $("#poke-filter").on("keyup", function() {
+        var filterValue = $(this).val().toLowerCase();
+        $("#poke-box-all div").filter(function() {
+          $(this).toggle($(this).text().toLowerCase().indexOf(filterValue) > -1)
+        });
       });
     });
+
 
     // $('.new-lesson-button').click(function( event ) {
     //   var lessonUrl = $( event.target ).data('lesson-url');

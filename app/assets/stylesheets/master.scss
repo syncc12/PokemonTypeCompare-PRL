@@ -12,7 +12,7 @@
   padding-top: 20px;
 }
 
-.poke-box-all {
+#poke-box-all {
   position: absolute;
   padding: 0px;
 }
@@ -23,19 +23,24 @@
 
 .poke-box {
   border: 1px solid black;
-  padding-top: 20px;
   padding-bottom: 0px;
   padding-left: 10px;
   padding-right: 10px;
 }
 
+.poke-box-text {
+  vertical-align: bottom;
+}
+
 .poke-box-number {
   text-align: left;
+  horizontal-align: left;
   vertical-align: bottom;
 }
 
 .poke-box-name {
   text-align: center;
+  horizontal-align: center;
   vertical-align: bottom;
 }
 
@@ -61,10 +66,12 @@
   display: inline-block;
 }
 
-.drop-box, .drop-box-1, .drop-box-2 {
-  height: 100px;
+.drop-box, .drop-box-1, .drop-box-2, .poke-box {
+  height: 150px;
+  width: 200px;
 }
 
 .dropped {
   background-color: green;
 }
+
