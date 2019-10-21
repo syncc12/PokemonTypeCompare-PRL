@@ -19,6 +19,7 @@
 
 .poke-box-home {
   padding: 0px;
+  border: 1px solid black;
 }
 
 .poke-box {
@@ -57,21 +58,20 @@
   vertical-align: bottom;
 }
 
-.drop-box {
-  vertical-align: top;
-}
-
-.drop-box-1, .drop-box-2 {
-  border: 1px solid black;
-  display: inline-block;
-}
-
-.drop-box, .drop-box-1, .drop-box-2, .poke-box {
+#drop-box, .poke-box, .poke-box-home {
   height: 150px;
   width: 200px;
 }
 
-.dropped {
-  background-color: green;
+#advantage-list, #disadvantage-list {
+  width: 200px;
 }
 
+#drop-box {
+  vertical-align: top;
+  border: 1px solid black;
+}
+
+* {
+  box-sizing: border-box;
+}
