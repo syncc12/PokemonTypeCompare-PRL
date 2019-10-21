@@ -38,20 +38,28 @@
     <div id="poke-box-all" class="col-2 offset-1">
       <% @pokemons.each_with_index do |pokemon| %>
         <div class="col-12 poke-box-home">
-          <div class="poke-box">
-            <div class="poke-box-image">
-              Pokemon Image
+          <div id="id-<%= pokemon.name.downcase %>" class="poke-box">
+
+            <div class="row dbg">
+              <div class="col-12 poke-box-image dbg">Pokemon Image</div>
             </div>
-            <div class="poke-box-text">
-              <div class="poke-box-number"><%= pokemon.pokedex_number %></div>
-              <div class="poke-box-name"><%= pokemon.name %></div>
-              <div class="poke-box-type">
-                <div class="poke-box-type-1 ptype<%= pokemon.type1 %>"><%= pokemon.type1 %></div>
-                <% if pokemon.type2 != "N/A" %>
-                  <div class="poke-box-type-2 ptype<%= pokemon.type2 %>"><%= pokemon.type2 %></div>
-                <% end %>
+            <div class="row dbg">
+              <div class="col-12 poke-box-text dbg">
+                <div class="row dbg">
+                  <div class="col-1 poke-box-number"><%= pokemon.pokedex_number %></div>
+                  <div class="col-10 poke-box-name"><%= pokemon.name %></div>
+                </div>
+                <div class="row dbg">
+                  <div class="col-12 poke-box-type dbg">
+                    <div class="poke-box-type-1 pt-<%= pokemon.type1 %> dbg"><%= pokemon.type1 %></div>
+                    <% if pokemon.type2 != "N/A" %>
+                      <div class="poke-box-type-2 pt-<%= pokemon.type2 %> dbg"><%= pokemon.type2 %></div>
+                    <% end %>
+                  </div>
+                </div>
               </div>
             </div>
+
           </div>
         </div>
         <br /><br />
@@ -78,20 +86,17 @@
   $(function(e) {
     $('.poke-box').click(function( event ) {
       var pokeName = $(this).children('.poke-box-name').text();
+      console.log(this.innerHTML);
     });
 
-    $(function(drag) {
+    $(function(dragDrop) {
       $('.poke-box').draggable({
         snap: "#drop-box, .poke-box-home", snapMode: "inner", revert: 'invalid'
       });
-    });
-
-    $(function(drop) {
       $('#drop-box, .poke-box-home').droppable({
         accept: '.poke-box'
       });
-    });
-
+    })
     // $(function(pokeFilter) {
     //   $("#poke-filter").submit(function(e2) {
     //     e2.preventDefault();

@@ -63,6 +63,14 @@
   width: 200px;
 }
 
+#drop-box, .poke-box-home {
+  z-index: 400;
+}
+
+#poke-box {
+  z-index: 500;
+}
+
 #advantage-list, #disadvantage-list {
   width: 200px;
 }
@@ -74,4 +82,20 @@
 
 * {
   box-sizing: border-box;
+}
+
+.dbg {
+  border: 0px solid blue;
+}
+
+.poke-box-image {
+  height: 100px;
+}
+
+.poke-box-text {
+  height: 50px;
+}
+
+.poke-box-number, .poke-box-name, .poke-box-type, .poke-box-type-1, .poke-box-type-2 {
+  height: 25px;
 }
