@@ -61,6 +61,22 @@ RSpec.describe PokemonsController, type: :controller do
 
     end
     
+    it "should allow pokemon to be removed from drop box after being dropped" do
+
+    end
+    
+    it "should display type advantages and type disadvantages immediatly after a pokemon is dropped in drop box" do
+
+    end
+    
+    it "" do
+
+    end
+    
+    it "" do
+
+    end
+    
     it "" do
 
     end
