@@ -68,7 +68,7 @@
     </div>
 
     <div id="output-box" class="col-9 offset-3">
-      <div class="row">
+      <div id="output-row" class="row">
         <div id="drop-box" class="offset-2">Drop Box</div>
 
           <div id="advantage-list-outer" class="offset-1">
@@ -134,24 +134,24 @@
 
     function effectDetermine(attackType1, attackType2) {
       var adDict = {
-        "bug": {"advantage": ["grass","psychic","dark"], "disadvantage": ["fight","flying","poison","ghost","steel","fire","fairy"], "neutral": ["normal","ground","rock","bug","water","electric","ice","dragon"]},
-        "dark": {"advantage": ["ghost","psychic"], "disadvantage": ["fight","dark","fairy"], "neutral": ["normal","flying","poison","ground","rock","bug","steel","fire","water","grass","electric","ice","dragon"]},
-        "dragon": {"advantage": ["dragon"], "disadvantage": ["steel"], "neutral": ["normal","fight","flying","poison","ground","rock","bug","ghost","fire","water","grass","electric","psychic","ice","dark"], "noeffect": ["fairy"]},
-        "electric": {"advantage": ["flying","water"], "disadvantage": ["grass","electric","dragon"], "neutral": ["normal","fight","poison","rock","bug","ghost","steel","fire","psychic","ice","dark","fairy"], "noeffect": ["ground"]},
-        "fairy": {"advantage": ["fight","dragon","dark"], "disadvantage": ["poison","steel","fire"], "neutral": ["normal","flying","ground","rock","bug","ghost","water","grass","electric","psychic","ice","fairy"]},
-        "fight": {"advantage": ["normal","rock","steel","ice","dark"], "disadvantage": ["flying","poison","bug","psychic","fairy"], "neutral": ["fight","ground","fire","water","grass","electric","dragon"], "noeffect": ["ghost"]},
-        "fire": {"advantage": ["bug","steel","grass","ice"], "disadvantage": ["rock","fire","water","dragon"], "neutral": ["normal","fight","flying","poison","ground","ghost","electric","psychic","dark","fairy"]},
-        "flying": {"advantage": ["fight","bug","grass"], "disadvantage": ["rock","steel","electric"], "neutral": ["normal","flying","poison","ground","ghost","fire","water","psychic","ice","dragon","dark","fairy"]},
-        "ghost": {"advantage": ["ghost","psychic"], "disadvantage": ["dark"], "neutral": ["fight","flying","poison","ground","rock","bug","steel","fire","water","grass","electric","ice","dragon","fairy"], "noeffect": ["normal"]},
-        "grass": {"advantage": ["ground","rock","water"], "disadvantage": ["flying","poison","bug","steel","fire","grass","dragon"], "neutral": ["normal","fight","ghost","electric","psychic","ice","dark","fairy"]},
-        "ground": {"advantage": ["poison","rock","steel","fire","electric"], "disadvantage": ["bug","grass"], "neutral": ["normal","fight","ground","ghost","water","psychic","ice","dragon","dark","fairy"], "noeffect": ["flying"]},
-        "ice": {"advantage": ["flying","ground","grass","dragon"], "disadvantage": ["steel","fire","water","ice"], "neutral": ["normal","fight","poison","rock","bug","ghost","electric","psychic","dark","fairy"]},
-        "normal": {"advantage": [], "disadvantage": ["rock","steel"], "neutral": ["normal","fight","flying","poison","ground","bug","fire","water","grass","electric","psychic","ice","dragon","dark","fairy"], "noeffect": ["ghost"]},
-        "poison": {"advantage": ["grass","fairy"], "disadvantage": ["poison","ground","rock","ghost"], "neutral": ["normal","fight","flying","bug","fire","water","electric","psychic","ice","dragon","dark"], "noeffect": ["steel"]},
-        "psychic": {"advantage": ["fight","poison"], "disadvantage": ["steel","psychic"], "neutral": ["normal","flying","ground","rock","bug","ghost","fire","water","grass","electric","ice","dragon","fairy"], "noeffect": ["dark"]},
-        "rock": {"advantage": ["flying","bug","fire","ice"], "disadvantage": ["fight","ground","steel"], "neutral": ["normal","poison","rock","ghost","water","grass","electric","psychic","dragon","dark","fairy"]},
-        "steel": {"advantage": ["rock","ice","fairy"], "disadvantage": ["steel","fire","water","electric"], "neutral": ["normal","fight","flying","poison","ground","bug","ghost","grass","psychic","dragon","dark"]},
-        "water": {"advantage": ["ground","rock","fire"], "disadvantage": ["water","grass","dragon"], "neutral": ["normal","fight","flying","poison","bug","ghost","steel","electric","psychic","ice","dark","fairy"]}
+        "bug": {"advantage": ["grass","psychic","dark"], "disadvantage": ["fighting","flying","poison","ghost","steel","fire","fairy"], "neutral": ["normal","ground","rock","bug","water","electric","ice","dragon"]},
+        "dark": {"advantage": ["ghost","psychic"], "disadvantage": ["fighting","dark","fairy"], "neutral": ["normal","flying","poison","ground","rock","bug","steel","fire","water","grass","electric","ice","dragon"]},
+        "dragon": {"advantage": ["dragon"], "disadvantage": ["steel"], "neutral": ["normal","fighting","flying","poison","ground","rock","bug","ghost","fire","water","grass","electric","psychic","ice","dark"], "noeffect": ["fairy"]},
+        "electric": {"advantage": ["flying","water"], "disadvantage": ["grass","electric","dragon"], "neutral": ["normal","fighting","poison","rock","bug","ghost","steel","fire","psychic","ice","dark","fairy"], "noeffect": ["ground"]},
+        "fairy": {"advantage": ["fighting","dragon","dark"], "disadvantage": ["poison","steel","fire"], "neutral": ["normal","flying","ground","rock","bug","ghost","water","grass","electric","psychic","ice","fairy"]},
+        "fighting": {"advantage": ["normal","rock","steel","ice","dark"], "disadvantage": ["flying","poison","bug","psychic","fairy"], "neutral": ["fighting","ground","fire","water","grass","electric","dragon"], "noeffect": ["ghost"]},
+        "fire": {"advantage": ["bug","steel","grass","ice"], "disadvantage": ["rock","fire","water","dragon"], "neutral": ["normal","fighting","flying","poison","ground","ghost","electric","psychic","dark","fairy"]},
+        "flying": {"advantage": ["fighting","bug","grass"], "disadvantage": ["rock","steel","electric"], "neutral": ["normal","flying","poison","ground","ghost","fire","water","psychic","ice","dragon","dark","fairy"]},
+        "ghost": {"advantage": ["ghost","psychic"], "disadvantage": ["dark"], "neutral": ["fighting","flying","poison","ground","rock","bug","steel","fire","water","grass","electric","ice","dragon","fairy"], "noeffect": ["normal"]},
+        "grass": {"advantage": ["ground","rock","water"], "disadvantage": ["flying","poison","bug","steel","fire","grass","dragon"], "neutral": ["normal","fighting","ghost","electric","psychic","ice","dark","fairy"]},
+        "ground": {"advantage": ["poison","rock","steel","fire","electric"], "disadvantage": ["bug","grass"], "neutral": ["normal","fighting","ground","ghost","water","psychic","ice","dragon","dark","fairy"], "noeffect": ["flying"]},
+        "ice": {"advantage": ["flying","ground","grass","dragon"], "disadvantage": ["steel","fire","water","ice"], "neutral": ["normal","fighting","poison","rock","bug","ghost","electric","psychic","dark","fairy"]},
+        "normal": {"advantage": [], "disadvantage": ["rock","steel"], "neutral": ["normal","fighting","flying","poison","ground","bug","fire","water","grass","electric","psychic","ice","dragon","dark","fairy"], "noeffect": ["ghost"]},
+        "poison": {"advantage": ["grass","fairy"], "disadvantage": ["poison","ground","rock","ghost"], "neutral": ["normal","fighting","flying","bug","fire","water","electric","psychic","ice","dragon","dark"], "noeffect": ["steel"]},
+        "psychic": {"advantage": ["fighting","poison"], "disadvantage": ["steel","psychic"], "neutral": ["normal","flying","ground","rock","bug","ghost","fire","water","grass","electric","ice","dragon","fairy"], "noeffect": ["dark"]},
+        "rock": {"advantage": ["flying","bug","fire","ice"], "disadvantage": ["fighting","ground","steel"], "neutral": ["normal","poison","rock","ghost","water","grass","electric","psychic","dragon","dark","fairy"]},
+        "steel": {"advantage": ["rock","ice","fairy"], "disadvantage": ["steel","fire","water","electric"], "neutral": ["normal","fighting","flying","poison","ground","bug","ghost","grass","psychic","dragon","dark"]},
+        "water": {"advantage": ["ground","rock","fire"], "disadvantage": ["water","grass","dragon"], "neutral": ["normal","fighting","flying","poison","bug","ghost","steel","electric","psychic","ice","dark","fairy"]}
       };
 
       var advArr1 = adDict[attackType1]["advantage"];
@@ -199,96 +199,95 @@
 
     $('.poke-box').on("dragstart", function(event, ui) {
       pokeOBJ = pokeDataOBJ(this.outerHTML);
-      console.log(pokeOBJ);
     });
-
 
     $('#drop-box, .poke-box-home').droppable({
       accept: '.poke-box'
     });
 
     $('#drop-box, .poke-box-home').on( "drop", function(event, ui) {
-        console.log(pokeOBJ.name);
-        console.log(pokeOBJ.number);
-        console.log(pokeOBJ.type1);
-        console.log(pokeOBJ.type2);
         var determinedEffect = effectDetermine(pokeOBJ.type1, pokeOBJ.type2);
         console.log(determinedEffect);
-
+        var collectAdvantage = [];
+        var collectDisadvantage = [];
+        var collectNoeffect = [];
+        var collectNeutral = [];
+        var collectedEffects = [];
+        
         $.each(determinedEffect, function(i) {
-
-          var li_advantage = $('<li/>')
-            .addClass('li-advantage-list')
-            .appendTo(advantageList);
-          var a_advantage = $('<a/>')
-            .addClass('a-advantage-list')
-            .text(determinedEffect[0][0][i])
-            .appendTo(li_advantage);
-
-           var li_disadvantage = $('<li/>')
-            .addClass('li-disadvantage-list')
-            .appendTo(disadvantageList);
-          var a_disadvantage = $('<a/>')
-            .addClass('a-disadvantage-list')
-            .text(determinedEffect[0][1][i])
-            .appendTo(li_disadvantage);
-
+          collectAdvantage.push(determinedEffect[0][0][i]);
+          collectDisadvantage.push(determinedEffect[0][1][i]);
           if (typeof determinedEffect[0][2] !== 'undefined') {
-          var li_noeffect = $('<li/>')
-            .addClass('li-noeffect-list')
-            .appendTo(advantageList);
-          var a_noeffect = $('<a/>')
-            .addClass('a-noeffect-list')
-            .text(determinedEffect[0][2][i])
-            .appendTo(li_noeffect);
+            collectNoeffect.push(determinedEffect[0][2][i]);
+          } else {
+            collectNoeffect.push("");
           }
+          collectNeutral.push(determinedEffect[0][3][i]);
 
-          var li_neutral = $('<li/>')
-            .addClass('li-neutral-list')
-            .appendTo(neutralList);
-          var a_neutral = $('<a/>')
-            .addClass('a-neutral-list')
-            .text(determinedEffect[0][3][i])
-            .appendTo(li_neutral);
+          collectAdvantage.push(determinedEffect[1][0][i]);
+          collectDisadvantage.push(determinedEffect[1][1][i]);
+          if (typeof determinedEffect[1][2] !== 'undefined') {
+            collectNoeffect.push(determinedEffect[1][2][i]);
+          } else {
+            collectNoeffect.push("");
+          }
+          collectNeutral.push(determinedEffect[1][3][i]);
+        });
 
+        collectAdvantage = $.unique(collectAdvantage);
+        collectDisadvantage = $.unique(collectDisadvantage);
+        collectNoeffect = $.unique(collectNoeffect);
+        collectNeutral = $.unique(collectNeutral);
 
+        collectedEffects = [collectAdvantage, collectDisadvantage, collectNoeffect, collectNeutral];
+
+        $.each(collectedEffects, function(i) {
 
           var li_advantage = $('<li/>')
             .addClass('li-advantage-list')
+            .addClass('pt-' + collectedEffects[0][i])
             .appendTo(advantageList);
           var a_advantage = $('<a/>')
             .addClass('a-advantage-list')
-            .text(determinedEffect[1][0][i])
+            .text(collectedEffects[0][i])
             .appendTo(li_advantage);
 
            var li_disadvantage = $('<li/>')
             .addClass('li-disadvantage-list')
+            .addClass('pt-' + collectedEffects[1][i])
             .appendTo(disadvantageList);
           var a_disadvantage = $('<a/>')
             .addClass('a-disadvantage-list')
-            .text(determinedEffect[1][1][i])
+            .text(collectedEffects[1][i])
             .appendTo(li_disadvantage);
 
-          if (typeof determinedEffect[1][2] !== 'undefined') {
+          if (typeof collectedEffects[2] !== 'undefined') {
           var li_noeffect = $('<li/>')
             .addClass('li-noeffect-list')
+            .addClass('pt-' + collectedEffects[2][i])
             .appendTo(advantageList);
           var a_noeffect = $('<a/>')
             .addClass('a-noeffect-list')
-            .text(determinedEffect[1][2][i])
+            .text(collectedEffects[2][i])
             .appendTo(li_noeffect);
           }
 
           var li_neutral = $('<li/>')
             .addClass('li-neutral-list')
+            .addClass('pt-' + collectedEffects[3][i])
             .appendTo(neutralList);
           var a_neutral = $('<a/>')
             .addClass('a-neutral-list')
-            .text(determinedEffect[1][3][i])
+            .text(collectedEffects[3][i])
             .appendTo(li_neutral);
         });
       });
 
+
+    $(document).on("click", function () {
+      var clickedTag =  $(this).prop("tagName");
+      console.log("clicked: " + clickedTag)
+    });
 
     // $(function(pokeFilter) {
     //   $("#poke-filter").submit(function(e2) {

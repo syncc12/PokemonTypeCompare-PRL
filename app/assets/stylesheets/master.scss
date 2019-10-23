@@ -67,7 +67,7 @@
   width: 200px;
 }
 
-#output-box, #drop-box, .poke-box-home {
+#output-row, #output-box, #drop-box, .poke-box-home {
   z-index: 400;
 }
 
@@ -81,6 +81,7 @@
 
 #advantage-list, #disadvantage-list, #noeffect-list, #neutral-list {
   border: 1px solid gray;
+  padding: 0px;
 }
 
 #drop-box {
@@ -106,6 +107,18 @@
 
 .poke-box-number, .poke-box-name, .poke-box-type, .poke-box-type-1, .poke-box-type-2 {
   height: 25px;
+}
+
+.li-advantage-list, .li-disadvantage-list, .li-noeffect-list, .li-neutral-list {
+  width: 100%;
+  padding: 0px;
+  list-style-type: none;
+}
+
+#ul-advantage-list, #ul-disadvantage-list, #ul-noeffect-list, #ul-neutral-list {
+  padding: 0px;
+  list-style-type: none;
+  text-align: center;
 }
 
 .pt-grass {
@@ -181,7 +194,9 @@
 }
 
 .pt-grass, .pt-fire, .pt-water, .pt-bug, .pt-normal, .pt-dark, .pt-poison, .pt-electric, .pt-ground, .pt-ice, .pt-fairy, .pt-fighting, .pt-psychic, .pt-rock, .pt-ghost, .pt-dragon, .pt-steel, .pt-flying {
+  border-radius: 15px;
   color: #FFFFFF;
+  border: 1px solid #999999;
   text-shadow:
     -1px -1px 0 #000000,
     1px -1px 0 #000000,
