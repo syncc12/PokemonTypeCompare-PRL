@@ -31,6 +31,7 @@
 
 .poke-box-text {
   vertical-align: bottom;
+  margin: -5px 0;
 }
 
 .poke-box-number {
@@ -75,12 +76,16 @@
   z-index: 500;
 }
 
+#advantage-list-title, #disadvantage-list-title, #noeffect-list-title, #neutral-list-title {
+  text-align: center;
+}
+
 #advantage-list-title, #disadvantage-list-title, #noeffect-list-title, #neutral-list-title, #advantage-list, #disadvantage-list, #noeffect-list, #neutral-list {
   width: 150px;
 }
 
 #advantage-list, #disadvantage-list, #noeffect-list, #neutral-list {
-  border: 1px solid gray;
+  /* border: 1px solid gray; */
   padding: 0px;
 }
 
@@ -111,14 +116,17 @@
 
 .li-advantage-list, .li-disadvantage-list, .li-noeffect-list, .li-neutral-list {
   width: 100%;
-  padding: 0px;
-  list-style-type: none;
+  margin: 3px 0;
 }
 
 #ul-advantage-list, #ul-disadvantage-list, #ul-noeffect-list, #ul-neutral-list {
+  text-align: center;
+}
+
+.li-advantage-list, .li-disadvantage-list, .li-noeffect-list, .li-neutral-list, #ul-advantage-list, #ul-disadvantage-list, #ul-noeffect-list, #ul-neutral-list {
   padding: 0px;
   list-style-type: none;
-  text-align: center;
+  
 }
 
 .pt-grass {

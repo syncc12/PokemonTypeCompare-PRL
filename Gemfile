@@ -70,6 +70,7 @@ gem 'simple_form'
 group :development, :test do
   gem 'rspec-rails', '~> 3.5'
   gem "factory_bot_rails"
+  gem 'jasmine'
 end
 
 gem 'webpacker', '~> 3.4'

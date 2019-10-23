@@ -25,61 +25,62 @@ require 'rails_helper'
 
 RSpec.describe PokemonsController, type: :controller do
   describe "tasks#index" do
-    it "should display all pokemon in a list" do
-
+    it "should display the pokemon in the database" do
+      get :index
+      expect(response).to have_http_status :success
     end
 
-    it "should filter the pokemon list based off pokemon name and continue to display all pokemon information" do
+    # it "should filter the pokemon list based off pokemon name and continue to display all pokemon information" do
 
-    end
+    # end
 
-    it "should snap back to home box if last snapped to home box and released in the middle of drag" do
+    # it "should snap back to home box if last snapped to home box and released in the middle of drag" do
 
-    end
+    # end
 
-    it "should snap back to drop box if was last snapped to the drop box and relased in the middle of drag" do
+    # it "should snap back to drop box if was last snapped to the drop box and relased in the middle of drag" do
 
-    end
+    # end
 
-    it "should display list of pokemon with a type advantage when pokemon is snapped to drop box" do
+    # it "should display list of pokemon with a type advantage when pokemon is snapped to drop box" do
 
-    end
+    # end
 
-    it "should display list of pokemon with a type disadvantage when pokemon is snapped ot drop box" do
+    # it "should display list of pokemon with a type disadvantage when pokemon is snapped ot drop box" do
 
-    end
+    # end
 
-    it "should display drop box outline" do
+    # it "should display drop box outline" do
 
-    end
+    # end
     
-    it "should display home box outline" do
+    # it "should display home box outline" do
 
-    end
+    # end
     
-    it "should have only one pokemon in each home box or drop box" do
+    # it "should have only one pokemon in each home box or drop box" do
 
-    end
+    # end
     
-    it "should allow pokemon to be removed from drop box after being dropped" do
+    # it "should allow pokemon to be removed from drop box after being dropped" do
 
-    end
+    # end
     
-    it "should display type advantages and type disadvantages immediatly after a pokemon is dropped in drop box" do
+    # it "should display type advantages and type disadvantages immediatly after a pokemon is dropped in drop box" do
 
-    end
+    # end
     
-    it "" do
+    # it "" do
 
-    end
+    # end
     
-    it "" do
+    # it "" do
 
-    end
+    # end
     
-    it "" do
+    # it "" do
 
-    end
+    # end
     
   end
 end

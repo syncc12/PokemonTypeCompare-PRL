@@ -12,6 +12,9 @@
   },
   "version": "0.24.4",
   "devDependencies": {
+    "jasmine-core": "^3.5.0",
+    "karma": "4.4.1",
+    "karma-jasmine": "^2.0.1",
     "webpack-dev-server": "2.11.2"
   }
 }
