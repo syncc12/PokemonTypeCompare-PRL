@@ -161,31 +161,30 @@
         });
       });
 
-
-    $(document).on("click", function () {
-      var clickedTag =  $(this).outerHTML;
-      console.log("clicked: " + clickedTag)
-    });
-
-    // $(function(pokeFilter) {
-    //   $("#poke-filter").submit(function(e2) {
-    //     e2.preventDefault();
-    //   });
-    //   var filterText = $('#poke-filter').val();
-    //   $('.poke-box:contains("'+filterText+'")').show();
-    // });
-
-
-    // Search Filter Function
-    
     $(document).ready(function(){
       $("#poke-filter").on("keyup", function() {
         var filterValue = $(this).val().toLowerCase();
-        $("#poke-box-all div").filter(function() {
-          $(this).toggle($(this).parent().parent().text().toLowerCase().indexOf(filterValue) > -1)
+        $("#poke-box-all").children('.poke-box-home-break').children('.poke-box-home').children('.poke-box').filter(function() {
+          var pokeBoxDiv = $(this).find('.poke-box-name');
+          var toggleDiv = $(this).parents('.poke-box-home-break')
+          toggleDiv.toggle(pokeBoxDiv.text().toLowerCase().indexOf(filterValue) > -1)
         });
       });
     });
+
+
+    // $('body').click(function( event ) {
+    //   console.log("clicked: " + this.lastChild.outerHTML);
+    // });
+
+
+    // $(document).on("click", function ( event ) {
+    //   var clickedTag =  this.innerHTML;
+    //   console.log("clicked: " + clickedTag)
+    // });
+
+
+
 
 
     // $('.new-lesson-button').click(function( event ) {

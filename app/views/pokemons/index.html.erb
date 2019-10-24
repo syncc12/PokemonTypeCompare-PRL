@@ -37,32 +37,34 @@
 
     <div id="poke-box-all" class="col-2 offset-1">
       <% @pokemons.each_with_index do |pokemon| %>
-        <div class="col-12 poke-box-home">
-          <div id="id-<%= pokemon.name.downcase %>" class="poke-box">
+        <div class="col-12 poke-box-home-break">
+          <div class="col-12 poke-box-home">
+            <div id="id-<%= pokemon.name.downcase %>" class="poke-box">
 
-            <div class="row">
-              <div class="col-12 poke-box-image">Pokemon Image</div>
-            </div>
-            <div class="row">
-              <div class="col-12 poke-box-text">
-                <div class="row">
-                  <div class="col-1 poke-box-number"><%= pokemon.pokedex_number %></div>
-                  <div class="col-9 poke-box-name"><%= pokemon.name %></div>
-                </div>
-                <div class="row">
-                  <div class="col-12 poke-box-type">
-                    <div class="poke-box-type-1 pt-<%= pokemon.type1 %>"><%= pokemon.type1 %></div>
-                    <% if pokemon.type2 != "N/A" %>
-                      <div class="poke-box-type-2 pt-<%= pokemon.type2 %>"> <%= pokemon.type2 %> </div>
-                    <% end %>
+              <div class="row">
+                <div class="col-12 poke-box-image">Pokemon Image</div>
+              </div>
+              <div class="row">
+                <div class="col-12 poke-box-text">
+                  <div class="row">
+                    <div class="col-1 poke-box-number"><%= pokemon.pokedex_number %></div>
+                    <div class="col-9 poke-box-name"><%= pokemon.name %></div>
+                  </div>
+                  <div class="row">
+                    <div class="col-12 poke-box-type">
+                      <div class="poke-box-type-1 pt-<%= pokemon.type1 %>"><%= pokemon.type1 %></div>
+                      <% if pokemon.type2 != "N/A" %>
+                        <div class="poke-box-type-2 pt-<%= pokemon.type2 %>"> <%= pokemon.type2 %> </div>
+                      <% end %>
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
 
+            </div>
           </div>
+          <br /><br />
         </div>
-        <br /><br />
       <% end %>
 
     </div>
@@ -111,4 +113,5 @@
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 
-<script src="../../assets/javascripts/pokemons.js"></script>
+<!-- <script src="../../assets/javascripts/pokemons.js"></script> -->
+
