@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>PokemonTypeCompare</title>
+    <title>Pokemon Compare</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
@@ -10,13 +10,27 @@
   </head>
 
   <body>
-    <div class="row static-header">
-      <div class="col-10 offset-1 banner-text">
-        Pokemon Type Comparer
-      </div>
-    </div>
+    <div class="container-fluid">
 
-    <%= yield %>
+      <div class="row">
+        <div id="static-header" class="col-12">
+          Pokemon Compare
+        </div>
+      </div>
+
+      <div class="row">
+        <div id="static-sidebar" class="col-1">
+          <br />
+          <%= link_to 'Home', root_path, class: 'link-sidebar' %><br />
+          <%= link_to 'Type Comparer', type_compares_path, class: 'link-sidebar' %><br />
+        </div>
+
+        <div id="content" class="col-11">
+          <%= yield %>
+        </div>
+      </div>
+
+    </div>
 
     
   </body>

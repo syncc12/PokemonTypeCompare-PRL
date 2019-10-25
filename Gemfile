@@ -75,3 +75,5 @@ end
 
 gem 'webpacker', '~> 3.4'
 gem 'react-rails'
+
+gem 'rails_refactor'

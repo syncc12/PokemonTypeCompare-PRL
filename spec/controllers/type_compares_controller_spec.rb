@@ -23,7 +23,7 @@ require 'rails_helper'
 # removed from Rails core in Rails 5, but can be added back in via the
 # `rails-controller-testing` gem.
 
-RSpec.describe PokemonsController, type: :controller do
+RSpec.describe Type_comparesController, type: :controller do
   describe "tasks#index" do
     it "should display the pokemon in the database" do
       get :index
@@ -114,7 +114,7 @@ end
 
   # # This should return the minimal set of values that should be in the session
   # # in order to pass any filters (e.g. authentication) defined in
-  # # PokemonsController. Be sure to keep this updated too.
+  # # Type_comparesController. Be sure to keep this updated too.
   # let(:valid_session) { {} }
 
 

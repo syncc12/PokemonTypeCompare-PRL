@@ -71,6 +71,16 @@
     var noeffectList = $('ul#ul-noeffect-list')
     var neutralList = $('ul#ul-neutral-list')
     
+
+
+
+
+
+
+
+
+
+
     $('.poke-box').draggable({
       snap: "#drop-box, .poke-box-home", snapMode: "inner", revert: 'invalid'
     });
@@ -80,7 +90,10 @@
     });
 
     $('#drop-box, .poke-box-home').droppable({
-      accept: '.poke-box'
+      accept: '.poke-box',
+      drop: function(event, ui) {
+        $(this).find('.poke-box').append(ui.draggable);
+      }
     });
 
     $('#drop-box').on( "drop", function(event, ui) {
@@ -171,7 +184,7 @@
         });
       });
     });
-
+    
 
     // $('body').click(function( event ) {
     //   console.log("clicked: " + this.lastChild.outerHTML);
