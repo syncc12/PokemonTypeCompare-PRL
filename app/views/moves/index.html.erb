@@ -1,0 +1,24 @@
+moves
+
+
+<div class="row">
+  <div class="col-2 offset-1">
+    <input id="input-pokemon"></input>
+  </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script>
+  $(function() {
+    
+    var avaPokemon = <%= raw Pokemon.pluck(:name) %>;
+    // avaPokemon.replace('&quot;', '"');
+    console.log(avaPokemon)
+    $("#input-pokemon").autocomplete ({
+
+      source: avaPokemon
+    });
+
+  });
+</script>
