@@ -1,5 +1,9 @@
 @import "bootstrap";
 
+div {
+  
+}
+
 .dbg {
   height: 900px;
 }
@@ -212,4 +216,44 @@ a.a-link-sidebar {
   margin: 0px;
 }
 
+#moves-poke-box {
+  border: 1px solid black;
+  margin: 0px;
+  padding: 0px;
+  height: 50px;
+  width: 250px;
+}
 
+#moves-poke-box .container-fluid {
+  height: 50px;
+  padding: 0px;
+  margin: 0px;
+}
+
+#moves-poke-box .container-fluid .row {
+  height: 50px;
+  width: 250px;
+  padding: 0px;
+  margin: 0px;
+} 
+
+#moves-poke-box-img {
+  border: 1px solid black;
+  margin: 5px;
+  padding: 0px;
+  height: 40px;
+  width: 40px;
+  text-align: center;
+  display: flex;
+  align-items: center;
+}
+
+#moves-poke-box-name {
+  margin: 0px;
+  padding: 0px;
+  text-indent: 5px;
+  height: 50px;
+  width: 200px;
+  display: flex;
+  align-items: center;
+}

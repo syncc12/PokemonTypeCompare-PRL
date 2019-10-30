@@ -1,10 +1,38 @@
-moves
-
-
-<div class="row">
-  <div class="col-2 offset-1">
-    <input id="input-pokemon"></input>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-1">
+      moves
+    </div>
   </div>
+
+  <div class="row">
+    <div class="col-1 offset-1">
+      <input id="input-pokemon"></input>
+    </div>
+    <div class="col-2 offset-1">
+    
+      <% @pokemons.each do |pokemon| %>
+      <!-- Pokemon Box Start -->
+        <div id="moves-poke-box">
+          <div class="container-fluid">
+            <div class="row">
+              <div id="moves-poke-box-img" class="align-self-center">
+                img
+              </div>
+              <div id="moves-poke-box-name" class="align-self-center">
+                <%= pokemon.name %>
+              </div>
+            </div>
+          </div>
+        </div>
+        <br />
+      <!-- Pokemon Box End -->
+      <% end %>
+
+    </div>
+  </div>
+
+
 </div>
 
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
@@ -16,8 +44,11 @@ moves
     // avaPokemon.replace('&quot;', '"');
     console.log(avaPokemon)
     $("#input-pokemon").autocomplete ({
-
-      source: avaPokemon
+      source: avaPokemon,
+      focus: function(event, ui) {
+        $("$input-pokemon").val(ui.item.label);
+        return false;
+      }
     });
 
   });
