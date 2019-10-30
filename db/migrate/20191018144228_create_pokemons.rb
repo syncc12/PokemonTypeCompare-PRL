@@ -5,8 +5,7 @@ class CreatePokemons < ActiveRecord::Migration[5.2]
       t.string :name
       t.string :type1
       t.string :type2
-      t.string :weakness1
-      t.string :weakness2
+      t.string :sprite
       t.timestamps
     end
   end

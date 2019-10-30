@@ -1,7 +1,9 @@
 <div class="container-fluid">
   <div class="row">
     <div class="col-1">
-      moves
+      <div id="moves-holder">
+        moves
+      </div>
     </div>
   </div>
 
@@ -16,7 +18,7 @@
         <div id="moves-poke-box">
           <div class="container-fluid">
             <div class="row">
-              <div id="moves-poke-box-img" class="align-self-center">
+              <div id="moves-poke-box-img" onclick="getMoves('<%= pokemon.name.downcase %>')" class="align-self-center">
                 img
               </div>
               <div id="moves-poke-box-name" class="align-self-center">
@@ -30,6 +32,32 @@
       <% end %>
 
     </div>
+
+    <div class="col-2 offset-1">
+      <div id="move-box">
+        <div class="container-fluid">
+          <div class="row">
+            <div id="move-box-type-category">
+              <div class="container">
+                <div class="row">
+                  <div id="move-box-type">
+                    Type
+                  </div>
+                </div>
+                <div class="row">
+                  <div id="move-box-category">
+                    Cat
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div id="move-box-name">
+              Name
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 
 
@@ -38,9 +66,18 @@
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <script>
+  var baseURL = "https://pokeapi.co/api/v2/";
+  function getMoves(name) {
+      $.get(baseURL + "pokemon/" + name, function(data, status) {
+        var moves = data["moves"];
+        console.log(moves)
+        $("#moves-holder").html(moves[0]["move"]["name"]);
+      })
+    }
   $(function() {
     
     var avaPokemon = <%= raw Pokemon.pluck(:name) %>;
+    
     // avaPokemon.replace('&quot;', '"');
     console.log(avaPokemon)
     $("#input-pokemon").autocomplete ({
@@ -50,6 +87,9 @@
         return false;
       }
     });
+
+
+    $("#moves-poke-box").selectable();
 
   });
 </script>
