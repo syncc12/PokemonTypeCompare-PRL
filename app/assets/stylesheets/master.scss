@@ -217,6 +217,13 @@ a.a-link-sidebar {
 }
 
 #moves-poke-box {
+  margin: 0px;
+  padding: 0px;
+  height: 50px;
+  width: 250px;
+}
+
+#moves-poke-box-inner {
   border: 1px solid black;
   margin: 0px;
   padding: 0px;
@@ -224,13 +231,13 @@ a.a-link-sidebar {
   width: 250px;
 }
 
-#moves-poke-box .container-fluid {
+#moves-poke-box-inner .container-fluid {
   height: 50px;
   padding: 0px;
   margin: 0px;
 }
 
-#moves-poke-box .container-fluid .row {
+#moves-poke-box-inner .container-fluid .row {
   height: 50px;
   width: 250px;
   padding: 0px;
@@ -266,11 +273,32 @@ a.a-link-sidebar {
   margin: 0px;
 }
 
+#move-box-name .container-fluid {
+  padding: 0px;
+  margin: 0px;
+}
+
+#move-box-name .container-fluid .row {
+  padding: 0px;
+  margin: 0px;
+}
+
+#move-box-name, #move-box-type-category {
+  display: inline;
+}
+
+#move-box-interior {
+  height: 50px;
+  width: 250px;
+  padding: 0px;
+  margin: 0px;
+}
+
 #move-box-type {
   border: 1px solid black;
-  margin-top: 5px;
-  margin-left: 5px;
-  margin-right: 5px;
+  margin-top: 0px;
+  margin-left: 0px;
+  margin-right: 0px;
   margin-bottom: 1px;
   padding: 0px;
   height: 19px;
@@ -283,9 +311,9 @@ a.a-link-sidebar {
 #move-box-category {
   border: 1px solid black;
   margin-top: 1px;
-  margin-left: 5px;
-  margin-right: 5px;
-  margin-bottom: 5px;
+  margin-left: 0px;
+  margin-right: 0px;
+  margin-bottom: 0px;
   padding: 0px;
   height: 19px;
   width: 100%;
@@ -311,10 +339,6 @@ a.a-link-sidebar {
   width: 40px;
   display: flex;
   align-items: center;
-}
-
-#move-box-type-category {
-  
 }
 
 [id^="sprite-"] {

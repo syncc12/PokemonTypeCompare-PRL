@@ -13,48 +13,43 @@
     </div>
     <div class="col-2 offset-1">
     
-      <% @pokemons.take(10).each do |pokemon| %>
-      <!-- Pokemon Box Start -->
-        <div id="moves-poke-box">
-          <div class="container-fluid">
-            <div class="row">
-              <div id="moves-poke-box-img" class="align-self-center">
-                <div id="moves-poke-box-<%= pokemon.name.downcase %>"></div>
-                <!-- <img src="getSprite('<%= pokemon.name.downcase %>');" alt="<%= pokemon.name.downcase %>" id="moves-poke-box-sprite" /> -->
-              </div>
-              <div id="moves-poke-box-name" class="align-self-center">
-                <%= pokemon.name %>
-              </div>
-            </div>
-          </div>
-        </div>
-        <br />
-      <!-- Pokemon Box End -->
-      <% end %>
-
+    <!-- Pokemon Box Start -->
+      <div id="moves-poke-box">
+        
+      </div>
+    <!-- Pokemon Box End -->
     </div>
+      
 
     <div class="col-2 offset-1">
       <div id="move-box">
         <div class="container-fluid">
           <div class="row">
-            <div id="move-box-type-category">
-              <div class="container">
-                <div class="row">
-                  <div id="move-box-type">
-                    Type
+
+            <div class="move-box-interior">
+              <div id="move-box-type-category">
+                <div class="container-fluid">
+                  <div class="row">
+                    <div id="move-box-type">
+                      Type
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div id="move-box-category">
+                      Cat
+                    </div>
                   </div>
                 </div>
-                <div class="row">
-                  <div id="move-box-category">
-                    Cat
+              </div>
+              <div id="move-box-name">
+                <div class="container-fluid">
+                  <div class="row">
+                    Name
                   </div>
                 </div>
               </div>
             </div>
-            <div id="move-box-name">
-              Name
-            </div>
+
           </div>
         </div>
       </div>
@@ -100,7 +95,7 @@
   $(function() {
     
 
-    var avaPokemon = <%= raw Pokemon.limit(10).pluck(:name) %>;
+    var avaPokemon = <%= raw Pokemon.pluck(:name) %>;
     
     $(avaPokemon).each(function(key, value) {
       var baseURL = "https://pokeapi.co/api/v2/";
@@ -122,6 +117,39 @@
 
 
     $("#moves-poke-box").selectable();
+
+    $.get(baseURL + "pokemon?limit=964", function(data, status) {
+      // console.log(data['results'][0]['name'])
+      $.each(data['results'], function(index, value) {
+        $.get(value['url'], function(data, status) {
+          // console.log(data)
+          var insertJSON = (
+          '<div id="moves-poke-box-inner">' +
+            '<div class="container-fluid">' +
+              '<div class="row">' +
+                '<div id="moves-poke-box-img" class="align-self-center">' +
+                  '<div id="moves-poke-box-' + data['name'] + '">' +
+                  '<img id="sprite-' + data['name'] + '" src="' + data["sprites"]["front_default"] + '" alt="' + data['name'] + '" />' +
+                  '</div>' +
+                '</div>' +
+                '<div id="moves-poke-box-name" class="align-self-center">' +
+                  data['name'] +
+                '</div>' +
+              '</div>' +
+            '</div>' +
+            '</div>' +
+          '<br />'
+          );
+          $('#moves-poke-box').append(insertJSON);
+        });
+      });
+
+
+
+
+
+
+    });
 
   });
 </script>
