@@ -13,13 +13,14 @@
     </div>
     <div class="col-2 offset-1">
     
-      <% @pokemons.each do |pokemon| %>
+      <% @pokemons.take(10).each do |pokemon| %>
       <!-- Pokemon Box Start -->
         <div id="moves-poke-box">
           <div class="container-fluid">
             <div class="row">
-              <div id="moves-poke-box-img" onclick="getMoves('<%= pokemon.name.downcase %>')" class="align-self-center">
-                img
+              <div id="moves-poke-box-img" class="align-self-center">
+                <div id="moves-poke-box-<%= pokemon.name.downcase %>"></div>
+                <!-- <img src="getSprite('<%= pokemon.name.downcase %>');" alt="<%= pokemon.name.downcase %>" id="moves-poke-box-sprite" /> -->
               </div>
               <div id="moves-poke-box-name" class="align-self-center">
                 <%= pokemon.name %>
@@ -67,19 +68,50 @@
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <script>
   var baseURL = "https://pokeapi.co/api/v2/";
+  function getAPI(resource, name="") {
+    $.get(baseURL + resource + "/" + name, function(data, status) {
+      var rsrce = data['"' + resource + '"']
+      console.log(rsrce)
+      return rsrce
+    })
+  }
+
+
   function getMoves(name) {
       $.get(baseURL + "pokemon/" + name, function(data, status) {
         var moves = data["moves"];
-        console.log(moves)
+        // console.log(moves)
         $("#moves-holder").html(moves[0]["move"]["name"]);
       })
     }
+    
+    function getSprite(name) {
+      $.get(baseURL + "pokemon/" + name, function(data, status) {
+        // console.log(baseURL + "pokemon/" + name)
+        var sprite = data["sprites"]["front_default"];
+        // console.log(data["sprites"]["front_default"])
+        // console.log(sprite.toString())
+        return sprite.toString();
+      });
+    }
+
+
+
   $(function() {
     
-    var avaPokemon = <%= raw Pokemon.pluck(:name) %>;
+
+    var avaPokemon = <%= raw Pokemon.limit(10).pluck(:name) %>;
     
-    // avaPokemon.replace('&quot;', '"');
-    console.log(avaPokemon)
+    $(avaPokemon).each(function(key, value) {
+      var baseURL = "https://pokeapi.co/api/v2/";
+      var sprite;
+      $.get(baseURL + "pokemon/" + value.toLowerCase(), function(data, status) {
+        sprite = data["sprites"]["front_default"];
+        $('#moves-poke-box-' + value.toLowerCase()).append('<img id="sprite-' + value.toLowerCase() + '" src="' + sprite + '" alt="' + value.toLowerCase() + '" />');
+      });
+      
+    });
+    
     $("#input-pokemon").autocomplete ({
       source: avaPokemon,
       focus: function(event, ui) {

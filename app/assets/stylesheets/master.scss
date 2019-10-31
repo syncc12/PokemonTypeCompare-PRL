@@ -262,6 +262,8 @@ a.a-link-sidebar {
   border: 1px solid black;
   height: 50px;
   width: 250px;
+  padding: 0px;
+  margin: 0px;
 }
 
 #move-box-type {
@@ -313,4 +315,11 @@ a.a-link-sidebar {
 
 #move-box-type-category {
   
+}
+
+[id^="sprite-"] {
+  margin: 0px;
+  padding: 0px;
+  height: 40px;
+  width: 40px;
 }
