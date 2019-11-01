@@ -1,3 +1,200 @@
 // Place all the styles related to the moves controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+#moves-poke-box {
+  margin: 0px;
+  padding: 0px;
+  height: 50px;
+  width: 250px;
+}
+
+#moves-poke-box-ol {
+  margin: 0px;
+  padding: 0px;
+  width: 250px;
+}
+
+.moves-poke-box-li {
+  border: 1px solid black;
+  margin: 0px;
+  padding: 0px;
+  height: 50px;
+  width: 250px;
+}
+
+.moves-poke-box-li .container-fluid {
+  height: 50px;
+  padding: 0px;
+  margin: 0px;
+}
+
+.moves-poke-box-li .container-fluid .row {
+  height: 50px;
+  width: 250px;
+  padding: 0px;
+  margin: 0px;
+} 
+
+#moves-poke-box-img {
+  border: 1px solid black;
+  margin: 5px;
+  padding: 0px;
+  height: 40px;
+  width: 40px;
+  text-align: center;
+  display: flex;
+  align-items: center;
+}
+
+#moves-poke-box-name {
+  margin: 0px;
+  padding: 0px;
+  text-indent: 5px;
+  height: 50px;
+  width: 200px;
+  display: flex;
+  align-items: center;
+}
+
+#move-box-ul {
+  height: 50px;
+  width: 250px;
+  padding: 0px;
+  margin: 0px;
+}
+
+#move-box-name .container-fluid {
+  padding: 0px;
+  margin: 0px;
+}
+
+#move-box-name .container-fluid .row {
+  padding: 0px;
+  margin: 0px;
+}
+
+#move-box-name, #move-box-type-category {
+  display: inline;
+}
+
+.move-box-li {
+  border: 1px solid black;
+  height: 50px;
+  width: 250px;
+  padding: 0px;
+  margin: 0px;
+}
+
+#move-box-ul .move-box-li .container-fluid {
+  height: 50px;
+  width: 250px;
+  padding: 0px;
+  margin: 0px;
+}
+
+#move-box-ul .move-box-li .container-fluid .row {
+  height: 50px;
+  width: 250px;
+  padding: 0px;
+  margin: 0px;
+}
+
+#move-box-type {
+  border: 1px solid black;
+  margin-top: 0px;
+  margin-left: 0px;
+  margin-right: 0px;
+  margin-bottom: 1px;
+  padding: 0px;
+  height: 19px;
+  width: 40px;
+  text-align: center;
+  display: flex;
+  align-items: center;
+}
+
+#move-box-category {
+  border: 1px solid black;
+  margin-top: 1px;
+  margin-left: 0px;
+  margin-right: 0px;
+  margin-bottom: 0px;
+  padding: 0px;
+  height: 19px;
+  width: 100%;
+  text-align: center;
+  display: flex;
+  align-items: center;
+}
+
+#move-box-name {
+  margin: 0px;
+  padding: 0px;
+  text-indent: 5px;
+  height: 50px;
+  width: 200px;
+  display: flex;
+  align-items: center;
+}
+
+#move-box-type-category {
+  margin: 5px;
+  padding: 0px;
+  height: 40px;
+  width: 40px;
+  display: flex;
+  align-items: center;
+}
+
+[id^="sprite-"] {
+  margin: 0px;
+  padding: 0px;
+  height: 40px;
+  width: 40px;
+}
+
+#move-box-type-category-ul {
+  margin: 0px;
+  padding: 0px;
+  height: 40px;
+  width: 40px;
+}
+
+#party-box-ul {
+  margin: 0px;
+  padding: 0px;
+  height: 50px;
+  width: 250px;
+}
+
+.party-box-li {
+  border: 1px solid black;
+  margin: 0px;
+  padding: 0px;
+  height: 50px;
+  width: 250px;
+}
+
+#party-box-ul .party-box-li .container-fluid {
+  margin: 0px;
+  padding: 0px;
+  height: 50px;
+  width: 250px;
+}
+
+#party-box-ul .party-box-li .container-fluid .row {
+  margin: 0px;
+  padding: 0px;
+  height: 50px;
+  width: 250px;
+}
+
+$check-size: 1em;
+$check-height: $check-size/2;
+$check-width: $check-height/2;
+
+
+@keyframes checkmark {
+  
+}

@@ -1,7 +1,7 @@
 class TypeComparesController < ApplicationController
 
   def index
-    @pokemons=Pokemon.all
+    # @pokemons=Pokemon.all
   end
 
 end

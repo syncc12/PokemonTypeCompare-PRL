@@ -6,21 +6,21 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-pokemon_list = [
-  [ 1, "Bulbasaur", "grass", "poison", "/Users/patricklyden/Desktop/coding-environment/src/PokemonTypeCompare/app/assets/images/bulbasaur.png" ],
-  [ 2, "Ivysaur", "grass", "poison", "/Users/patricklyden/Desktop/coding-environment/src/PokemonTypeCompare/app/assets/images/ivysaur.png" ],
-  [ 3, "Mega Venusaur", "grass", "poison", "N/A" ],
-  [ 3, "Venusaur", "grass", "poison", "/Users/patricklyden/Desktop/coding-environment/src/PokemonTypeCompare/app/assets/images/venusaur.png" ],
-  [ 4, "Charmander", "fire", "N/A", "/Users/patricklyden/Desktop/coding-environment/src/PokemonTypeCompare/app/assets/images/charmander.png" ],
-  [ 5, "Charmeleon", "fire", "N/A", "/Users/patricklyden/Desktop/coding-environment/src/PokemonTypeCompare/app/assets/images/charmeleon.png" ],
-  [ 6, "Charizard", "fire", "flying", "/Users/patricklyden/Desktop/coding-environment/src/PokemonTypeCompare/app/assets/images/charizard.png" ],
-  [ 6, "Mega Charizard X", "fire", "dragon", "N/A" ],
-  [ 6, "Mega Charizard Y", "fire", "flying", "N/A" ],
-  [ 7, "Squirtle", "water", "N/A", "/Users/patricklyden/Desktop/coding-environment/src/PokemonTypeCompare/app/assets/images/squirtle.png" ],
-  [ 8, "Wartortle", "water", "N/A", "/Users/patricklyden/Desktop/coding-environment/src/PokemonTypeCompare/app/assets/images/wartortle.png" ],
-  [ 9, "Blastoise", "water", "N/A", "/Users/patricklyden/Desktop/coding-environment/src/PokemonTypeCompare/app/assets/images/blastoise.png" ],
-  [ 9, "Mega Blastoise", "water", "N/A", "N/A" ],
-  [ 10, "Caterpie", "bug", "N/A", "/Users/patricklyden/Desktop/coding-environment/src/PokemonTypeCompare/app/assets/images/caterpie.png" ],
+# pokemon_list = [
+#   [ 1, "Bulbasaur", "grass", "poison", "/Users/patricklyden/Desktop/coding-environment/src/PokemonTypeCompare/app/assets/images/bulbasaur.png" ],
+#   [ 2, "Ivysaur", "grass", "poison", "/Users/patricklyden/Desktop/coding-environment/src/PokemonTypeCompare/app/assets/images/ivysaur.png" ],
+#   [ 3, "Mega Venusaur", "grass", "poison", "N/A" ],
+#   [ 3, "Venusaur", "grass", "poison", "/Users/patricklyden/Desktop/coding-environment/src/PokemonTypeCompare/app/assets/images/venusaur.png" ],
+#   [ 4, "Charmander", "fire", "N/A", "/Users/patricklyden/Desktop/coding-environment/src/PokemonTypeCompare/app/assets/images/charmander.png" ],
+#   [ 5, "Charmeleon", "fire", "N/A", "/Users/patricklyden/Desktop/coding-environment/src/PokemonTypeCompare/app/assets/images/charmeleon.png" ],
+#   [ 6, "Charizard", "fire", "flying", "/Users/patricklyden/Desktop/coding-environment/src/PokemonTypeCompare/app/assets/images/charizard.png" ],
+#   [ 6, "Mega Charizard X", "fire", "dragon", "N/A" ],
+#   [ 6, "Mega Charizard Y", "fire", "flying", "N/A" ],
+#   [ 7, "Squirtle", "water", "N/A", "/Users/patricklyden/Desktop/coding-environment/src/PokemonTypeCompare/app/assets/images/squirtle.png" ],
+#   [ 8, "Wartortle", "water", "N/A", "/Users/patricklyden/Desktop/coding-environment/src/PokemonTypeCompare/app/assets/images/wartortle.png" ],
+#   [ 9, "Blastoise", "water", "N/A", "/Users/patricklyden/Desktop/coding-environment/src/PokemonTypeCompare/app/assets/images/blastoise.png" ],
+#   [ 9, "Mega Blastoise", "water", "N/A", "N/A" ],
+#   [ 10, "Caterpie", "bug", "N/A", "/Users/patricklyden/Desktop/coding-environment/src/PokemonTypeCompare/app/assets/images/caterpie.png" ],
   # [ 11, "Metapod", "bug", "N/A", "/Users/patricklyden/Desktop/coding-environment/src/PokemonTypeCompare/app/assets/images/metapod.png" ],
   # [ 12, "Butterfree", "bug", "flying", "/Users/patricklyden/Desktop/coding-environment/src/PokemonTypeCompare/app/assets/images/butterfree.png" ],
   # [ 13, "Weedle", "bug", "poison", "/Users/patricklyden/Desktop/coding-environment/src/PokemonTypeCompare/app/assets/images/weedle.png" ],
@@ -933,11 +933,11 @@ pokemon_list = [
   # [ 807, "Zeraora", "electric", "N/A", "/Users/patricklyden/Desktop/coding-environment/src/PokemonTypeCompare/app/assets/images/zeraora.png" ],
   # [ 808, "Meltan", "steel", "N/A", "/Users/patricklyden/Desktop/coding-environment/src/PokemonTypeCompare/app/assets/images/meltan.png" ],
   # [ 809, "Melmetal", "steel", "N/A", "/Users/patricklyden/Desktop/coding-environment/src/PokemonTypeCompare/app/assets/images/melmetal.png" ]
-]
+# ]
 
-pokemon_list.each do |pmNum, pmName, pmType1, pmType2, pmSprite|
-  Pokemon.create( pokedex_number: pmNum, name: pmName, type1: pmType1, type2: pmType2, sprite: pmSprite )
-end
+# pokemon_list.each do |pmNum, pmName, pmType1, pmType2, pmSprite|
+#   Pokemon.create( pokedex_number: pmNum, name: pmName, type1: pmType1, type2: pmType2, sprite: pmSprite )
+# end
 
 
 #------------------------------------------------------------------------------------

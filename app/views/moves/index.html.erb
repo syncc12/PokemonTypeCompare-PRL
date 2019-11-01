@@ -11,49 +11,35 @@
     <div class="col-1 offset-1">
       <input id="input-pokemon"></input>
     </div>
+  </div>
+  <br />
+  <div class="row">
     <div class="col-2 offset-1">
-    
     <!-- Pokemon Box Start -->
       <div id="moves-poke-box">
-        
+        <ol id="moves-poke-box-ol" class="list-unstyled">
+          
+        </ol>
       </div>
     <!-- Pokemon Box End -->
     </div>
-      
-
+    
+    <!-- Party Box Start -->
     <div class="col-2 offset-1">
-      <div id="move-box">
-        <div class="container-fluid">
-          <div class="row">
-
-            <div class="move-box-interior">
-              <div id="move-box-type-category">
-                <div class="container-fluid">
-                  <div class="row">
-                    <div id="move-box-type">
-                      Type
-                    </div>
-                  </div>
-                  <div class="row">
-                    <div id="move-box-category">
-                      Cat
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div id="move-box-name">
-                <div class="container-fluid">
-                  <div class="row">
-                    Name
-                  </div>
-                </div>
-              </div>
-            </div>
-
-          </div>
-        </div>
-      </div>
+      <ul id="party-box-ul" class="list-unstyled">
+        
+      </ul>
     </div>
+    <!-- Party Box End -->
+
+    <!-- Move Box Start -->
+    <div class="col-2 offset-1">
+      <ul id="move-box-ul" class="list-unstyled">
+
+      </ul>
+    </div>
+    <!-- Move Box End -->
+
   </div>
 
 
@@ -95,28 +81,29 @@
   $(function() {
     
 
-    var avaPokemon = <%= raw Pokemon.pluck(:name) %>;
+    // var avaPokemon = <%= raw Pokemon.pluck(:name) %>;
     
-    $(avaPokemon).each(function(key, value) {
-      var baseURL = "https://pokeapi.co/api/v2/";
-      var sprite;
-      $.get(baseURL + "pokemon/" + value.toLowerCase(), function(data, status) {
-        sprite = data["sprites"]["front_default"];
-        $('#moves-poke-box-' + value.toLowerCase()).append('<img id="sprite-' + value.toLowerCase() + '" src="' + sprite + '" alt="' + value.toLowerCase() + '" />');
-      });
+    // $(avaPokemon).each(function(key, value) {
+    //   var baseURL = "https://pokeapi.co/api/v2/";
+    //   var sprite;
+    //   $.get(baseURL + "pokemon/" + value.toLowerCase(), function(data, status) {
+    //     sprite = data["sprites"]["front_default"];
+    //     $('#moves-poke-box-' + value.toLowerCase()).append('<img id="sprite-' + value.toLowerCase() + '" src="' + sprite + '" alt="' + value.toLowerCase() + '" />');
+    //   });
       
-    });
+    // });
     
-    $("#input-pokemon").autocomplete ({
-      source: avaPokemon,
-      focus: function(event, ui) {
-        $("$input-pokemon").val(ui.item.label);
-        return false;
-      }
-    });
+    // $("#input-pokemon").autocomplete ({
+    //   source: avaPokemon,
+    //   focus: function(event, ui) {
+    //     $("$input-pokemon").val(ui.item.label);
+    //     return false;
+    //   }
+    // });
 
+    
 
-    $("#moves-poke-box").selectable();
+    
 
     $.get(baseURL + "pokemon?limit=964", function(data, status) {
       // console.log(data['results'][0]['name'])
@@ -124,7 +111,7 @@
         $.get(value['url'], function(data, status) {
           // console.log(data)
           var insertJSON = (
-          '<div id="moves-poke-box-inner">' +
+          '<li id="moves-poke-box-li-' + data['name'] + '" class="moves-poke-box-li">' +
             '<div class="container-fluid">' +
               '<div class="row">' +
                 '<div id="moves-poke-box-img" class="align-self-center">' +
@@ -137,14 +124,51 @@
                 '</div>' +
               '</div>' +
             '</div>' +
-            '</div>' +
+            '</li>' +
           '<br />'
           );
-          $('#moves-poke-box').append(insertJSON);
+          $('#moves-poke-box-ol').append(insertJSON);
         });
       });
 
-
+      $("#moves-poke-box-ol").selectable({
+        selected: function(event, ui) {
+          $('#party-box-ul li:gt(7)').remove();
+          var selectedHTML = $(ui['selected']).html();
+          var selectedName = $(ui['selected']).text();
+          var insertJSON = (
+            '<li class="party-box-li">' + selectedHTML + '</li><br />'
+            );
+          $('#party-box-ul').append(insertJSON);
+          var baseURL = "https://pokeapi.co/api/v2/";
+          $.get(baseURL + "pokemon/" + selectedName, function(data, status) {
+            $.each(data['moves'], function(index, value) {
+              var moveName = value['move']['name'];
+              var moveURL = value['move']['url'];
+              var insertJSON = (
+                '<li id="move-box-li-' + selectedName + '-' + moveName + '" class="move-box-li">' +
+                  '<div class="container-fluid">' +
+                    '<div class="row">' +
+                      '<div id="move-box-type-category" class="align-self-center">' +
+                        '<ul id="move-box-type-category-ul">' +
+                          '<li id="move-box-type">' + 'Type' + '</li>' +
+                          '<li id="move-box-category">' + 'Cat' + '</li>' +
+                        '</ul>' +
+                      '</div>' +
+                      '<div id="move-box-name" class="align-self-center">' + moveName + '</div>' +
+                    '</div>' +
+                  '</div>' +
+                '</li>' +
+                '<br />'
+                );
+              $('#move-box-ul').append(insertJSON);
+            });
+          }); 
+        }
+        
+      });
+      
+      
 
 
 
