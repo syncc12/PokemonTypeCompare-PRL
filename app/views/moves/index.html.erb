@@ -8,12 +8,13 @@
   </div>
 
   <div class="row">
-    <div class="col-1 offset-1">
+    <div class="col-1 offset-3">
       <input id="input-pokemon"></input>
     </div>
   </div>
   <br />
   <div class="row">
+    <div class="col-2"></div>
     <div class="col-2 offset-1">
     <!-- Pokemon Box Start -->
       <div id="moves-poke-box">
@@ -27,7 +28,7 @@
     <!-- Party Box Start -->
     <div class="col-2 offset-1">
       <ul id="party-box-ul" class="list-unstyled">
-        
+        <li class="party-box-li"></li>
       </ul>
     </div>
     <!-- Party Box End -->
@@ -137,10 +138,13 @@
           var selectedHTML = $(ui['selected']).html();
           var selectedName = $(ui['selected']).text();
           var insertJSON = (
-            '<li class="party-box-li">' + selectedHTML + '</li><br />'
+            '<li class="party-box-li">' + 
+            selectedHTML + 
+            '</li>' //'<br />'
             );
-          $('#party-box-ul').append(insertJSON);
+          $('.party-box-li').replaceWith(insertJSON);
           var baseURL = "https://pokeapi.co/api/v2/";
+//////////Set to display proper moves when new pokemon is selected
           $.get(baseURL + "pokemon/" + selectedName, function(data, status) {
             $.each(data['moves'], function(index, value) {
               var moveName = value['move']['name'];
