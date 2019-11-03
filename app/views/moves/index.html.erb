@@ -134,7 +134,7 @@
 
       $("#moves-poke-box-ol").selectable({
         selected: function(event, ui) {
-          $('#party-box-ul li:gt(7)').remove();
+          $('#move-box-ul').empty();
           var selectedHTML = $(ui['selected']).html();
           var selectedName = $(ui['selected']).text();
           var insertJSON = (
@@ -144,28 +144,33 @@
             );
           $('.party-box-li').replaceWith(insertJSON);
           var baseURL = "https://pokeapi.co/api/v2/";
-//////////Set to display proper moves when new pokemon is selected
           $.get(baseURL + "pokemon/" + selectedName, function(data, status) {
             $.each(data['moves'], function(index, value) {
               var moveName = value['move']['name'];
               var moveURL = value['move']['url'];
-              var insertJSON = (
-                '<li id="move-box-li-' + selectedName + '-' + moveName + '" class="move-box-li">' +
-                  '<div class="container-fluid">' +
-                    '<div class="row">' +
-                      '<div id="move-box-type-category" class="align-self-center">' +
-                        '<ul id="move-box-type-category-ul">' +
-                          '<li id="move-box-type">' + 'Type' + '</li>' +
-                          '<li id="move-box-category">' + 'Cat' + '</li>' +
-                        '</ul>' +
+              function typeGet() {
+                return $.get(moveURL);
+              }
+              $.when(typeGet()).done(function(data, status){
+                var moveType = data['type']['name'];
+                var insertJSON = (
+                  '<li id="move-box-li-' + selectedName + '-' + moveName + '" class="move-box-li">' +
+                    '<div class="container-fluid">' +
+                      '<div class="row">' +
+                        '<div id="move-box-type-category" class="align-self-center">' +
+                          '<ul id="move-box-type-category-ul">' +
+                            '<li id="move-box-type">' + moveType + '</li>' +
+                            '<li id="move-box-category">' + 'Cat' + '</li>' +
+                          '</ul>' +
+                        '</div>' +
+                        '<div id="move-box-name" class="align-self-center">' + moveName + '</div>' +
                       '</div>' +
-                      '<div id="move-box-name" class="align-self-center">' + moveName + '</div>' +
                     '</div>' +
-                  '</div>' +
-                '</li>' +
-                '<br />'
-                );
-              $('#move-box-ul').append(insertJSON);
+                  '</li>' +
+                  '<br />'
+                  );
+                $('#move-box-ul').append(insertJSON);
+            });
             });
           }); 
         }
