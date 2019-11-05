@@ -9,7 +9,7 @@
 
   <div class="row">
     <div class="col-1 offset-3">
-      <input id="input-pokemon"></input>
+      <input id="input-pokemon" type="text" placeholder="Search Pokemon..."></input>
     </div>
   </div>
   <br />
@@ -139,7 +139,7 @@
                     '<img id="sprite-' + data['name'] + '" src="' + data["sprites"]["front_default"] + '" alt="' + data['name'] + '" />' +
                     '</div>' +
                   '</div>' +
-                  '<div id="moves-poke-box-name-selected" class="align-self-center">' +
+                  '<div id="moves-poke-box-name" class="moves-poke-box-name-class align-self-center">' +
                     data['name'] +
                   '</div>' +
                   '<table id="selected-moves"></table>' +
@@ -302,7 +302,52 @@
       }
     });
   });
+
+  $(function () {
+    // $("#input-pokemon").autocomplete ({
+    //   source: avaPokemon,
+    //   focus: function(event, ui) {
+    //     $("$input-pokemon").val(ui.item.label);
+    //     return false;
+    //   }
+    // });
+    $("#input-pokemon").on("input", function() {
+      var currentInput = $(this).val().toLowerCase();
+      // var searchDIVTag ="[id^='#moves-poke-box-li-']:contains('" + currentInput + "')";
+      // var toggleDIV = $(searchDIVTag);
+      // var searchDIV = $('.moves-poke-box-li');
+
+      // $(searchDIV).filter(function(index, element) {
+      //   console.log(this);
+      //   toggleDIV.toggle(searchDIV.text().toLowerCase().indexOf(currentInput) > -1);
+      // });
+      if (currentInput == "") {
+        $('#moves-poke-box-ol > li').hide();
+      } else {
+        $('#moves-poke-box-ol > li:not(:contains(' + currentInput + '))').hide(); 
+        $('#moves-poke-box-ol > li:contains(' + currentInput + ')').show();  
+      }
+      
+
+      
+      
+    });
+
+
     
+    // $(document).ready(function(){
+    //   $("#poke-filter").on("keyup", function() {
+    //     var filterValue = $(this).val().toLowerCase();
+    //     $("#poke-box-all").children('.poke-box-home-break').children('.poke-box-home').children('.poke-box').filter(function() {
+    //       var pokeBoxDiv = $(this).find('.poke-box-name');
+    //       var toggleDiv = $(this).parents('.poke-box-home-break')
+    //       toggleDiv.toggle(pokeBoxDiv.text().toLowerCase().indexOf(filterValue) > -1)
+    //     });
+    //   });
+    // });
+
+
+  });
     
 
 
