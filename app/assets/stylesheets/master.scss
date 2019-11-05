@@ -8,6 +8,29 @@ div {
   height: 900px;
 }
 
+.std-lb {
+  margin: 0px;
+  padding: 0px;
+  height: 50px;
+  width: 250px;
+  border: 1px solid black;
+}
+
+.std-lb-imgbox {
+  margin: 5px;
+  padding: 0px;
+  height: 40px;
+  width: 40px;
+  border: 1px solid black;
+}
+
+.std-lb-namebox {
+  margin: 0px;
+  padding: 0px;
+  height: 50px;
+  width: 200px;
+}
+
 #static-header {
   background-color: #010101;
   color: #FEFEFE;
@@ -15,175 +38,6 @@ div {
   text-align: center;
   font-size: 40px;
   vertical-align: center;
-}
-
-#poke-box-all {
-  position: absolute;
-  padding: 0px;
-}
-
-.poke-box-home {
-  padding: 0px;
-  border: 1px solid black;
-}
-
-.poke-box {
-  border: 1px solid black;
-  padding-bottom: 0px;
-  padding-left: 10px;
-  padding-right: 10px;
-}
-
-.poke-box-text {
-  vertical-align: bottom;
-  margin: -5px 0;
-}
-
-.poke-box-number {
-  text-align: left;
-  horizontal-align: left;
-  vertical-align: bottom;
-}
-
-.poke-box-name {
-  text-align: center;
-  horizontal-align: center;
-  vertical-align: bottom;
-}
-
-.poke-box-number, .poke-box-name {
-  display: inline-block;
-}
-
-.poke-box-type-1, .poke-box-type-2 {
-  display: inline-block;
-  padding-left: 5px;
-  padding-right: 5px;
-  padding-top: 0px;
-  padding-bottom: 0px;
-}
-
-.poke-box-type, .poke-box-type-1, .poke-box-type-2 {
-  text-align: center;
-  vertical-align: bottom;
-}
-
-#drop-box, .poke-box, .poke-box-home {
-  height: 150px;
-  width: 200px;
-}
-
-/* #output-row, #output-box, #drop-box, .poke-box-home {
-  z-index: 400;
-}
-
-.poke-box {
-  z-index: -1;
-  position: relative;
-} */
-
-#advantage-list-title, #disadvantage-list-title, #noeffect-list-title, #neutral-list-title {
-  text-align: center;
-}
-
-#advantage-list-title, #disadvantage-list-title, #noeffect-list-title, #neutral-list-title, #advantage-list, #disadvantage-list, #noeffect-list, #neutral-list {
-  width: 150px;
-}
-
-#advantage-list, #disadvantage-list, #noeffect-list, #neutral-list {
-  /* border: 1px solid gray; */
-  padding: 0px;
-}
-
-#drop-box {
-  vertical-align: top;
-  border: 1px solid black;
-}
-
-* {
-  box-sizing: border-box;
-}
-
-.poke-box-image {
-  height: 100px;
-}
-
-.poke-box-text {
-  height: 50px;
-}
-
-.poke-box-number, .poke-box-name, .poke-box-type, .poke-box-type-1, .poke-box-type-2 {
-  height: 25px;
-}
-
-.li-advantage-list, .li-disadvantage-list, .li-noeffect-list, .li-neutral-list {
-  width: 100%;
-  margin: 3px 0;
-}
-
-#ul-advantage-list, #ul-disadvantage-list, #ul-noeffect-list, #ul-neutral-list {
-  text-align: center;
-}
-
-.li-advantage-list, .li-disadvantage-list, .li-noeffect-list, .li-neutral-list, #ul-advantage-list, #ul-disadvantage-list, #ul-noeffect-list, #ul-neutral-list {
-  padding: 0px;
-  list-style-type: none;
-  
-}
-
-.pt-grass { background-color: #7AC74C; }
-
-.pt-fire { background-color: #EE8130; }
-
-.pt-water { background-color: #6390F0; }
-
-.pt-bug { background-color: #A6B91A; }
-
-.pt-normal { background-color: #A8A77A; }
-
-.pt-dark { background-color: #705746; }
-
-.pt-poison { background-color: #A33EA1; }
-
-.pt-electric { background-color: #F7D02C; }
-
-.pt-ground { background-color: #E2BF65; }
-
-.pt-ice { background-color: #96D9D6; }
-
-.pt-fairy { background-color: #D685AD; }
-
-.pt-fighting { background-color: #C22E28; }
-
-.pt-psychic { background-color: #F95587; }
-
-.pt-rock { background-color: #B6A136; }
-
-.pt-ghost { background-color: #735797; }
-
-.pt-dragon { background-color: #6F35FC; }
-
-.pt-steel { background-color: #B7B7CE; }
-
-.pt-flying { background-color: #A98FF3; }
-
-.pt-grass, .pt-fire, .pt-water, .pt-bug, .pt-normal, .pt-dark, .pt-poison, .pt-electric, .pt-ground, .pt-ice, .pt-fairy, .pt-fighting, .pt-psychic, .pt-rock, .pt-ghost, .pt-dragon, .pt-steel, .pt-flying {
-  border-radius: 15px;
-  color: #FFFFFF;
-  border: 1px solid #999999;
-  text-shadow:
-    -1px -1px 0 #000000,
-    1px -1px 0 #000000,
-    -1px 1px 0 #000000,
-    1px 1px 0 #000000;
-}
-
-#drop-box .ui-selected {
-  background: #FFFF00;
-}
-
-.poke-box .ui-selected {
-  background: #00FF00;
 }
 
 #static-sidebar {
@@ -214,4 +68,29 @@ a.a-link-sidebar {
   text-size: 18px;
   padding: 0px;
   margin: 0px;
+}
+
+.poke-button {
+  height: 30px;
+  width: 150px;
+  margin: 20px 50px;
+  padding: 0px;
+  border: 1px solid black;
+  text-align: center;
+  color: #f0f0f0;
+  text-shadow:
+    -1px -1px 0 #222224,
+    1px -1px 0 #222224,
+    -1px 1px 0 #222224,
+    1px 1px 0 #222224;
+}
+
+.poke-button:hover {
+  background-color: #eeafaa;
+  color: #f0f0f0;
+}
+
+.poke-button:active {
+  background-color: #f00000;
+  color: #f0f0f0;
 }
