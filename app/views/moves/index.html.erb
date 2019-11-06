@@ -7,13 +7,28 @@
     </div>
   </div>
 
+  
   <div class="row">
+
+    <!-- Search Pokemon Start -->
     <div class="col-1 offset-3">
       <input id="input-pokemon" type="text" placeholder="Search Pokemon..."></input>
     </div>
+    <!-- Search Pokemon End -->
+
+    <!-- Search Moves Start -->
+    <div class="col-1 offset-5">
+      <input id="input-moves" type="text" placeholder="Search Moves..."></input>
+    </div>
+    <!-- Search Moves End -->
+
+
   </div>
   <br />
+  
   <div class="row">
+
+    <!-- Party Box Start -->
     <div class="col-2">
       <div class="party-box-outer">
         <div id="party-box-1" class="party-box std-lb"></div>
@@ -34,22 +49,24 @@
         <div id="party-box-6" class="party-box std-lb"></div>
       </div>
     </div>
-    <div class="col-2 offset-1">
+    <!-- Party Box End -->
+    
     <!-- Pokemon Box Start -->
+    <div class="col-2 offset-1">
       <div id="moves-poke-box">
         <ol id="moves-poke-box-ol" class="list-unstyled">
           
         </ol>
       </div>
-    <!-- Pokemon Box End -->
     </div>
-    
-    <!-- Party Box Start -->
+    <!-- Pokemon Box End -->
+
+    <!-- Add To Party Box Start -->
     <div class="col-2 offset-1">
       <div id="party-box-hold"></div>
-      <button id="add-party-button" class="poke-button" type="button">Add To Party</button>
+      <button disabled id="add-party-button" class="poke-button" type="button">Add To Party</button>
     </div>
-    <!-- Party Box End -->
+    <!-- Add To Party Box End -->
 
     <!-- Move Box Start -->
     <div class="col-2 offset-1">
@@ -101,52 +118,38 @@
     }
 
 
-  $(function() {
-    
-
-   
-    // $(avaPokemon).each(function(key, value) {
-    //   var baseURL = "https://pokeapi.co/api/v2/";
-    //   var sprite;
-    //   $.get(baseURL + "pokemon/" + value.toLowerCase(), function(data, status) {
-    //     sprite = data["sprites"]["front_default"];
-    //     $('#moves-poke-box-' + value.toLowerCase()).append('<img id="sprite-' + value.toLowerCase() + '" src="' + sprite + '" alt="' + value.toLowerCase() + '" />');
-    //   });
-      
-    // });
-    
-    // $("#input-pokemon").autocomplete ({
-    //   source: avaPokemon,
-    //   focus: function(event, ui) {
-    //     $("$input-pokemon").val(ui.item.label);
-    //     return false;
-    //   }
-    // });
-    
-
+  // Selection Process - Up To "Add To Party"
+  $(function(_SelectionProcess1) {
     $.get(baseURL + "pokemon?limit=20", function(data, status) { //Max Limit: 964
-      // console.log(data['results'][0]['name'])
       $.each(data['results'], function(index, value) {
         $.get(value['url'], function(data, status) {
-          // console.log(data)
           var insertJSON = (
-          '<li id="moves-poke-box-li-' + data['name'] + '" class="moves-poke-box-li">' +
-            '<div id="moves-poke-box-div-' + data['name'] + '" class="moves-poke-box-div">' + 
-              '<div class="container-fluid">' +
-                '<div class="row">' +
-                  '<div id="moves-poke-box-img" class="align-self-center">' +
-                    '<div id="moves-poke-box-' + data['name'] + '">' +
-                    '<img id="sprite-' + data['name'] + '" src="' + data["sprites"]["front_default"] + '" alt="' + data['name'] + '" />' +
+            '<li id="moves-poke-box-li-' + data['name'] + '" class="moves-poke-box-li">' +
+              '<div id="moves-poke-box-div-' + data['name'] + '" class="moves-poke-box-div">' + 
+                '<div class="container-fluid">' +
+                  '<div class="row">' +
+                    '<div id="moves-poke-box-img" class="align-self-center">' +
+                      '<div id="moves-poke-box-' + data['name'] + '">' +
+                      '<img id="sprite-' + data['name'] + '" src="' + data["sprites"]["front_default"] + '" alt="' + data['name'] + '" />' +
+                      '</div>' +
                     '</div>' +
+                    '<div id="moves-poke-box-name" class="moves-poke-box-name-class align-self-center">' +
+                      data['name'] +
+                    '</div>' +
+                    '<table id="selected-moves">' +
+                      '<tr>' +
+                        '<td id="selected-move-1"></td>' +
+                        '<td id="selected-move-3"></td>' +
+                      '</tr>' +
+                      '<tr>' +
+                        '<td id="selected-move-2"></td>' +
+                        '<td id="selected-move-4"></td>' +
+                      '</tr>' +
+                    '</table>' +
                   '</div>' +
-                  '<div id="moves-poke-box-name" class="moves-poke-box-name-class align-self-center">' +
-                    data['name'] +
-                  '</div>' +
-                  '<table id="selected-moves"></table>' +
                 '</div>' +
               '</div>' +
-            '</div>' +
-          '</li>'
+            '</li>'
           );
           $('#moves-poke-box-ol').append(insertJSON);
         });
@@ -155,106 +158,109 @@
       $("#moves-poke-box-ol").selectable({
         selected: function(event, ui) {
           $('#move-box-ul').empty();
-          var selectedHTML = $(ui['selected']).html();
-          var selectedName = $(ui['selected']).text();
-          var tableInsert = '<table id="selected-moves">' +
-                              '<tr>' +
-                                '<td id="selected-move-1"></td>' +
-                                '<td id="selected-move-3"></td>' +
-                              '</tr>' +
-                              '<tr>' +
-                                '<td id="selected-move-2"></td>' +
-                                '<td id="selected-move-4"></td>' +
-                              '</tr>' +
-                            '</table>';
-          var injectedHTML = selectedHTML.replace('<table id="selected-moves" class="ui-selectee" style=""></table>', tableInsert);
           var insertJSON = (
-            '<div id="party-box-hold">' + 
-            injectedHTML + 
-            '</div>' //'<br />'
-            );
+            '<div id="party-box-hold"><div class="container-fluid"><div class="row">' + 
+              ui['selected'].innerHTML + 
+            '</div></div></div>'
+          );
           $('#party-box-hold').replaceWith(insertJSON);
-          $('#party-box-hold #selected-moves').css('display', 'block');
-          
-          var baseURL = "https://pokeapi.co/api/v2/";
-          
-          $.get(baseURL + "pokemon/" + selectedName, function(data, status) {
-            
-            $.each(data['moves'], function(index, value) {
-              var moveName = value['move']['name'].replace("-"," ");
-              var moveURL = value['move']['url'];
-              
-              function typeGet() {
-                return $.get(moveURL);
-              }
-
-              $.when(typeGet()).done(function(data, status){
-                var moveType = data['type']['name'];
-                var insertJSON = (
-                  '<li id="move-box-li-' + selectedName + '-' + moveName + '" class="move-box-li">' +
-                    '<div id="move-box-div-' + selectedName + '-' + moveName + '" class="move-box-div">' +
-                      '<div class="container-fluid">' +
-                        '<div class="row">' +
-                          '<div id="move-box-type" class="mt-' + moveType + ' std-lb-imgbox"><div id="move-box-type-inner">' + moveType + '</div></div>' +
-                          '<div id="move-box-name" class="align-self-center std-lb-namebox">' + moveName + '</div>' +
-                        '</div>' +
-                      '</div>' +
-                    '</div>' +
-                  '</li>'
-                  );
-
-                $('#move-box-ul').append(insertJSON);
-                
-
-                $('#move-box-ul').selectable({
-                  selected: function(event, ui) {
-                    var selMoveName = $(ui['selected']).find("#move-box-name").text();
-                    var selMoveType = $(ui['selected']).find("#move-box-type").text();
-                    var selMoveSplitName = selMoveName.split(" ")
-                    var selMoveInitials = "";
-                    for (i in selMoveSplitName) {
-                      selMoveInitials = selMoveInitials + " " + selMoveSplitName[i].substring(0,1)
-                    }
-                    selMoveInitials = selMoveInitials.toUpperCase().trim();
-                    var insertJSON = '<div class="mt-small-' + selMoveType + '"><p class="p-mt-small">' + selMoveInitials + '</p></div>'
-                    function isEmpty(inElement) {
-                      return !$.trim($(inElement).html())
-                    }
-                    function isNotEmpty(inElement) {
-                      return !isEmpty(inElement)
-                    }
-                    if (isEmpty('#selected-move-1')) {
-                      $('#selected-move-1').append(insertJSON);
-                    } else if (isEmpty('#selected-move-2')) {
-                      $('#selected-move-2').append(insertJSON);
-                    } else if (isEmpty('#selected-move-3')) {
-                      $('#selected-move-3').append(insertJSON);
-                    } else if (isEmpty('#selected-move-4')) {
-                      $('#selected-move-4').append(insertJSON);
-                    } else {}
-                  }
-
-
-                });
-
-
-              });
-            });
-          }); 
+          $('#add-party-button').trigger('partyBoxHoldChange')
+          $('#party-box-hold #selected-moves, #input-moves').css('display', 'block');
+          _SelectMoves();
         }
-        
       });
-      
-      
-
-
-
-
     });
   });
 
-  $(function () {
-    $('#add-party-button').on("click", function() {
+  // Select Moves
+  function _SelectMoves() {
+    var baseURL = "https://pokeapi.co/api/v2/";
+    var selectedName = $('#party-box-hold #moves-poke-box-name').text();
+    // console.log("selectedName: " + selectedName);
+    $.get(baseURL + "pokemon/" + selectedName, function(data, status) {
+      $.each(data['moves'], function(index, value) {
+        var moveName = value['move']['name'].replace("-"," ");
+        var moveURL = value['move']['url'];
+        function typeGet() { return $.get(moveURL); }
+        $.when(typeGet()).done(function(data, status) {
+          var moveType = data['type']['name'];
+          var insertJSON = (
+            '<li id="move-box-li-' + selectedName + '-' + moveName + '" class="move-box-li">' +
+              '<div id="move-box-div-' + selectedName + '-' + moveName + '" class="move-box-div">' +
+                '<div class="container-fluid">' +
+                  '<div class="row">' +
+                    '<div id="move-box-type" class="mt-' + moveType + ' std-lb-imgbox"><div id="move-box-type-inner">' + moveType + '</div></div>' +
+                    '<div id="move-box-name" class="align-self-center std-lb-namebox">' + moveName + '</div>' +
+                  '</div>' +
+                '</div>' +
+              '</div>' +
+            '</li>'
+            );
+
+          $('#move-box-ul').append(insertJSON);
+          
+          $('#move-box-ul > li').hide();
+          
+          $('#move-box-ul').selectable({
+            selected: function(event, ui) {
+              // console.log(ui);
+              var selMoveName = $(ui['selected']).find("#move-box-name").text();
+              var selMoveType = $(ui['selected']).find("#move-box-type").text();
+              var selMoveSplitName = selMoveName.split(" ")
+              var selMoveInitials = "";
+              // console.log(selMoveName);
+              // console.log(selMoveType);
+              // console.log(selMoveSplitName);
+              
+              
+              for (i in selMoveSplitName) {
+                selMoveInitials = selMoveInitials + " " + selMoveSplitName[i].substring(0,1)
+              }
+              selMoveInitials = selMoveInitials.toUpperCase().trim();
+              // console.log(selMoveInitials);
+
+              var insertJSON = '<div class="mt-small-' + selMoveType + '"><p class="p-mt-small">' + selMoveInitials + '</p></div>'
+              // console.log(insertJSON);
+
+              function isEmpty(inElement) {
+                return !$.trim($(inElement).html())
+              }
+              function isNotEmpty(inElement) {
+                return !isEmpty(inElement)
+              }
+              if (isEmpty('#party-box-hold #selected-move-1')) {
+                // document.getElementById('selected-move-1').innerHTML = insertJSON
+                $('#party-box-hold #selected-move-1').append(insertJSON);
+                $('#add-party-button').trigger('partyBoxHoldChange')
+              } else if (isEmpty('#party-box-hold #selected-move-2')) {
+                // document.getElementById('selected-move-2').innerHTML = insertJSON
+                $('#party-box-hold #selected-move-2').append(insertJSON);
+                $('#add-party-button').trigger('partyBoxHoldChange')
+              } else if (isEmpty('#party-box-hold #selected-move-3')) {
+                // document.getElementById('selected-move-3').innerHTML = insertJSON
+                $('#party-box-hold #selected-move-3').append(insertJSON);
+                $('#add-party-button').trigger('partyBoxHoldChange')
+              } else if (isEmpty('#party-box-hold #selected-move-4')) {
+                // document.getElementById('selected-move-4').innerHTML = insertJSON
+                $('#party-box-hold #selected-move-4').append(insertJSON);
+                $('#add-party-button').trigger('partyBoxHoldChange')
+              } else { console.log("None Empty") }
+            }
+
+
+          });
+
+
+        });
+      });
+    });
+  }
+
+
+  // Selection Process - After "Add To Party"
+  $(function (_SelectionProcess2) {
+    $('#add-party-button').on('partyBoxHoldChange', function() {
+      $('#add-party-button').attr('disabled', false);
       function isEmpty(inElement) {
         return !$.trim($(inElement).html())
       }
@@ -286,7 +292,7 @@
         pokemonSelected = true;
       }
 
-      if (isNotEmpty('#selected-move-1') || isNotEmpty('#selected-move-2') || isNotEmpty('#selected-move-3') || isNotEmpty('#selected-move-4')) {
+      if (isNotEmpty('#party-box-hold #selected-move-1') || isNotEmpty('#party-box-hold #selected-move-2') || isNotEmpty('#party-box-hold #selected-move-3') || isNotEmpty('#party-box-hold #selected-move-4')) {
         moveSelected = true;
       }
 
@@ -294,60 +300,43 @@
         partyFull = false;
       }
 
-      if ((pokemonSelected == true) && (moveSelected == true) && (partyFull == false)) {
-        console.log($('#party-box-hold').html());
-        var openPartyBox = nextOpenPartyBox();
-        $(openPartyBox).append($('#party-box-hold').html());
-        $('#party-box-hold').empty();
-      }
+      $('#add-party-button').on('click', function() {
+          if ((pokemonSelected == true) && (moveSelected == true) && (partyFull == false)) {
+          console.log("If/Than Entered");
+          var openPartyBox = nextOpenPartyBox();
+          $(openPartyBox).append($('#party-box-hold').html());
+          $('#party-box-hold').empty();
+        } else { console.log("Fired Early: " + pokemonSelected + " " + moveSelected + " " + partyFull) }
+      });
     });
   });
 
-  $(function () {
-    // $("#input-pokemon").autocomplete ({
-    //   source: avaPokemon,
-    //   focus: function(event, ui) {
-    //     $("$input-pokemon").val(ui.item.label);
-    //     return false;
-    //   }
-    // });
+  // Pokemon Search Box Filter
+  $(function (_PokemonSearchBoxFilter) {
     $("#input-pokemon").on("input", function() {
       var currentInput = $(this).val().toLowerCase();
-      // var searchDIVTag ="[id^='#moves-poke-box-li-']:contains('" + currentInput + "')";
-      // var toggleDIV = $(searchDIVTag);
-      // var searchDIV = $('.moves-poke-box-li');
-
-      // $(searchDIV).filter(function(index, element) {
-      //   console.log(this);
-      //   toggleDIV.toggle(searchDIV.text().toLowerCase().indexOf(currentInput) > -1);
-      // });
       if (currentInput == "") {
         $('#moves-poke-box-ol > li').hide();
       } else {
         $('#moves-poke-box-ol > li:not(:contains(' + currentInput + '))').hide(); 
         $('#moves-poke-box-ol > li:contains(' + currentInput + ')').show();  
       }
-      
-
-      
-      
     });
-
-
-    
-    // $(document).ready(function(){
-    //   $("#poke-filter").on("keyup", function() {
-    //     var filterValue = $(this).val().toLowerCase();
-    //     $("#poke-box-all").children('.poke-box-home-break').children('.poke-box-home').children('.poke-box').filter(function() {
-    //       var pokeBoxDiv = $(this).find('.poke-box-name');
-    //       var toggleDiv = $(this).parents('.poke-box-home-break')
-    //       toggleDiv.toggle(pokeBoxDiv.text().toLowerCase().indexOf(filterValue) > -1)
-    //     });
-    //   });
-    // });
-
-
   });
+
+  // Moves Search Box Filter
+  $(function (_MovesSearchBoxFilter) {
+    $("#input-moves").on("input", function() {
+      var currentInput = $(this).val().toLowerCase();
+      if (currentInput == "") {
+        $('#move-box-ul > li').hide();
+      } else {
+        $('#move-box-ul > li:not(:contains(' + currentInput + '))').hide(); 
+        $('#move-box-ul > li:contains(' + currentInput + ')').show();  
+      }
+    });
+  });
+
     
 
 

@@ -77,7 +77,36 @@ a.a-link-sidebar {
   padding: 0px;
   border: 1px solid black;
   text-align: center;
+}
+
+.poke-button:disabled {
+  background-color: default;
   color: #f0f0f0;
+  box-shadow: none;
+  text-shadow: none;
+}
+
+.poke-button:disabled:hover {
+  background-color: default;
+  color: #f0f0f0;
+  box-shadow: none;
+}
+
+.poke-button:disabled:active {
+  background-color: default;
+  color: #f0f0f0;
+  box-shadow: none;
+}
+
+.poke-button:enabled {
+  height: 30px;
+  width: 150px;
+  margin: 20px 50px;
+  padding: 0px;
+  border: 1px solid black;
+  text-align: center;
+  color: #f0f0f0;
+  box-shadow: 2px 7px;
   text-shadow:
     -1px -1px 0 #222224,
     1px -1px 0 #222224,
@@ -85,12 +114,13 @@ a.a-link-sidebar {
     1px 1px 0 #222224;
 }
 
-.poke-button:hover {
+.poke-button:enabled:hover {
   background-color: #eeafaa;
   color: #f0f0f0;
 }
 
-.poke-button:active {
+.poke-button:enabled:active {
   background-color: #f00000;
   color: #f0f0f0;
+  box-shadow: none;
 }
