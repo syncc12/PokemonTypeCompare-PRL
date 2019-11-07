@@ -11,21 +11,54 @@
 
   <body>
     <div class="container-fluid">
-
+      <div id="login-messages">
+        <div class="row">
+          <div class="col-12">
+            <% if notice.present? %>
+              <p class="alert alert-info"><%= notice %></p>
+            <% end %>
+            <% if alert.present? %>
+              <p class="alert alert-danger"><%= alert %></p>
+            <% end %>
+            <% unless notice.present? || alert.present? %>
+              <script type="text/javascript">
+                $(function() {
+                  $('#login-messages').hide();
+                });
+              </script>
+            <% end %>
+          </div>
+        </div>
+      </div>
       <div class="row">
         <div id="static-header" class="col-12">
           Pokemon Compare
         </div>
       </div>
+    </div>
+
 
       <div class="row">
         <div id="static-sidebar" class="col-1">
           <ul id="ul-link-sidebar">
-            <li class="li-link-sidebar"><%= link_to 'Home', root_path, class: 'a-link-sidebar' %></li>
-            <li class="li-link-sidebar"><%= link_to 'Type Comparer', type_compares_path, class: 'a-link-sidebar' %></li>
-            <li class="li-link-sidebar"><%= link_to 'My Party', moves_path, class: 'a-link-sidebar' %></li>
+            <% if user_signed_in? %>
+              <p id="signed_in_username"><%= User.find(current_user.id).email %></p>
+              <li class="li-link-sidebar"><%= link_to 'Logout', destroy_user_session_path, method: :delete, class: 'a-link-sidebar nav-link' %></li>
+            <% else %>
+              <li class="li-link-sidebar"><%= link_to 'Login', new_user_session_path, class: 'a-link-sidebar nav-link' %></li>
+              <li class="li-link-sidebar"><%= link_to 'Sign Up', new_user_registration_path, class: 'a-link-sidebar nav-link' %></li>
+            <% end %>
+
+            <br />
+
+            <li class="li-link-sidebar"><%= link_to 'Home', root_path, class: 'a-link-sidebar nav-link' %></li>
+            <li class="li-link-sidebar"><%= link_to 'Type Comparer', type_compares_path, class: 'a-link-sidebar nav-link' %></li>
+            <li class="li-link-sidebar"><%= link_to 'My Party', moves_path, class: 'a-link-sidebar nav-link' %></li>
           </ul>
         </div>
+
+        
+
 
         <div id="content" class="col-11">
           <%= yield %>
@@ -37,3 +70,15 @@
     
   </body>
 </html>
+
+<script>
+
+  $(function() {
+    $('.alert').fadeOut("slow", function() {
+      $(this).hide();
+      $('#login-messages').hide();
+    });
+  });
+
+
+</script>

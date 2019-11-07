@@ -48,8 +48,18 @@
       <div class="party-box-outer">
         <div id="party-box-6" class="party-box std-lb"></div>
       </div>
+      
+      <!-- Save Party Start -->
+      <button id="save-party-button" class="poke-button" type="button">Save Party</button>
+      <%= button_to 'Save Party', parties_path, params: {user: User.find(current_user.id).email}%>
+      <!-- Pokemon.create( pokedex_number: pmNum, name: pmName, type1: pmType1, type2: pmType2, sprite: pmSprite ) -->
+      
+      <!-- Save Party End -->
+
     </div>
     <!-- Party Box End -->
+
+    
     
     <!-- Pokemon Box Start -->
     <div class="col-2 offset-1">
@@ -123,18 +133,28 @@
     $.get(baseURL + "pokemon?limit=20", function(data, status) { //Max Limit: 964
       $.each(data['results'], function(index, value) {
         $.get(value['url'], function(data, status) {
+          var pokemonName = data['name'];
+          var pokemonSprite = data['sprites']['front_default'];
+          var pokemonTypes;
+          if (data['types']['length'] == 2) {
+            pokemonTypes = data['types'][0]['type']['name'] + " " + data['types'][1]['type']['name'];
+          } else {
+            pokemonTypes = data['types'][0]['type']['name'];
+          }
+          
+          var pokedexNumber = data['id'];
           var insertJSON = (
-            '<li id="moves-poke-box-li-' + data['name'] + '" class="moves-poke-box-li">' +
-              '<div id="moves-poke-box-div-' + data['name'] + '" class="moves-poke-box-div">' + 
+            '<li id="moves-poke-box-li-' + pokemonName + '" class="moves-poke-box-li">' +
+              '<div id="moves-poke-box-div-' + pokemonName + '" class="moves-poke-box-div" pokemon-name="' + pokemonName + '" pokemon-type="' + pokemonTypes + '" pokedex-number="' + pokedexNumber + '">' + 
                 '<div class="container-fluid">' +
                   '<div class="row">' +
                     '<div id="moves-poke-box-img" class="align-self-center">' +
-                      '<div id="moves-poke-box-' + data['name'] + '">' +
-                      '<img id="sprite-' + data['name'] + '" src="' + data["sprites"]["front_default"] + '" alt="' + data['name'] + '" />' +
+                      '<div id="moves-poke-box-' + pokemonName + '">' +
+                      '<img id="sprite-' + pokemonName + '" src="' + pokemonSprite + '" alt="' + pokemonName + '" />' +
                       '</div>' +
                     '</div>' +
                     '<div id="moves-poke-box-name" class="moves-poke-box-name-class align-self-center">' +
-                      data['name'] +
+                      pokemonName +
                     '</div>' +
                     '<table id="selected-moves">' +
                       '<tr>' +
@@ -186,7 +206,7 @@
           var moveType = data['type']['name'];
           var insertJSON = (
             '<li id="move-box-li-' + selectedName + '-' + moveName + '" class="move-box-li">' +
-              '<div id="move-box-div-' + selectedName + '-' + moveName + '" class="move-box-div">' +
+              '<div id="move-box-div-' + selectedName + '-' + moveName + '" class="move-box-div" pokemon-name="' + selectedName + '" move-name="' + moveName + '" move-type="' + moveType + '">' +
                 '<div class="container-fluid">' +
                   '<div class="row">' +
                     '<div id="move-box-type" class="mt-' + moveType + ' std-lb-imgbox"><div id="move-box-type-inner">' + moveType + '</div></div>' +
@@ -244,7 +264,7 @@
                 // document.getElementById('selected-move-4').innerHTML = insertJSON
                 $('#party-box-hold #selected-move-4').append(insertJSON);
                 $('#add-party-button').trigger('partyBoxHoldChange')
-              } else { console.log("None Empty") }
+              } else {}
             }
 
 
@@ -302,11 +322,10 @@
 
       $('#add-party-button').on('click', function() {
           if ((pokemonSelected == true) && (moveSelected == true) && (partyFull == false)) {
-          console.log("If/Than Entered");
           var openPartyBox = nextOpenPartyBox();
           $(openPartyBox).append($('#party-box-hold').html());
           $('#party-box-hold').empty();
-        } else { console.log("Fired Early: " + pokemonSelected + " " + moveSelected + " " + partyFull) }
+        } else { }
       });
     });
   });
