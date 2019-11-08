@@ -53,10 +53,176 @@
 
       <%= form_for :party do |f| %>
         <%= f.hidden_field :user, value: User.find(current_user.id).email %>
-        <%= f.hidden_field :user, value: "placeholder" %>
-        <%= f.hidden_field :user, value: "placeholder" %>
+        <script type="text/javascript">
+          function isEmpty(inElement) { return !$.trim($(inElement).html()) }
+          function isNotEmpty(inElement) { return !isEmpty(inElement) }
+
+          function checkPartyBox1() { return isNotEmpty('#party-box-1') }
+          function checkPartyBox2() { return isNotEmpty('#party-box-2') }
+          function checkPartyBox3() { return isNotEmpty('#party-box-3') }
+          function checkPartyBox4() { return isNotEmpty('#party-box-4') }
+          function checkPartyBox5() { return isNotEmpty('#party-box-5') }
+          function checkPartyBox6() { return isNotEmpty('#party-box-6') }
+
+          function checkMove1_1() { return isNotEmpty('#party-box-1 #selected-move-1') }
+          function checkMove1_2() { return isNotEmpty('#party-box-1 #selected-move-2') }
+          function checkMove1_3() { return isNotEmpty('#party-box-1 #selected-move-3') }
+          function checkMove1_4() { return isNotEmpty('#party-box-1 #selected-move-4') }
+          
+          function checkMove2_1() { return isNotEmpty('#party-box-2 #selected-move-1') }
+          function checkMove2_2() { return isNotEmpty('#party-box-2 #selected-move-2') }
+          function checkMove2_3() { return isNotEmpty('#party-box-2 #selected-move-3') }
+          function checkMove2_4() { return isNotEmpty('#party-box-2 #selected-move-4') }
+          
+          function checkMove3_1() { return isNotEmpty('#party-box-3 #selected-move-1') }
+          function checkMove3_2() { return isNotEmpty('#party-box-3 #selected-move-2') }
+          function checkMove3_3() { return isNotEmpty('#party-box-3 #selected-move-3') }
+          function checkMove3_4() { return isNotEmpty('#party-box-3 #selected-move-4') }
+          
+          function checkMove4_1() { return isNotEmpty('#party-box-4 #selected-move-1') }
+          function checkMove4_2() { return isNotEmpty('#party-box-4 #selected-move-2') }
+          function checkMove4_3() { return isNotEmpty('#party-box-4 #selected-move-3') }
+          function checkMove4_4() { return isNotEmpty('#party-box-4 #selected-move-4') }
+          
+          function checkMove5_1() { return isNotEmpty('#party-box-5 #selected-move-1') }
+          function checkMove5_2() { return isNotEmpty('#party-box-5 #selected-move-2') }
+          function checkMove5_3() { return isNotEmpty('#party-box-5 #selected-move-3') }
+          function checkMove5_4() { return isNotEmpty('#party-box-5 #selected-move-4') }
+          
+          function checkMove6_1() { return isNotEmpty('#party-box-6 #selected-move-1') }
+          function checkMove6_2() { return isNotEmpty('#party-box-6 #selected-move-2') }
+          function checkMove6_3() { return isNotEmpty('#party-box-6 #selected-move-3') }
+          function checkMove6_4() { return isNotEmpty('#party-box-6 #selected-move-4') }
+          
+          var cPokeBox1;
+          var cMove1_1;
+          var cMove1_2;
+          var cMove1_3;
+          var cMove1_4;
+          var cPokeBox2;
+          var cMove2_1;
+          var cMove2_2;
+          var cMove2_3;
+          var cMove2_4;
+          var cPokeBox3;
+          var cMove3_1;
+          var cMove3_2;
+          var cMove3_3;
+          var cMove3_4;
+          var cPokeBox4;
+          var cMove4_1;
+          var cMove4_2;
+          var cMove4_3;
+          var cMove4_4;
+          var cPokeBox5;
+          var cMove5_1;
+          var cMove5_2;
+          var cMove5_3;
+          var cMove5_4;
+          var cPokeBox6;
+          var cMove6_1;
+          var cMove6_2;
+          var cMove6_3;
+          var cMove6_4;
+
+          if (checkPartyBox1) {
+            cPokeBox1 = $('#party-box-1 .moves-poke-box-div').attr('pokemon-name');
+            if (checkMove1_1) { cMove1_1 = $('#party-box-1 #selected-move-1 > div').attr('move-name') + "|" + $('#party-box-1 #selected-move-1 > div').attr('move-type') } else { cMove1_1 = "N/A" }
+            if (checkMove1_2) { cMove1_2 = $('#party-box-1 #selected-move-2 > div').attr('move-name') + "|" + $('#party-box-1 #selected-move-2 > div').attr('move-type') } else { cMove1_2 = "N/A" }
+            if (checkMove1_3) { cMove1_3 = $('#party-box-1 #selected-move-3 > div').attr('move-name') + "|" + $('#party-box-1 #selected-move-3 > div').attr('move-type') } else { cMove1_3 = "N/A" }
+            if (checkMove1_4) { cMove1_4 = $('#party-box-1 #selected-move-4 > div').attr('move-name') + "|" + $('#party-box-1 #selected-move-4 > div').attr('move-type') } else { cMove1_4 = "N/A" }
+          } else { cPokeBox1 = "N/A" }
+          
+          if (checkPartyBox2) {
+            cPokeBox2 = $('#party-box-2 .moves-poke-box-div').attr('pokemon-name');
+            if (checkMove2_1) { cMove2_1 = $('#party-box-2 #selected-move-1 > div').attr('move-name') + "|" + $('#party-box-2 #selected-move-1 > div').attr('move-type') } else { cMove2_1 = "N/A" }
+            if (checkMove2_2) { cMove2_2 = $('#party-box-2 #selected-move-2 > div').attr('move-name') + "|" + $('#party-box-2 #selected-move-2 > div').attr('move-type') } else { cMove2_2 = "N/A" }
+            if (checkMove2_3) { cMove2_3 = $('#party-box-2 #selected-move-3 > div').attr('move-name') + "|" + $('#party-box-2 #selected-move-3 > div').attr('move-type') } else { cMove2_3 = "N/A" }
+            if (checkMove2_4) { cMove2_4 = $('#party-box-2 #selected-move-4 > div').attr('move-name') + "|" + $('#party-box-2 #selected-move-4 > div').attr('move-type') } else { cMove1_4 = "N/A" }
+          } else { cPokeBox2 = "N/A" }
+          
+          if (checkPartyBox3) {
+            cPokeBox3 = $('#party-box-3 .moves-poke-box-div').attr('pokemon-name');
+            if (checkMove3_1) { cMove3_1 = $('#party-box-3 #selected-move-1 > div').attr('move-name') + "|" + $('#party-box-3 #selected-move-1 > div').attr('move-type') } else { cMove3_1 = "N/A" }
+            if (checkMove3_2) { cMove3_2 = $('#party-box-3 #selected-move-2 > div').attr('move-name') + "|" + $('#party-box-3 #selected-move-2 > div').attr('move-type') } else { cMove3_2 = "N/A" }
+            if (checkMove3_3) { cMove3_3 = $('#party-box-3 #selected-move-3 > div').attr('move-name') + "|" + $('#party-box-3 #selected-move-3 > div').attr('move-type') } else { cMove3_3 = "N/A" }
+            if (checkMove3_4) { cMove3_4 = $('#party-box-3 #selected-move-4 > div').attr('move-name') + "|" + $('#party-box-3 #selected-move-4 > div').attr('move-type') } else { cMove3_4 = "N/A" }
+          } else { cPokeBox3 = "N/A" }
+          
+          if (checkPartyBox4) {
+            cPokeBox4 = $('#party-box-4 .moves-poke-box-div').attr('pokemon-name');
+            if (checkMove4_1) { cMove4_1 = $('#party-box-4 #selected-move-1 > div').attr('move-name') + "|" + $('#party-box-4 #selected-move-1 > div').attr('move-type') } else { cMove4_1 = "N/A" }
+            if (checkMove4_2) { cMove4_2 = $('#party-box-4 #selected-move-2 > div').attr('move-name') + "|" + $('#party-box-4 #selected-move-2 > div').attr('move-type') } else { cMove4_2 = "N/A" }
+            if (checkMove4_3) { cMove4_3 = $('#party-box-4 #selected-move-3 > div').attr('move-name') + "|" + $('#party-box-4 #selected-move-3 > div').attr('move-type') } else { cMove4_3 = "N/A" }
+            if (checkMove4_4) { cMove4_4 = $('#party-box-4 #selected-move-4 > div').attr('move-name') + "|" + $('#party-box-4 #selected-move-4 > div').attr('move-type') } else { cMove4_4 = "N/A" }
+          } else { cPokeBox4 = "N/A" }
+          
+          if (checkPartyBox5) {
+            cPokeBox5 = $('#party-box-5 .moves-poke-box-div').attr('pokemon-name');
+            if (checkMove5_1) { cMove5_1 = $('#party-box-5 #selected-move-1 > div').attr('move-name') + "|" + $('#party-box-5 #selected-move-1 > div').attr('move-type') } else { cMove5_1 = "N/A" }
+            if (checkMove5_2) { cMove5_2 = $('#party-box-5 #selected-move-2 > div').attr('move-name') + "|" + $('#party-box-5 #selected-move-2 > div').attr('move-type') } else { cMove5_2 = "N/A" }
+            if (checkMove5_3) { cMove5_3 = $('#party-box-5 #selected-move-3 > div').attr('move-name') + "|" + $('#party-box-5 #selected-move-3 > div').attr('move-type') } else { cMove5_3 = "N/A" }
+            if (checkMove5_4) { cMove5_4 = $('#party-box-5 #selected-move-4 > div').attr('move-name') + "|" + $('#party-box-5 #selected-move-4 > div').attr('move-type') } else { cMove5_4 = "N/A" }
+          } else { cPokeBox5 = "N/A" }
+          
+          if (checkPartyBox6) {
+            cPokeBox6 = $('#party-box-6 .moves-poke-box-div').attr('pokemon-name');
+            if (checkMove6_1) { cMove6_1 = $('#party-box-6 #selected-move-1 > div').attr('move-name') + "|" + $('#party-box-6 #selected-move-1 > div').attr('move-type') } else { cMove6_1 = "N/A" }
+            if (checkMove6_2) { cMove6_2 = $('#party-box-6 #selected-move-2 > div').attr('move-name') + "|" + $('#party-box-6 #selected-move-2 > div').attr('move-type') } else { cMove6_2 = "N/A" }
+            if (checkMove6_3) { cMove6_3 = $('#party-box-6 #selected-move-3 > div').attr('move-name') + "|" + $('#party-box-6 #selected-move-3 > div').attr('move-type') } else { cMove6_3 = "N/A" }
+            if (checkMove6_4) { cMove6_4 = $('#party-box-6 #selected-move-4 > div').attr('move-name') + "|" + $('#party-box-6 #selected-move-4 > div').attr('move-type') } else { cMove6_4 = "N/A" }
+          } else { cPokeBox6 = "N/A" }
+
+          $.ajax({
+              data: { rpokemon1: cPokeBox1, rmove1_1: cMove1_1, rmove1_2: cMove1_2, rmove1_3: cMove1_3, rmove1_4: cMove1_4, rpokemon2: cPokeBox2, rmove2_1: cMove2_1, rmove2_2: cMove2_2, rmove2_3: cMove2_3, rmove2_4: cMove2_4, rpokemon3: cPokeBox3, rmove3_1: cMove3_1, rmove3_2: cMove3_2, rmove3_3: cMove3_3, rmove3_4: cMove3_4, rpokemon4: cPokeBox4, rmove4_1: cMove4_1, rmove4_2: cMove4_2, rmove4_3: cMove4_3, rmove4_4: cMove4_4, rpokemon5: cPokeBox5, rmove5_1: cMove5_1, rmove5_2: cMove5_2, rmove5_3: cMove5_3, rmove5_4: cMove5_4, rpokemon6: cPokeBox6, rmove6_1: cMove6_1, rmove6_2: cMove6_2, rmove6_3: cMove6_3, rmove6_4: cMove6_4 },
+              type: 'post',
+              url: 'parties/create'
+            });
+
+        </script>
+        <%= f.hidden_field :pokemon1, value: :rpokemon1 %>
+        <%= f.hidden_field :move1_1, value: :rmove1_1 %>
+        <%= f.hidden_field :move1_2, value: :rmove1_2 %>
+        <%= f.hidden_field :move1_3, value: :rmove1_3 %>
+        <%= f.hidden_field :move1_4, value: :rmove1_4 %>
+
+        <%= f.hidden_field :pokemon2, value: :rpokemon2 %>
+        <%= f.hidden_field :move2_1, value: :rmove2_1 %>
+        <%= f.hidden_field :move2_2, value: :rmove2_2 %>
+        <%= f.hidden_field :move2_3, value: :rmove2_3 %>
+        <%= f.hidden_field :move2_4, value: :rmove2_4 %>
+
+        <%= f.hidden_field :pokemon3, value: :rpokemon3 %>
+        <%= f.hidden_field :move3_1, value: :rmove3_1 %>
+        <%= f.hidden_field :move3_2, value: :rmove3_2 %>
+        <%= f.hidden_field :move3_3, value: :rmove3_3 %>
+        <%= f.hidden_field :move3_4, value: :rmove3_4 %>
+
+        <%= f.hidden_field :pokemon4, value: :rpokemon4 %>
+        <%= f.hidden_field :move4_1, value: :rmove4_1 %>
+        <%= f.hidden_field :move4_2, value: :rmove4_2 %>
+        <%= f.hidden_field :move4_3, value: :rmove4_3 %>
+        <%= f.hidden_field :move4_4, value: :rmove4_4 %>
+
+        <%= f.hidden_field :pokemon5, value: :rpokemon5 %>
+        <%= f.hidden_field :move5_1, value: :rmove5_1 %>
+        <%= f.hidden_field :move5_2, value: :rmove5_2 %>
+        <%= f.hidden_field :move5_3, value: :rmove5_3 %>
+        <%= f.hidden_field :move5_4, value: :rmove5_4 %>
+
+        <%= f.hidden_field :pokemon6, value: :rpokemon6 %>
+        <%= f.hidden_field :move6_1, value: :rmove6_1 %>
+        <%= f.hidden_field :move6_2, value: :rmove6_2 %>
+        <%= f.hidden_field :move6_3, value: :rmove6_3 %>
+        <%= f.hidden_field :move6_4, value: :rmove6_4 %>
+
         <%= f.submit 'Save Party', class: "poke-button" %>
       <% end %>
+
+
+      <form action="saveParty">
+        <input type="hidden" name="">        
+      </form>
 
       <!-- Pokemon.create( pokedex_number: pmNum, name: pmName, type1: pmType1, type2: pmType2, sprite: pmSprite ) -->
       
@@ -245,7 +411,7 @@
               selMoveInitials = selMoveInitials.toUpperCase().trim();
               // console.log(selMoveInitials);
 
-              var insertJSON = '<div class="mt-small-' + selMoveType + '"><p class="p-mt-small">' + selMoveInitials + '</p></div>'
+              var insertJSON = '<div class="mt-small-' + selMoveType + '" move-name="' + selMoveName + '" move-type="' + selMoveType + '"><p class="p-mt-small">' + selMoveInitials + '</p></div>'
               // console.log(insertJSON);
 
               function isEmpty(inElement) {

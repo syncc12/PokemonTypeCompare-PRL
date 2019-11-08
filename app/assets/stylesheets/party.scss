@@ -1,3 +1,384 @@
 // Place all the styles related to the party controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+#moves-poke-box {
+  margin: 0px;
+  padding: 0px;
+  height: 50px;
+  width: 250px;
+}
+
+#moves-poke-box-ol {
+  margin: 0px;
+  padding: 0px;
+  width: 250px;
+}
+
+.moves-poke-box-li {
+  margin: 0px;
+  padding: 0px;
+  height: 60px;
+  width: 250px;
+  display: none;
+}
+
+.moves-poke-box-li .moves-poke-box-div {
+  border: 1px solid black;
+  margin: 0px;
+  padding: 0px;
+  height: 50px;
+  width: 250px;
+}
+
+.moves-poke-box-li .moves-poke-box-div .container-fluid {
+  height: 50px;
+  padding: 0px;
+  margin: 0px;
+}
+
+.moves-poke-box-li .moves-poke-box-div .container-fluid .row {
+  height: 50px;
+  width: 250px;
+  padding: 0px;
+  margin: 0px;
+} 
+
+#moves-poke-box-img {
+  border: 1px solid black;
+  margin: 5px;
+  padding: 0px;
+  height: 40px;
+  width: 40px;
+  text-align: center;
+  display: flex;
+  align-items: center;
+}
+
+#moves-poke-box-name {
+  margin: 0px;
+  padding: 0px;
+  text-indent: 5px;
+  height: 50px;
+  width: 100px;
+  display: flex;
+  align-items: center;
+}
+
+#moves-poke-box-name-selected {
+  margin: 0px;
+  padding: 0px;
+  text-indent: 5px;
+  height: 50px;
+  width: 100px;
+  display: flex;
+  align-items: center;
+}
+
+#selected-moves {
+  margin: 0px;
+  padding: 0px;
+  height: 50px;
+  width: 100px;
+  table-layout: fixed;
+}
+
+#selected-move-1, #selected-move-2, #selected-move-3, #selected-move-4 {
+  margin: 0px;
+  padding: 0px;
+  height: 25px;
+  width: 50px;
+}
+
+#selected-moves tr {
+  height: 25px;
+  width: 100px;
+}
+
+#selected-moves tr td {
+  height: 25px;
+  width: 50px;
+}
+
+#selected-moves tr, #selected-moves tr td {
+  border-collapse: collapse;
+  margin: 0px;
+  padding: 0px;
+}
+
+/* #selected-move-1, #selected-move-2 {
+  border-right: 1px solid black;
+  border-left: 1px solid black;
+}
+
+#selected-move-1, #selected-move-3 {
+  border-bottom: 1px solid black;
+}
+
+#selected-move-3, #selected-move-4 {
+  border-top: 1px solid black;
+}
+
+#selected-move-1, #selected-move-4 {
+  border-right: 1px solid black;
+} */
+
+#selected-moves .container-fluid {
+  margin: 0px;
+  padding: 0px;
+  height: 50px;
+  width: 100px;
+}
+
+#selected-moves .container-fluid .row {
+  margin: 0px;
+  padding: 0px;
+  height: 25px;
+  width: 100px;
+}
+
+#selected-moves .container-fluid .row .col-6 {
+  margin: 0px;
+  padding: 0px;
+  height: 25px;
+  width: 100px;
+}
+
+#input-moves {
+  display: none;
+}
+
+#move-box-ul {
+  height: 50px;
+  width: 250px;
+  padding: 0px;
+  margin: 0px;
+}
+
+#move-box-name .container-fluid {
+  padding: 0px;
+  margin: 0px;
+}
+
+#move-box-name .container-fluid .row {
+  padding: 0px;
+  margin: 0px;
+}
+
+#move-box-name, #move-box-type-category {
+  display: inline;
+}
+
+#move-box-ul .move-box-li {
+  height: 60px;
+  width: 250px;
+  padding: 0px;
+  margin: 0px;
+}
+
+#move-box-ul .move-box-li .move-box-div {
+  border: 1px solid black;
+  height: 50px;
+  width: 250px;
+  padding: 0px;
+  margin: 0px;
+}
+
+#move-box-ul .move-box-li .move-box-div .container-fluid {
+  height: 50px;
+  width: 250px;
+  padding: 0px;
+  margin: 0px;
+}
+
+#move-box-ul .move-box-li .move-box-div .container-fluid .row {
+  height: 50px;
+  width: 250px;
+  padding: 0px;
+  margin: 0px;
+}
+
+#move-box-type {
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#move-box-type-inner {
+  align: center;
+  font-size: 0.55vw;
+  padding: 0px;
+  margin: 0px;
+  display: inline-block;
+}
+
+#move-box-category {
+  border: 1px solid black;
+  margin-top: 1px;
+  margin-left: 0px;
+  margin-right: 0px;
+  margin-bottom: 0px;
+  padding: 0px;
+  height: 19px;
+  width: 100%;
+  text-align: center;
+  display: flex;
+  align-items: center;
+}
+
+#move-box-name {
+  text-indent: 5px;
+  display: flex;
+  align-items: center;
+}
+
+#move-box-type-category {
+  margin: 5px;
+  padding: 0px;
+  height: 40px;
+  width: 40px;
+  display: flex;
+  align-items: center;
+}
+
+[id^="sprite-"] {
+  margin: 0px;
+  padding: 0px;
+  height: 40px;
+  width: 40px;
+}
+
+#move-box-type-category-ul {
+  margin: 0px;
+  padding: 0px;
+  height: 40px;
+  width: 40px;
+}
+
+#party-box-hold-ul {
+  margin: 0px;
+  padding: 0px;
+  height: 50px;
+  width: 250px;
+}
+
+#party-box-hold {
+  border: 1px solid black;
+  margin: 0px;
+  padding: 0px;
+  height: 50px;
+  width: 250px;
+}
+
+#party-box-hold .container-fluid {
+  margin: 0px;
+  padding: 0px;
+  height: 50px;
+  width: 250px;
+}
+
+#party-box-hold .container-fluid .row {
+  margin: 0px;
+  padding: 0px;
+  height: 50px;
+  width: 250px;
+}
+
+.party-box-outer {
+  margin: 0px;
+  padding: 0px;
+  height: 60px;
+  width: 250px;
+}
+
+.moves-poke-box-div, .moves-poke-box-div .container-fluid, .moves-poke-box-div .container-fluid .row {
+  margin: 0px;
+  padding: 0px;
+  height: 50px;
+  width: 250px;
+}
+
+
+$check-size: 1em;
+$check-height: $check-size/2;
+$check-width: $check-height/2;
+
+
+@keyframes checkmark {
+  
+}
+
+.mt-grass, .mt-small-grass { background-color: #7AC74C; }
+
+.mt-fire, .mt-small-fire { background-color: #EE8130; }
+
+.mt-water, .mt-small-water { background-color: #6390F0; }
+
+.mt-bug, .mt-small-bug { background-color: #A6B91A; }
+
+.mt-normal, .mt-small-normal { background-color: #A8A77A; }
+
+.mt-dark, .mt-small-dark { background-color: #705746; }
+
+.mt-poison, .mt-small-poison { background-color: #A33EA1; }
+
+.mt-electric, .mt-small-electric { background-color: #F7D02C; }
+
+.mt-ground, .mt-small-ground { background-color: #E2BF65; }
+
+.mt-ice, .mt-small-ice { background-color: #96D9D6; }
+
+.mt-fairy, .mt-small-fairy { background-color: #D685AD; }
+
+.mt-fighting, .mt-small-fighting { background-color: #C22E28; }
+
+.mt-psychic, .mt-small-psychic { background-color: #F95587; }
+
+.mt-rock, .mt-small-rock { background-color: #B6A136; }
+
+.mt-ghost, .mt-small-ghost { background-color: #735797; }
+
+.mt-dragon, .mt-small-dragon { background-color: #6F35FC; }
+
+.mt-steel, .mt-small-steel { background-color: #B7B7CE; }
+
+.mt-flying, .mt-small-flying { background-color: #A98FF3; }
+
+[class^="mt-"] {
+  border-radius: 8px;
+  color: #FFFFFF;
+  border: 1px solid #999999;
+  text-shadow:
+    -1px -1px 0 #000000,
+    1px -1px 0 #000000,
+    -1px 1px 0 #000000,
+    1px 1px 0 #000000;
+}
+
+[class^="mt-small-"] {
+  margin: 1px;
+  padding: 0px;
+  height: 23px;
+  width: 48px;
+  border-radius: 8px;
+  color: #FFFFFF;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  justify-content: center;
+  border: 1px solid #999999;
+  text-shadow:
+    -1px -1px 0 #000000,
+    1px -1px 0 #000000,
+    -1px 1px 0 #000000,
+    1px 1px 0 #000000;
+}
+
+.p-mt-small {
+  align: center;
+  font-size: 8px;
+  margin: 0px;
+  padding: 0px;
+  display: inside-block;
+}
