@@ -1,0 +1,17 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-6 offset-3">
+      
+      <%= simple_form_for Party.create, url: partys_path do |f| %>
+        <%= f.submit "Create A New Party", class: 'btn btn-primary' %>
+      <% end %>
+    </div>
+  </div>
+  <div class="row">
+   <%= Party.all.each do |p| %>
+      <%= p.to_s %>
+    <% end %> 
+  </div>
+</div>
+
+

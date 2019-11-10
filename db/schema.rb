@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_11_07_210454) do
+ActiveRecord::Schema.define(version: 2019_11_10_204512) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -30,36 +30,32 @@ ActiveRecord::Schema.define(version: 2019_11_07_210454) do
 
   create_table "parties", force: :cascade do |t|
     t.string "user"
+    t.json "party_json"
     t.string "pokemon1"
-    t.string "move1_1"
-    t.string "move1_2"
-    t.string "move1_3"
-    t.string "move1_4"
     t.string "pokemon2"
-    t.string "move2_1"
-    t.string "move2_2"
-    t.string "move2_3"
-    t.string "move2_4"
     t.string "pokemon3"
-    t.string "move3_1"
-    t.string "move3_2"
-    t.string "move3_3"
-    t.string "move3_4"
     t.string "pokemon4"
-    t.string "move4_1"
-    t.string "move4_2"
-    t.string "move4_3"
-    t.string "move4_4"
     t.string "pokemon5"
-    t.string "move5_1"
-    t.string "move5_2"
-    t.string "move5_3"
-    t.string "move5_4"
     t.string "pokemon6"
-    t.string "move6_1"
-    t.string "move6_2"
-    t.string "move6_3"
-    t.string "move6_4"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "partypokemons", force: :cascade do |t|
+    t.integer "party_number"
+    t.string "user"
+    t.string "pokemon_name"
+    t.string "move1"
+    t.string "move2"
+    t.string "move3"
+    t.string "move4"
+    t.json "party_pokemon"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "partys", force: :cascade do |t|
+    t.json "party_json"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
