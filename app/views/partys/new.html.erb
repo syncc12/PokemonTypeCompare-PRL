@@ -1,0 +1,15 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-4 offset-2">
+      <h1>New Party</h1>
+      <br />
+      <%= simple_form_for @party, url: partys_path  do |f| %>
+        <%= f.input :party_name %>
+        <%= f.submit "Create New Party", class: 'poke-button' %>
+      <% end %>
+
+    </div>
+  </div>
+</div>
+
+

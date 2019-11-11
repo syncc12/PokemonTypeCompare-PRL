@@ -28,36 +28,13 @@ ActiveRecord::Schema.define(version: 2019_11_10_204512) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "parties", force: :cascade do |t|
-    t.string "user"
-    t.json "party_json"
-    t.string "pokemon1"
-    t.string "pokemon2"
-    t.string "pokemon3"
-    t.string "pokemon4"
-    t.string "pokemon5"
-    t.string "pokemon6"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "partypokemons", force: :cascade do |t|
-    t.integer "party_number"
-    t.string "user"
-    t.string "pokemon_name"
-    t.string "move1"
-    t.string "move2"
-    t.string "move3"
-    t.string "move4"
-    t.json "party_pokemon"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   create_table "partys", force: :cascade do |t|
+    t.string "party_name"
     t.json "party_json"
+    t.integer "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_partys_on_user_id"
   end
 
   create_table "pokemons", force: :cascade do |t|

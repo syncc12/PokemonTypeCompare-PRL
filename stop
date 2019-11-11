@@ -1,0 +1,54 @@
+= ..ddoonnee
+
+(from ruby core)
+=== IImmpplleemmeennttaattiioonn  ffrroomm  SSiilleennttDDoowwnnllooaaddRReeppoorrtteerr
+------------------------------------------------------------------------------
+  done()
+
+------------------------------------------------------------------------------
+
+The silent download reporter won't tell you when the download is done. Because
+it is silent.
+
+
+(from ruby core)
+=== IImmpplleemmeennttaattiioonn  ffrroomm  SSiilleennttPPrrooggrreessssRReeppoorrtteerr
+------------------------------------------------------------------------------
+  done()
+
+------------------------------------------------------------------------------
+
+Does not print anything when complete as this object has taken a vow of
+silence.
+
+
+(from ruby core)
+=== IImmpplleemmeennttaattiioonn  ffrroomm  SSiimmpplleePPrrooggrreessssRReeppoorrtteerr
+------------------------------------------------------------------------------
+  done()
+
+------------------------------------------------------------------------------
+
+Prints out the terminal message.
+
+
+(from ruby core)
+=== IImmpplleemmeennttaattiioonn  ffrroomm  VVeerrbboosseeDDoowwnnllooaaddRReeppoorrtteerr
+------------------------------------------------------------------------------
+  done()
+
+------------------------------------------------------------------------------
+
+Indicates the download is complete.
+
+
+(from ruby core)
+=== IImmpplleemmeennttaattiioonn  ffrroomm  VVeerrbboosseePPrrooggrreessssRReeppoorrtteerr
+------------------------------------------------------------------------------
+  done()
+
+------------------------------------------------------------------------------
+
+Prints out the terminal message.
+
+

@@ -297,12 +297,12 @@ var baseURL = "https://pokeapi.co/api/v2/";
           data: {"user": "n/a", "party_json": sJSON}
         });
 
-        $.post("/tasks/" + itemId, {
-        _method: "PUT",
-        task: {
-          done: doneValue
-        }
-      })
+        // $.post("/tasks/" + itemId, {
+        //     _method: "PUT",
+        //     task: {
+        //       done: doneValue
+        //     }
+        //   })
 
         // }
       });

@@ -2,15 +2,20 @@ class PartysController < ApplicationController
   before_action :authenticate_user!
 
   def new
-    @party = User.find(current_user.id).new
+    @party = Party.new
   end
 
   def index
   end
 
+  def show
+    @party = Party.find(params[:id])
+  end
+
   def create
-    @partys = Party.create(party_params)
-    redirect_to partys_path
+    
+    @partys = current_user.partys.create(party_params)
+    redirect_to party_path(current_party)
   end
 
   # def update
@@ -18,22 +23,17 @@ class PartysController < ApplicationController
   #   render plain: 'Party Saved'
   # end 
 
-  # def current_party
-  #   @current_party ||= Party.find(params[:id])
-  # end
-
-  def add_user_to_partys
-    if Party.exists?(user_id: current_user.id)
-
-    else
-
-    end
+  helper_method :current_party
+  def current_party
+    @current_party ||= current_user.partys.find([:id])
   end
+
+  
 
   private
 
   def party_params
-    params.require(:party).permit(:party_json)
+    params.require(:party).permit(:party_name, :party_json)
   end
 
 end
