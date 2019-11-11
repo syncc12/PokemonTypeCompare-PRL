@@ -1,5 +1,5 @@
 class PartysController < ApplicationController
-  before_action :authenticate_user!
+  # before_action :authenticate_user!
 
   def new
     @party = Party.new
