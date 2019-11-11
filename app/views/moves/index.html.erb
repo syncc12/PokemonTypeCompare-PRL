@@ -7,28 +7,13 @@
     </div>
   </div>
 
-  
   <div class="row">
-
-    <!-- Search Pokemon Start -->
     <div class="col-1 offset-3">
       <input id="input-pokemon" type="text" placeholder="Search Pokemon..."></input>
     </div>
-    <!-- Search Pokemon End -->
-
-    <!-- Search Moves Start -->
-    <div class="col-1 offset-5">
-      <input id="input-moves" type="text" placeholder="Search Moves..."></input>
-    </div>
-    <!-- Search Moves End -->
-
-
   </div>
   <br />
-  
   <div class="row">
-
-    <!-- Party Box Start -->
     <div class="col-2">
       <div class="party-box-outer">
         <div id="party-box-1" class="party-box std-lb"></div>
@@ -69,20 +54,21 @@
     
     <!-- Pokemon Box Start -->
     <div class="col-2 offset-1">
+    <!-- Pokemon Box Start -->
       <div id="moves-poke-box">
         <ol id="moves-poke-box-ol" class="list-unstyled">
           
         </ol>
       </div>
-    </div>
     <!-- Pokemon Box End -->
-
-    <!-- Add To Party Box Start -->
+    </div>
+    
+    <!-- Party Box Start -->
     <div class="col-2 offset-1">
       <div id="party-box-hold"></div>
-      <button disabled id="add-party-button" class="poke-button" type="button">Add To Party</button>
+      <button id="add-party-button" class="poke-button" type="button">Add To Party</button>
     </div>
-    <!-- Add To Party Box End -->
+    <!-- Party Box End -->
 
     <!-- Move Box Start -->
     <div class="col-2 offset-1">
@@ -104,266 +90,3 @@
 
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-<script>
-  var baseURL = "https://pokeapi.co/api/v2/";
-  function getAPI(resource, name="") {
-    $.get(baseURL + resource + "/" + name, function(data, status) {
-      var rsrce = data['"' + resource + '"']
-      console.log(rsrce)
-      return rsrce
-    })
-  }
-
-
-  function getMoves(name) {
-      $.get(baseURL + "pokemon/" + name, function(data, status) {
-        var moves = data["moves"];
-        // console.log(moves)
-        $("#moves-holder").html(moves[0]["move"]["name"]);
-      })
-    }
-    
-    function getSprite(name) {
-      $.get(baseURL + "pokemon/" + name, function(data, status) {
-        // console.log(baseURL + "pokemon/" + name)
-        var sprite = data["sprites"]["front_default"];
-        // console.log(data["sprites"]["front_default"])
-        // console.log(sprite.toString())
-        return sprite.toString();
-      });
-    }
-
-
-  // Selection Process - Up To "Add To Party"
-  $(function(_SelectionProcess1) {
-    $.get(baseURL + "pokemon?limit=20", function(data, status) { //Max Limit: 964
-      $.each(data['results'], function(index, value) {
-        $.get(value['url'], function(data, status) {
-          var pokemonName = data['name'];
-          var pokemonSprite = data['sprites']['front_default'];
-          var pokemonTypes;
-          if (data['types']['length'] == 2) {
-            pokemonTypes = data['types'][0]['type']['name'] + " " + data['types'][1]['type']['name'];
-          } else {
-            pokemonTypes = data['types'][0]['type']['name'];
-          }
-          
-          var pokedexNumber = data['id'];
-          var insertJSON = (
-            '<li id="moves-poke-box-li-' + pokemonName + '" class="moves-poke-box-li">' +
-              '<div id="moves-poke-box-div-' + pokemonName + '" class="moves-poke-box-div" pokemon-name="' + pokemonName + '" pokemon-type="' + pokemonTypes + '" pokedex-number="' + pokedexNumber + '">' + 
-                '<div class="container-fluid">' +
-                  '<div class="row">' +
-                    '<div id="moves-poke-box-img" class="align-self-center">' +
-                      '<div id="moves-poke-box-' + pokemonName + '">' +
-                      '<img id="sprite-' + pokemonName + '" src="' + pokemonSprite + '" alt="' + pokemonName + '" />' +
-                      '</div>' +
-                    '</div>' +
-                    '<div id="moves-poke-box-name" class="moves-poke-box-name-class align-self-center">' +
-                      pokemonName +
-                    '</div>' +
-                    '<table id="selected-moves">' +
-                      '<tr>' +
-                        '<td id="selected-move-1"></td>' +
-                        '<td id="selected-move-3"></td>' +
-                      '</tr>' +
-                      '<tr>' +
-                        '<td id="selected-move-2"></td>' +
-                        '<td id="selected-move-4"></td>' +
-                      '</tr>' +
-                    '</table>' +
-                  '</div>' +
-                '</div>' +
-              '</div>' +
-            '</li>'
-          );
-          $('#moves-poke-box-ol').append(insertJSON);
-        });
-      });
-
-      $("#moves-poke-box-ol").selectable({
-        selected: function(event, ui) {
-          $('#move-box-ul').empty();
-          var insertJSON = (
-            '<div id="party-box-hold"><div class="container-fluid"><div class="row">' + 
-              ui['selected'].innerHTML + 
-            '</div></div></div>'
-          );
-          $('#party-box-hold').replaceWith(insertJSON);
-          $('#add-party-button').trigger('partyBoxHoldChange')
-          $('#party-box-hold #selected-moves, #input-moves').css('display', 'block');
-          _SelectMoves();
-        }
-      });
-    });
-  });
-
-  // Select Moves
-  function _SelectMoves() {
-    var baseURL = "https://pokeapi.co/api/v2/";
-    var selectedName = $('#party-box-hold #moves-poke-box-name').text();
-    // console.log("selectedName: " + selectedName);
-    $.get(baseURL + "pokemon/" + selectedName, function(data, status) {
-      $.each(data['moves'], function(index, value) {
-        var moveName = value['move']['name'].replace("-"," ");
-        var moveURL = value['move']['url'];
-        function typeGet() { return $.get(moveURL); }
-        $.when(typeGet()).done(function(data, status) {
-          var moveType = data['type']['name'];
-          var insertJSON = (
-            '<li id="move-box-li-' + selectedName + '-' + moveName + '" class="move-box-li">' +
-              '<div id="move-box-div-' + selectedName + '-' + moveName + '" class="move-box-div" pokemon-name="' + selectedName + '" move-name="' + moveName + '" move-type="' + moveType + '">' +
-                '<div class="container-fluid">' +
-                  '<div class="row">' +
-                    '<div id="move-box-type" class="mt-' + moveType + ' std-lb-imgbox"><div id="move-box-type-inner">' + moveType + '</div></div>' +
-                    '<div id="move-box-name" class="align-self-center std-lb-namebox">' + moveName + '</div>' +
-                  '</div>' +
-                '</div>' +
-              '</div>' +
-            '</li>'
-            );
-
-          $('#move-box-ul').append(insertJSON);
-          
-          $('#move-box-ul > li').hide();
-          
-          $('#move-box-ul').selectable({
-            selected: function(event, ui) {
-              // console.log(ui);
-              var selMoveName = $(ui['selected']).find("#move-box-name").text();
-              var selMoveType = $(ui['selected']).find("#move-box-type").text();
-              var selMoveSplitName = selMoveName.split(" ")
-              var selMoveInitials = "";
-              // console.log(selMoveName);
-              // console.log(selMoveType);
-              // console.log(selMoveSplitName);
-              
-              
-              for (i in selMoveSplitName) {
-                selMoveInitials = selMoveInitials + " " + selMoveSplitName[i].substring(0,1)
-              }
-              selMoveInitials = selMoveInitials.toUpperCase().trim();
-              // console.log(selMoveInitials);
-
-              var insertJSON = '<div class="mt-small-' + selMoveType + '"><p class="p-mt-small">' + selMoveInitials + '</p></div>'
-              // console.log(insertJSON);
-
-              function isEmpty(inElement) {
-                return !$.trim($(inElement).html())
-              }
-              function isNotEmpty(inElement) {
-                return !isEmpty(inElement)
-              }
-              if (isEmpty('#party-box-hold #selected-move-1')) {
-                // document.getElementById('selected-move-1').innerHTML = insertJSON
-                $('#party-box-hold #selected-move-1').append(insertJSON);
-                $('#add-party-button').trigger('partyBoxHoldChange')
-              } else if (isEmpty('#party-box-hold #selected-move-2')) {
-                // document.getElementById('selected-move-2').innerHTML = insertJSON
-                $('#party-box-hold #selected-move-2').append(insertJSON);
-                $('#add-party-button').trigger('partyBoxHoldChange')
-              } else if (isEmpty('#party-box-hold #selected-move-3')) {
-                // document.getElementById('selected-move-3').innerHTML = insertJSON
-                $('#party-box-hold #selected-move-3').append(insertJSON);
-                $('#add-party-button').trigger('partyBoxHoldChange')
-              } else if (isEmpty('#party-box-hold #selected-move-4')) {
-                // document.getElementById('selected-move-4').innerHTML = insertJSON
-                $('#party-box-hold #selected-move-4').append(insertJSON);
-                $('#add-party-button').trigger('partyBoxHoldChange')
-              } else {}
-            }
-
-
-          });
-
-
-        });
-      });
-    });
-  }
-
-
-  // Selection Process - After "Add To Party"
-  $(function (_SelectionProcess2) {
-    $('#add-party-button').on('partyBoxHoldChange', function() {
-      $('#add-party-button').attr('disabled', false);
-      function isEmpty(inElement) {
-        return !$.trim($(inElement).html())
-      }
-      function isNotEmpty(inElement) {
-        return !isEmpty(inElement)
-      }
-
-      function nextOpenPartyBox() {
-        if (isEmpty('#party-box-1')) {
-          return '#party-box-1'
-        } else if (isEmpty('#party-box-2')) {
-          return '#party-box-2'
-        } else if (isEmpty('#party-box-3')) {
-          return '#party-box-3'
-        } else if (isEmpty('#party-box-4')) {
-          return '#party-box-4'
-        } else if (isEmpty('#party-box-5')) {
-          return '#party-box-5'
-        } else if (isEmpty('#party-box-6')) {
-          return '#party-box-6'
-        }
-      }
-
-      var pokemonSelected = false;
-      var moveSelected = false;
-      var partyFull = true;
-
-      if (isNotEmpty('#party-box-hold')) {
-        pokemonSelected = true;
-      }
-
-      if (isNotEmpty('#party-box-hold #selected-move-1') || isNotEmpty('#party-box-hold #selected-move-2') || isNotEmpty('#party-box-hold #selected-move-3') || isNotEmpty('#party-box-hold #selected-move-4')) {
-        moveSelected = true;
-      }
-
-      if (isEmpty('#party-box-1') || isEmpty('#party-box-2') || isEmpty('#party-box-3') || isEmpty('#party-box-4') || isEmpty('#party-box-5') || isEmpty('#party-box-6')) {
-        partyFull = false;
-      }
-
-      $('#add-party-button').on('click', function() {
-          if ((pokemonSelected == true) && (moveSelected == true) && (partyFull == false)) {
-          var openPartyBox = nextOpenPartyBox();
-          $(openPartyBox).append($('#party-box-hold').html());
-          $('#party-box-hold').empty();
-        } else { }
-      });
-    });
-  });
-
-  // Pokemon Search Box Filter
-  $(function (_PokemonSearchBoxFilter) {
-    $("#input-pokemon").on("input", function() {
-      var currentInput = $(this).val().toLowerCase();
-      if (currentInput == "") {
-        $('#moves-poke-box-ol > li').hide();
-      } else {
-        $('#moves-poke-box-ol > li:not(:contains(' + currentInput + '))').hide(); 
-        $('#moves-poke-box-ol > li:contains(' + currentInput + ')').show();  
-      }
-    });
-  });
-
-  // Moves Search Box Filter
-  $(function (_MovesSearchBoxFilter) {
-    $("#input-moves").on("input", function() {
-      var currentInput = $(this).val().toLowerCase();
-      if (currentInput == "") {
-        $('#move-box-ul > li').hide();
-      } else {
-        $('#move-box-ul > li:not(:contains(' + currentInput + '))').hide(); 
-        $('#move-box-ul > li:contains(' + currentInput + ')').show();  
-      }
-    });
-  });
-
-    
-
-
-  
-</script>
