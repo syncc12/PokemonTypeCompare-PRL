@@ -389,3 +389,19 @@ $check-width: $check-height/2;
 
 #save-party-button-div {
 }
+
+#move-column {
+  border: 1px solid black;
+  position: relative;
+  margin: 0px;
+  padding: 20px;
+  height: 100%;
+  width: 290px;
+  overflow-y: scroll;
+}
+
+#move-column .row {
+  margin: 0px;
+  padding: 0px;
+  width: 250px;
+}

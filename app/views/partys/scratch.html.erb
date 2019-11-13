@@ -1,0 +1,188 @@
+<div class="container-fluid">
+  <br />
+  <br />
+  
+  <div class="row">
+    <!-- Party Column Start -->
+    <!-- Party Box Start -->
+    <div class="col-2">
+      <div class="party-box-column">
+        <div class="party-box-outer"><div id="party-box-1" class="party-box std-lb"></div></div>
+        <div class="party-box-outer"><div id="party-box-2" class="party-box std-lb"></div></div>
+        <div class="party-box-outer"><div id="party-box-3" class="party-box std-lb"></div></div>
+        <div class="party-box-outer"><div id="party-box-4" class="party-box std-lb"></div></div>
+        <div class="party-box-outer"><div id="party-box-5" class="party-box std-lb"></div></div>
+        <div class="party-box-outer"><div id="party-box-6" class="party-box std-lb"></div></div>
+      </div>
+    </div>
+    <!-- Party Box End -->
+    <!-- Party Column End -->
+    
+    
+    <!-- Pokemon Column Start -->
+    <div class="col-2 offset-1">
+      <div class="pokemon-box-column">
+        <!-- Search Pokemon Start -->
+        <div class="row">
+          <input id="input-pokemon" type="text" placeholder="Search Pokemon..." />
+        </div>
+        <!-- Search Pokemon End -->
+        <div class="row">
+          <!-- Pokemon Box Start -->
+          <div id="moves-poke-box"><ol id="moves-poke-box-ol" class="list-unstyled"></ol></div>
+          <!-- Pokemon Box End -->
+          <!-- Add To Party Box Start -->
+          <div id="party-box-hold"></div>
+          <button disabled id="add-party-button" class="poke-button" type="button">Add To Party</button>
+          <!-- Add To Party Box End -->
+        </div>
+      </div>
+    </div>
+    <!-- Pokemon Column End -->
+
+    <!-- Move Column Start -->
+    <div class="col-2 offset-1">
+      <div class="move-column">
+        <canvas id="move-canvas">
+          <!-- Search Moves Start -->
+          <div class="row">
+            <input id="input-moves" type="text" placeholder="Search Moves..." />
+          </div>
+          <!-- Search Moves End -->
+          <!-- Move Box Start -->
+          <div class="row">
+            <ul id="move-box-ul" class="list-unstyled"></ul>
+          </div>
+          <!-- Move Box End -->
+        </canvas>
+      </div>
+    </div>
+    <!-- Move Column End -->
+
+  </div>
+
+
+</div>
+
+
+
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+<!-- <script src="../../assets/javascripts/partys.js"></script> -->
+
+<script>
+  
+  var canvas = document.getElementById("move-canvas");
+  var ctx - canvas.getContext("2d");
+  ctx.beginPath();
+  ctx.lineWIdth = "2";
+  ctx.strokeStyle = "black";
+  ctx.moveTo(0,75);
+  ctx.lineTo(250,75);
+  ctx.stroke();
+
+</script>
+
+
+<!-- ______________________________________________________________________________________ -->
+
+
+
+
+
+<div class="container-fluid">
+  <br />
+  <div class="row">
+    <!-- <div class="col-1">
+      <input id="party-name" type="text" placeholder="Party Name" />
+    </div> -->
+  </div>
+
+  
+  <div class="row">
+
+    <!-- Search Pokemon Start -->
+    <div class="col-1 offset-3">
+      <input id="input-pokemon" type="text" placeholder="Search Pokemon..." />
+    </div>
+    <!-- Search Pokemon End -->
+
+    <!-- Search Moves Start -->
+    <div class="col-1 offset-2">
+      <input id="input-moves" type="text" placeholder="Search Moves..." />
+      
+    </div>
+    <!-- Search Moves End -->
+
+
+  </div>
+  <br />
+  
+  <div class="row">
+
+    <!-- Party Box Start -->
+    <div class="col-2">
+      <div class="party-box-outer">
+        <div id="party-box-1" class="party-box std-lb"></div>
+      </div>
+      <div class="party-box-outer">
+        <div id="party-box-2" class="party-box std-lb"></div>
+      </div>
+      <div class="party-box-outer">
+        <div id="party-box-3" class="party-box std-lb"></div>
+      </div>
+      <div class="party-box-outer">
+        <div id="party-box-4" class="party-box std-lb"></div>
+      </div>
+      <div class="party-box-outer">
+        <div id="party-box-5" class="party-box std-lb"></div>
+      </div>
+      <div class="party-box-outer">
+        <div id="party-box-6" class="party-box std-lb"></div>
+      </div>
+      
+      <!-- Save Party Start -->
+      <!-- <input id="save-party-button" class="poke-button" type="button" onclick="" value="Save Party" /> -->
+      <!-- Pokemon.create( pokedex_number: pmNum, name: pmName, type1: pmType1, type2: pmType2, sprite: pmSprite ) -->
+      
+      <!-- Save Party End -->
+
+    </div>
+    <!-- Party Box End -->
+
+    
+    
+    <!-- Pokemon Box Start -->
+    <div class="col-2 offset-1">
+      <div id="moves-poke-box">
+        <ol id="moves-poke-box-ol" class="list-unstyled">
+          
+        </ol>
+      </div>
+      <!-- Add To Party Box Start -->
+      <div id="party-box-hold"></div>
+      <button disabled id="add-party-button" class="poke-button" type="button">Add To Party</button>
+      <!-- Add To Party Box End -->
+    </div>
+    <!-- Pokemon Box End -->
+
+    <!-- Move Box Start -->
+    <div class="col-2 offset-1">
+      <ul id="move-box-ul" class="list-unstyled"></ul>
+    </div>
+    <!-- Move Box End -->
+
+  </div>
+
+
+</div>
+
+
+
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+<!-- <script src="../../assets/javascripts/partys.js"></script> -->
+ 
+

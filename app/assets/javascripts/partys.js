@@ -25,9 +25,35 @@ function visibleSwap(visibleFirst, visibleSecond) {
   $(visibleSecond).css("display", "block");
 }
 
+function inStr(searchString, findString) {
+  var isInStr = false;
+  var strIndex = searchString(findString);
+  if (strIndex >= 0) {
+    var isInStr = true;
+  }
+  return isInStr;
+}
+
+function hidePokemon() {
+  $('#party-box-hold, #add-party-button, #move-column, #move-column row').css("display", "none")
+}
+
+function showPokemon() {
+  $('#party-box-hold, #add-party-button, #move-column, #move-column row').css("display", "block")
+}
+
+function hideMoves() {
+  $('#moves-poke-box').css("display", "none");
+}
+
+function showMoves() {
+  $('#moves-poke-box').css("display", "block");
+}
+
+
 // Selection Process - Up To "Add To Party"
 $(function(_SelectionProcess1) {
-  $('#party-box-hold').css("display", "none")
+  hidePokemon();
   $.get(baseURL + "pokemon?limit=20", function(data, status) { //Max Limit: 964
     $.each(data['results'], function(index, value) {
       $.get(value['url'], function(data, status) {
@@ -83,12 +109,10 @@ $(function(_SelectionProcess1) {
             ui['selected'].innerHTML + 
           '</div></div></div>'
         );
-        // visibleSwap('#moves-poke-box', '#party-box-hold');
-        $('#moves-poke-box').css("display", "none");
-        $('#party-box-hold').css("display", "block");
+        hideMoves();
+        showPokemon();
         $('#party-box-hold').replaceWith(insertHTML);
         $('#add-party-button').trigger('partyBoxHoldChange')
-        $('#party-box-hold #selected-moves, #input-moves').css('display', 'block');
         _SelectMoves();
       }
     });
@@ -140,7 +164,6 @@ function _SelectMoves() {
             // selMoveInitials = selMoveInitials.toUpperCase().trim();
 
             var selMoveInitials = strInitials(selMoveName);
-            console.log(selMoveInitials);
 
             var insertHTML = '<div class="mt-small-' + selMoveType + '" move-name="' + selMoveName + '" move-type="' + selMoveType + '"><p class="p-mt-small">' + selMoveInitials + '</p></div>'
 
@@ -214,8 +237,9 @@ $(function (_SelectionProcess2) {
           $('#party-box-hold').empty();
           $('#input-moves').val('');
           $('#move-box-ul > li').hide();
-          $('#party-box-hold').css("display", "none");
-          $('#moves-poke-box').css("display", "block");
+          hideMoves();
+          showPokemon();
+          $('#add-party-button').attr('disabled', true);
       } else { }
     });
 
@@ -306,11 +330,13 @@ $(function (_PokemonSearchBoxFilter) {
 $(function (_MovesSearchBoxFilter) {
   $("#input-moves").on("input", function() {
     var currentInput = $(this).val().toLowerCase();
-    if (currentInput == "") {
-      $('#move-box-ul > li').hide();
-    } else {
-      $('#move-box-ul > li:not(:contains(' + currentInput + '))').hide(); 
-      $('#move-box-ul > li:contains(' + currentInput + ')').show();  
-    }
+    $('#move-box-ul > li:not(:contains(' + currentInput + '))').hide();
+    $('#move-box-ul > li:contains(' + currentInput + ')').show();
+    // if (currentInput == "") {
+    //   $('#move-box-ul > li').hide();
+    // } else {
+    //   $('#move-box-ul > li:not(:contains(' + currentInput + '))').hide(); 
+    //   $('#move-box-ul > li:contains(' + currentInput + ')').show();  
+    // }
   });
 });
