@@ -11,12 +11,16 @@ function strProper(inString) {
 }
 
 function strInitials(inString) {
-  var splitStr = inString.split(" ");
   var outInitials = "";
-  for (i in splitStr) {
-    outInitials = outInitials + " " + splitStr[i].substring(0,1);
+  if (inStr(inString, " ")) {
+    var splitStr = inString.split(" ");
+    for (i in splitStr) {
+      outInitials = outInitials + " " + splitStr[i].substring(0,1);
+    }
+    outInitials = outInitials.toUpperCase().trim();
+  } else {
+    outInitials =inString.substring(0,1).toUpperCase().trim();
   }
-  outInitials = outInitials.toUpperCase().trim();
   return outInitials;
 }
 
@@ -27,7 +31,7 @@ function visibleSwap(visibleFirst, visibleSecond) {
 
 function inStr(searchString, findString) {
   var isInStr = false;
-  var strIndex = searchString(findString);
+  var strIndex = searchString.indexOf(findString);
   if (strIndex >= 0) {
     var isInStr = true;
   }
@@ -35,22 +39,28 @@ function inStr(searchString, findString) {
 }
 
 function hideMoves() {
-  $('#party-box-hold, #add-party-button, #move-column, #input-moves, #input-moves-div, #input-moves-div row, #move-column-sub, #move-column-sub row').css("display", "none")
+  $('#party-box-hold, #add-party-button, #move-column, #input-moves, #input-moves-div, #input-moves-div row, #move-column-sub, #move-column-sub row, #moves-poke-box-ol > li').css("display", "none")
+  // $('.move-family').css("display", "none")
 }
 
 function showMoves() {
-  $('#party-box-hold, #add-party-button, #move-column, #input-moves, #input-moves-div, #input-moves-div row, #move-column-sub, #move-column-sub row').css("display", "block")
+  $('#party-box-hold, #add-party-button, #move-column, #input-moves, #input-moves-div, #input-moves-div row, #move-column-sub, #move-column-sub row, #moves-poke-box-ol > li').css("display", "block")
+  // $('.move-family').css("display", "block")
 }
 
 function hidePokemon() {
   $('#moves-poke-box').css("display", "none");
+  // $('.pokemon-box-family').css("display", "none");
 }
 
 function showPokemon() {
   $('#moves-poke-box').css("display", "block");
+  // $('.pokemon-box-family').css("display", "block");
 }
 
-
+function cleanName(inName) {
+  return strProper(inName.replace("-", " "));
+}
 
 
 
@@ -85,12 +95,12 @@ $(function(_SelectionProcess1) {
                   '</div>' +
                   '<table id="selected-moves">' +
                     '<tr>' +
-                      '<td id="selected-move-1"></td>' +
-                      '<td id="selected-move-3"></td>' +
+                      '<td id="selected-move-1" class="selected-move-box"></td>' +
+                      '<td id="selected-move-3" class="selected-move-box"></td>' +
                     '</tr>' +
                     '<tr>' +
-                      '<td id="selected-move-2"></td>' +
-                      '<td id="selected-move-4"></td>' +
+                      '<td id="selected-move-2" class="selected-move-box"></td>' +
+                      '<td id="selected-move-4" class="selected-move-box"></td>' +
                     '</tr>' +
                   '</table>' +
                 '</div>' +
@@ -149,7 +159,7 @@ function _SelectMoves() {
 
         $('#move-box-ul').append(insertHTML);
         
-        $('#move-box-ul > li').hide();
+        // $('#move-box-ul > li').hide();
         
         
         $('#move-box-ul').selectable({ 
@@ -168,7 +178,7 @@ function _SelectMoves() {
 
             var selMoveInitials = strInitials(selMoveName);
 
-            var insertHTML = '<div class="mt-small-' + selMoveType + '" move-name="' + selMoveName + '" move-type="' + selMoveType + '"><p class="p-mt-small">' + selMoveInitials + '</p></div>'
+            var insertHTML = '<div class="mt-small-' + selMoveType + '" data-move-name="' + selMoveName + '" data-move-type="' + selMoveType + '" title="' + cleanName(selMoveName) + '"><p class="p-mt-small">' + selMoveInitials + '</p></div>'
 
             function isEmpty(inElement) {
               return !$.trim($(inElement).html())
@@ -342,6 +352,13 @@ $(function (_MovesSearchBoxFilter) {
     //   $('#move-box-ul > li:contains(' + currentInput + ')').show();  
     // }
 
+  });
+});
+
+// Mouse Hover Tool Tip
+$(function (_MouseHoverToolTip) {
+  $('.selected-move-box').tooltip({
+    track: true
   });
 });
 

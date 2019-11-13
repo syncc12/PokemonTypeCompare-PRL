@@ -149,7 +149,7 @@
   background-color: white;
 }
 
-#input-moves-div {
+#input-moves-div, #input-pokemon-div {
   padding-top: 20px;
   padding-left: 20px;
   padding-right: 20px;
@@ -157,7 +157,7 @@
   background-color: white;
 }
 
-#move-column-sub {
+#move-column-sub, #pokemon-box-column-sub {
   padding-left: 20px;
   padding-right: 20px;
   padding-bottom: 20px;
@@ -167,8 +167,12 @@
   overflow-y: scroll;
 }
 
-#move-column {
-  border: 1px solid black;
+::-webkit-scrollbar {
+  width: 0px;
+  background: transparent;
+}
+
+#move-column, #pokemon-box-column {
   position: relative;
   margin: 0px;
   padding: 0px;
@@ -176,7 +180,11 @@
   width: 290px;
 }
 
-#move-column .row {
+#move-column {
+  border: 1px solid black;
+}
+
+#move-column .row, #pokemon-box-column .row {
   margin: 0px;
   padding: 0px;
   width: 250px;

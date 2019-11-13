@@ -24,18 +24,22 @@
     <div class="col-2 offset-1">
       <div id="pokemon-box-column">
         <!-- Search Pokemon Start -->
-        <div class="row">
-          <input id="input-pokemon" class="poke-input" type="text" placeholder="Search Pokemon..." />
+        <div id="input-pokemon-div">
+          <div class="row">
+            <input id="input-pokemon" class="poke-input" type="text" placeholder="Search Pokemon..." />
+          </div>
         </div><br />
         <!-- Search Pokemon End -->
-        <div class="row">
-          <!-- Pokemon Box Start -->
-          <div id="moves-poke-box"><ol id="moves-poke-box-ol" class="list-unstyled"></ol></div>
-          <!-- Pokemon Box End -->
-          <!-- Add To Party Box Start -->
-          <div id="party-box-hold"></div>
-          <button disabled id="add-party-button" class="poke-button" type="button">Add To Party</button>
-          <!-- Add To Party Box End -->
+        <div id="pokemon-box-column-sub">
+          <div class="row">
+            <!-- Pokemon Box Start -->
+            <div id="moves-poke-box"><ol id="moves-poke-box-ol" class="list-unstyled"></ol></div>
+            <!-- Pokemon Box End -->
+            <!-- Add To Party Box Start -->
+            <div id="party-box-hold"></div>
+            <button disabled id="add-party-button" class="poke-button" type="button">Add To Party</button>
+            <!-- Add To Party Box End -->
+          </div>
         </div>
       </div>
     </div>
@@ -74,21 +78,4 @@
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 
 <!-- <script src="../../assets/javascripts/partys.js"></script> -->
-
-<script>
-  
-  // var canvas = document.getElementById("move-canvas");
-  // var ctx = canvas.getContext("2d");
-  // ctx.beginPath();
-  // ctx.lineWIdth = "1";
-  // ctx.strokeStyle = "black";
-  // ctx.moveTo(0,0);
-  // ctx.lineTo(0,1000);
-  // ctx.lineTo(1000,1000);
-  // ctx.lineTo(1000,0);
-  // ctx.lineTo(0,0);
-  
-  // ctx.stroke();
-
-</script>
 
