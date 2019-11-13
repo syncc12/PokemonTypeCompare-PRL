@@ -34,26 +34,29 @@ function inStr(searchString, findString) {
   return isInStr;
 }
 
-function hidePokemon() {
-  $('#party-box-hold, #add-party-button, #move-column, #move-column row').css("display", "none")
-}
-
-function showPokemon() {
-  $('#party-box-hold, #add-party-button, #move-column, #move-column row').css("display", "block")
-}
-
 function hideMoves() {
-  $('#moves-poke-box').css("display", "none");
+  $('#party-box-hold, #add-party-button, #move-column, #input-moves, #input-moves-div, #input-moves-div row, #move-column-sub, #move-column-sub row').css("display", "none")
 }
 
 function showMoves() {
+  $('#party-box-hold, #add-party-button, #move-column, #input-moves, #input-moves-div, #input-moves-div row, #move-column-sub, #move-column-sub row').css("display", "block")
+}
+
+function hidePokemon() {
+  $('#moves-poke-box').css("display", "none");
+}
+
+function showPokemon() {
   $('#moves-poke-box').css("display", "block");
 }
 
 
+
+
+
 // Selection Process - Up To "Add To Party"
 $(function(_SelectionProcess1) {
-  hidePokemon();
+  hideMoves();
   $.get(baseURL + "pokemon?limit=20", function(data, status) { //Max Limit: 964
     $.each(data['results'], function(index, value) {
       $.get(value['url'], function(data, status) {
@@ -109,8 +112,8 @@ $(function(_SelectionProcess1) {
             ui['selected'].innerHTML + 
           '</div></div></div>'
         );
-        hideMoves();
-        showPokemon();
+        hidePokemon();
+        showMoves();
         $('#party-box-hold').replaceWith(insertHTML);
         $('#add-party-button').trigger('partyBoxHoldChange')
         _SelectMoves();
@@ -338,5 +341,18 @@ $(function (_MovesSearchBoxFilter) {
     //   $('#move-box-ul > li:not(:contains(' + currentInput + '))').hide(); 
     //   $('#move-box-ul > li:contains(' + currentInput + ')').show();  
     // }
+
   });
 });
+
+// Moves Search Box Scroll Lock
+// $(function(_MovesSearchBoxScrollLock) {
+//   $('#move-column').on("scroll", function() {
+//     if (window.pageYoffset > stickyOffset) {
+//       $('#input-moves').addClass('sticky');
+//     } else {
+//       $('#input-moves').removeClass('sticky');
+//     }
+//   });
+
+// });

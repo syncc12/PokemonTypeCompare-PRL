@@ -106,3 +106,9 @@ a.a-link-sidebar {
   padding: 0px;
   margin: 0px;
 }
+
+.sticky {
+  position: -webkit-sticky; /* Safari */
+  position: sticky;
+  top: 0;
+}

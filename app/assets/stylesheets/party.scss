@@ -146,6 +146,40 @@
 
 #input-moves {
   display: none;
+  background-color: white;
+}
+
+#input-moves-div {
+  padding-top: 20px;
+  padding-left: 20px;
+  padding-right: 20px;
+  margin: 0px;
+  background-color: white;
+}
+
+#move-column-sub {
+  padding-left: 20px;
+  padding-right: 20px;
+  padding-bottom: 20px;
+  width: 290px;
+  height: 364px;
+  position: relative;
+  overflow-y: scroll;
+}
+
+#move-column {
+  border: 1px solid black;
+  position: relative;
+  margin: 0px;
+  padding: 0px;
+  height: 100%;
+  width: 290px;
+}
+
+#move-column .row {
+  margin: 0px;
+  padding: 0px;
+  width: 250px;
 }
 
 #move-box-ul {
@@ -390,18 +424,4 @@ $check-width: $check-height/2;
 #save-party-button-div {
 }
 
-#move-column {
-  border: 1px solid black;
-  position: relative;
-  margin: 0px;
-  padding: 20px;
-  height: 100%;
-  width: 290px;
-  overflow-y: scroll;
-}
 
-#move-column .row {
-  margin: 0px;
-  padding: 0px;
-  width: 250px;
-}
