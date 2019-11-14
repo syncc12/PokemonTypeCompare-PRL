@@ -2,20 +2,20 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-#moves-poke-box {
+#poke-box {
   margin: 0px;
   padding: 0px;
   height: 50px;
   width: 250px;
 }
 
-#moves-poke-box-ol {
+#poke-box-ol {
   margin: 0px;
   padding: 0px;
   width: 250px;
 }
 
-.moves-poke-box-li {
+.poke-box-li {
   margin: 0px;
   padding: 0px;
   height: 60px;
@@ -23,7 +23,7 @@
   display: none;
 }
 
-.moves-poke-box-li .moves-poke-box-div {
+.poke-box-li .poke-box-div {
   border: 1px solid black;
   margin: 0px;
   padding: 0px;
@@ -31,20 +31,20 @@
   width: 250px;
 }
 
-.moves-poke-box-li .moves-poke-box-div .container-fluid {
+.poke-box-li .poke-box-div .container-fluid {
   height: 50px;
   padding: 0px;
   margin: 0px;
 }
 
-.moves-poke-box-li .moves-poke-box-div .container-fluid .row {
+.poke-box-li .poke-box-div .container-fluid .row {
   height: 50px;
   width: 250px;
   padding: 0px;
   margin: 0px;
 } 
 
-#moves-poke-box-img {
+#poke-box-img {
   border: 1px solid black;
   margin: 5px;
   padding: 0px;
@@ -55,7 +55,7 @@
   align-items: center;
 }
 
-#moves-poke-box-name {
+#poke-box-name {
   margin: 0px;
   padding: 0px;
   text-indent: 5px;
@@ -65,7 +65,7 @@
   align-items: center;
 }
 
-#moves-poke-box-name-selected {
+#poke-box-name-selected {
   margin: 0px;
   padding: 0px;
   text-indent: 5px;
@@ -334,7 +334,7 @@
   width: 250px;
 }
 
-.moves-poke-box-div, .moves-poke-box-div .container-fluid, .moves-poke-box-div .container-fluid .row {
+.poke-box-div, .poke-box-div .container-fluid, .poke-box-div .container-fluid .row {
   margin: 0px;
   padding: 0px;
   height: 50px;

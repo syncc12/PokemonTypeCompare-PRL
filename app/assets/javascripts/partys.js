@@ -1,5 +1,43 @@
 var baseURL = "https://pokeapi.co/api/v2/";
 
+
+// HTML Strings
+
+function pokemonBoxHTML(inPokemonName, inPokemonTypes, inPokemonSprite, inPokedexNumber) {
+  var strHTML = (
+    '<li id="poke-box-li-' + inPokemonName + '" class="poke-box-li" data-pokemon-name="' + inPokemonName + '" data-pokemon-type="' + inPokemonTypes + '" data-pokedex-number="' + inPokedexNumber + '">' +
+      '<div id="poke-box-div-' + inPokemonName + '" class="poke-box-div" data-pokemon-name="' + inPokemonName + '" data-pokemon-type="' + inPokemonTypes + '" data-pokedex-number="' + inPokedexNumber + '">' + 
+        '<div class="container-fluid">' +
+          '<div class="row">' +
+            '<div id="poke-box-img" class="align-self-center">' +
+              '<div id="poke-box-' + inPokemonName + '">' +
+              '<img id="sprite-' + inPokemonName + '" src="' + inPokemonSprite + '" alt="' + inPokemonName + '" />' +
+              '</div>' +
+            '</div>' +
+            '<div id="poke-box-name" class="poke-box-name-class align-self-center" data-pokemon-name="' + inPokemonName + '">' +
+              strProper(inPokemonName) +
+            '</div>' +
+            '<table id="selected-moves">' +
+              '<tr>' +
+                '<td id="selected-move-1" class="selected-move-box"></td>' +
+                '<td id="selected-move-3" class="selected-move-box"></td>' +
+              '</tr>' +
+              '<tr>' +
+                '<td id="selected-move-2" class="selected-move-box"></td>' +
+                '<td id="selected-move-4" class="selected-move-box"></td>' +
+              '</tr>' +
+            '</table>' +
+          '</div>' +
+        '</div>' +
+      '</div>' +
+    '</li>'
+  );
+  return strHTML;
+}
+
+//---------------------------------------------------------------------------------------------------------------
+
+
 function strProper(inString) {
   var splitStr = inString.split(" ");
   var outStr = "";
@@ -39,22 +77,22 @@ function inStr(searchString, findString) {
 }
 
 function hideMoves() {
-  $('#party-box-hold, #add-party-button, #move-column, #input-moves, #input-moves-div, #input-moves-div row, #move-column-sub, #move-column-sub row, #moves-poke-box-ol > li').css("display", "none")
+  $('#party-box-hold, #add-party-button, #move-column, #input-moves, #input-moves-div, #input-moves-div row, #move-column-sub, #move-column-sub row, #poke-box-ol > li').css("display", "none")
   // $('.move-family').css("display", "none")
 }
 
 function showMoves() {
-  $('#party-box-hold, #add-party-button, #move-column, #input-moves, #input-moves-div, #input-moves-div row, #move-column-sub, #move-column-sub row, #moves-poke-box-ol > li').css("display", "block")
+  $('#party-box-hold, #add-party-button, #move-column, #input-moves, #input-moves-div, #input-moves-div row, #move-column-sub, #move-column-sub row, #poke-box-ol > li').css("display", "block")
   // $('.move-family').css("display", "block")
 }
 
 function hidePokemon() {
-  $('#moves-poke-box').css("display", "none");
+  $('#poke-box').css("display", "none");
   // $('.pokemon-box-family').css("display", "none");
 }
 
 function showPokemon() {
-  $('#moves-poke-box').css("display", "block");
+  $('#poke-box').css("display", "block");
   // $('.pokemon-box-family').css("display", "block");
 }
 
@@ -62,12 +100,85 @@ function cleanName(inName) {
   return strProper(inName.replace("-", " "));
 }
 
+arrayColumn = (inArray, columnNumber) => inArray.map(x => x[columnNumber]);
+dictColumn = (inDict, columnName) => inDict.map(x => x[columnName]);
+
+// Pokemon Data Collection
+// var pokeDataArray = [];
+// var pokeCount;
+// var pokeListGet;
+// $(function(_PokemonDataCollection) {
+//   $.get(baseURL + "pokemon", function(data, status) {
+//     pokeCount = data['count'];
+//   }).done(function(data) {
+//     $.get(baseURL + "pokemon?limit=" + pokeCount).done(function(pokeListGet) {
+//       var pokePathArray = [];
+//       for (i = 0; i < pokeListGet['count']; i++) {
+//         pokePathArray.push(pokeListGet['results'][i]['url']);
+//       }
+
+//       $.each(pokePathArray, function(index, value) {
+
+//         $.get(value).done(function(pokeData) {
+//           var pokeMoveName;
+//           var pokeMoveURL;
+//           var pokeMoveType;
+//           var pokeMovesArray = [];
+          
+//           var pokeName = pokeData['name'];
+//           var pokeSprite = pokeData['sprites']['front_default'];
+//           var pokeNumber = pokeData['id'];
+//           if (pokeData['types']['length'] == 2) {
+//             var pokeType1 = strProper(pokeData['types'][0]['type']['name']);
+//             var pokeType2 = strProper(pokeData['types'][1]['type']['name']);
+//           } else {
+//             var pokeType1 = strProper(pokeData['types'][0]['type']['name']);
+//             var pokeType2 = null;
+//           }
+//           var pokeTypesDict = {"pokemon_type1": pokeType1, "pokemon_type1": pokeType2};
+//           for (i = 0; i < pokeData['moves'].length; i++) {
+//             pokeMoveName = pokeData['moves'][i]['move']['name'];
+//             pokeMoveURL = pokeData['moves'][i]['move']['url'];
+//             pokeMoveType = null;
+//             pokeMovesArray.push({"move_name": pokeMoveName, "move_type": pokeMoveType, "move_url": pokeMoveURL});
+//           }
+//           pokeDataArray.push({"pokemon_name": pokeName, "sprite": pokeSprite, "pokedex_number": pokeNumber, "pokemon_types": pokeTypesDict, "moves": pokeMovesArray});
+
+//         }).done(function(data){
+//           var pdaIndex1 = index;
+//           $.each(pokeDataArray[pdaIndex1]['moves'], function(index, value) {
+//             var pdaIndex2 = index;
+//             $.get(value).done(function(data) {
+//               pokeDataArray[pdaIndex1]['moves'][pdaIndex2]['move_type'] = moveData['type']['name'];
+//             });
+
+//           });
+//         });
+
+//       });
+
+//       console.log(pokeDataArray);
+//       $.each(pokeDataArray, function(index, value) {
+//         console.log("4")
+//         var pdaIndex1 = index;
+//         $.each(value['moves']['move_url'], function(index, value) {
+//           var pdaIndex2 = index;
+//           $.get(value).done(function(data) {
+//             pokeDataArray[pdaIndex1]['moves'][pdaIndex2]['move_type'] = moveData['type']['name'];
+//           });
+
+//         });
+//       });
+
+//     });
+//   });
+// });
 
 
 // Selection Process - Up To "Add To Party"
 $(function(_SelectionProcess1) {
   hideMoves();
-  $.get(baseURL + "pokemon?limit=20", function(data, status) { //Max Limit: 964
+  $.get(baseURL + "pokemon?limit=20").done(function(data) { //Max Limit: 964
     $.each(data['results'], function(index, value) {
       $.get(value['url'], function(data, status) {
         var pokemonName = data['name'];
@@ -80,43 +191,16 @@ $(function(_SelectionProcess1) {
         }
         
         var pokedexNumber = data['id'];
-        var insertHTML = (
-          '<li id="moves-poke-box-li-' + pokemonName + '" class="moves-poke-box-li" data-pokemon-name="' + pokemonName + '" data-pokemon-type="' + pokemonTypes + '" data-pokedex-number="' + pokedexNumber + '">' +
-            '<div id="moves-poke-box-div-' + pokemonName + '" class="moves-poke-box-div" data-pokemon-name="' + pokemonName + '" data-pokemon-type="' + pokemonTypes + '" data-pokedex-number="' + pokedexNumber + '">' + 
-              '<div class="container-fluid">' +
-                '<div class="row">' +
-                  '<div id="moves-poke-box-img" class="align-self-center">' +
-                    '<div id="moves-poke-box-' + pokemonName + '">' +
-                    '<img id="sprite-' + pokemonName + '" src="' + pokemonSprite + '" alt="' + pokemonName + '" />' +
-                    '</div>' +
-                  '</div>' +
-                  '<div id="moves-poke-box-name" class="moves-poke-box-name-class align-self-center" data-pokemon-name="' + pokemonName + '">' +
-                    strProper(pokemonName) +
-                  '</div>' +
-                  '<table id="selected-moves">' +
-                    '<tr>' +
-                      '<td id="selected-move-1" class="selected-move-box"></td>' +
-                      '<td id="selected-move-3" class="selected-move-box"></td>' +
-                    '</tr>' +
-                    '<tr>' +
-                      '<td id="selected-move-2" class="selected-move-box"></td>' +
-                      '<td id="selected-move-4" class="selected-move-box"></td>' +
-                    '</tr>' +
-                  '</table>' +
-                '</div>' +
-              '</div>' +
-            '</div>' +
-          '</li>'
-        );
-        $('#moves-poke-box-ol').append(insertHTML);
+        var insertHTML = pokemonBoxHTML(pokemonName, pokemonTypes, pokemonSprite, pokedexNumber);
+        $('#poke-box-ol').append(insertHTML);
       });
     });
 
-    $("#moves-poke-box-ol").selectable({
+    $("#poke-box-ol").selectable({
       selected: function(event, ui) {
         $('#move-box-ul').empty();
         $('#input-pokemon').val('');
-        $('#moves-poke-box-ol > li').hide();
+        $('#poke-box-ol > li').hide();
         var insertHTML = (
           '<div id="party-box-hold"><div class="container-fluid"><div class="row">' + 
             ui['selected'].innerHTML + 
@@ -135,7 +219,7 @@ $(function(_SelectionProcess1) {
 // Select Moves
 function _SelectMoves() {
   var baseURL = "https://pokeapi.co/api/v2/";
-  var selectedName = $('#party-box-hold #moves-poke-box-name').data("pokemon-name");
+  var selectedName = $('#party-box-hold #poke-box-name').data("pokemon-name");
   $.get(baseURL + "pokemon/" + selectedName, function(data, status) {
     $.each(data['moves'], function(index, value) {
       var moveName = value['move']['name'].replace("-"," ");
@@ -271,7 +355,7 @@ $(function (_SelectionProcess2) {
         //partyBoxDataCollect
         var pkName, pkMove1, pkMove2, pkMove3, pkMove4;
         if (isNotEmpty('#party-box-' + boxNum)) {
-          pkName = $('#party-box-' + boxNum + ' .moves-poke-box-div').data('pokemon-name');
+          pkName = $('#party-box-' + boxNum + ' .poke-box-div').data('pokemon-name');
           if(isNotEmpty('#party-box-' + boxNum + ' #selected-move-1')) {
             pkMove1 = $('#party-box-' + boxNum + ' #selected-move-1 > div').data('move-name');
           } else { pkMove1 = null; }
@@ -331,10 +415,10 @@ $(function (_PokemonSearchBoxFilter) {
   $("#input-pokemon").on("input", function() {
     var currentInput = $(this).val().toLowerCase();
     if (currentInput == "") {
-      $('#moves-poke-box-ol > li').hide();
+      $('#poke-box-ol > li').hide();
     } else {
-      $('#moves-poke-box-ol > li:not(:contains(' + currentInput + '))').hide(); 
-      $('#moves-poke-box-ol > li:contains(' + currentInput + ')').show();  
+      $('#poke-box-ol > li:not(:contains(' + currentInput + '))').hide(); 
+      $('#poke-box-ol > li:contains(' + currentInput + ')').show();  
     }
   });
 });
