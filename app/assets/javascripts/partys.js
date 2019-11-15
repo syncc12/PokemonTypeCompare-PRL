@@ -77,12 +77,12 @@ function inStr(searchString, findString) {
 }
 
 function hideMoves() {
-  $('#party-box-hold, #add-party-button, #move-column, #input-moves, #input-moves-div, #input-moves-div row, #move-column-sub, #move-column-sub row, #poke-box-ol > li').css("display", "none")
+  $('#party-box-hold, #add-party-button, #move-column, #input-moves, #input-moves-div, #input-moves-div row, #move-column-sub, #move-column-sub row').css("display", "none")
   // $('.move-family').css("display", "none")
 }
 
 function showMoves() {
-  $('#party-box-hold, #add-party-button, #move-column, #input-moves, #input-moves-div, #input-moves-div row, #move-column-sub, #move-column-sub row, #poke-box-ol > li').css("display", "block")
+  $('#party-box-hold, #add-party-button, #move-column, #input-moves, #input-moves-div, #input-moves-div row, #move-column-sub, #move-column-sub row').css("display", "block")
   // $('.move-family').css("display", "block")
 }
 
@@ -102,6 +102,10 @@ function cleanName(inName) {
 
 arrayColumn = (inArray, columnNumber) => inArray.map(x => x[columnNumber]);
 dictColumn = (inDict, columnName) => inDict.map(x => x[columnName]);
+
+// Global Variables
+var pokeArr = [];
+var moveArr = [];
 
 // Pokemon Data Collection
 // var pokeDataArray = [];
@@ -174,13 +178,12 @@ dictColumn = (inDict, columnName) => inDict.map(x => x[columnName]);
 //   });
 // });
 
-
 // Selection Process - Up To "Add To Party"
 $(function(_SelectionProcess1) {
   hideMoves();
   $.get(baseURL + "pokemon?limit=20").done(function(data) { //Max Limit: 964
     $.each(data['results'], function(index, value) {
-      $.get(value['url'], function(data, status) {
+      $.get(value['url']).done(function(data, status) {
         var pokemonName = data['name'];
         var pokemonSprite = data['sprites']['front_default'];
         var pokemonTypes;
@@ -193,14 +196,17 @@ $(function(_SelectionProcess1) {
         var pokedexNumber = data['id'];
         var insertHTML = pokemonBoxHTML(pokemonName, pokemonTypes, pokemonSprite, pokedexNumber);
         $('#poke-box-ol').append(insertHTML);
+        $('#poke-box-ol > li').css("display", "block");
+        pokeArr.push($('#poke-box-ol > li').last());
       });
     });
 
+    
     $("#poke-box-ol").selectable({
       selected: function(event, ui) {
         $('#move-box-ul').empty();
         $('#input-pokemon').val('');
-        $('#poke-box-ol > li').hide();
+        // $('#poke-box-ol > li').hide();
         var insertHTML = (
           '<div id="party-box-hold"><div class="container-fluid"><div class="row">' + 
             ui['selected'].innerHTML + 
@@ -213,7 +219,7 @@ $(function(_SelectionProcess1) {
         _SelectMoves();
       }
     });
-  });
+  })
 });
 
 // Select Moves
@@ -228,8 +234,8 @@ function _SelectMoves() {
       $.when(typeGet()).done(function(data, status) {
         var moveType = data['type']['name'];
         var insertHTML = (
-          '<li id="move-box-li-' + selectedName + '-' + moveName + '" class="move-box-li" data-pokemon-name="' + selectedName + '" data-move-name="' + moveName + '" data-move-type="' + moveType + '">' +
-            '<div id="move-box-div-' + selectedName + '-' + moveName + '" class="move-box-div" data-pokemon-name="' + selectedName + '" data-move-name="' + moveName + '" data-move-type="' + moveType + '">' +
+          '<li id="move-box-li-' + selectedName.replace(" ", "-") + '-' + moveName.replace(" ", "-") + '" class="move-box-li" data-pokemon-name="' + selectedName + '" data-move-name="' + moveName + '" data-move-type="' + moveType + '">' +
+            '<div id="move-box-div-' + selectedName.replace(" ", "-") + '-' + moveName.replace(" ", "-") + '" class="move-box-div" data-pokemon-name="' + selectedName + '" data-move-name="' + moveName + '" data-move-type="' + moveType + '">' +
               '<div class="container-fluid">' +
                 '<div class="row">' +
                   '<div id="move-box-type" class="mt-' + moveType + ' std-lb-imgbox"><div id="move-box-type-inner">' + moveType + '</div></div>' +
@@ -242,13 +248,13 @@ function _SelectMoves() {
 
 
         $('#move-box-ul').append(insertHTML);
-        
+        moveArr.push($('#move-box-ul > li').last());
         // $('#move-box-ul > li').hide();
         
         
         $('#move-box-ul').selectable({ 
-          selecting: function(event, ui) {
-            var moveJSON = $(ui['selecting']['dataset']);
+          selected: function(event, ui) {
+            var moveJSON = $(ui['selected']['dataset']);
             var selMoveName = moveJSON[0]['moveName'];
             var selMoveType = moveJSON[0]['moveType'];
             // var selMoveSplitName = selMoveName.split(" ")
@@ -336,6 +342,7 @@ $(function (_SelectionProcess2) {
           $('#move-box-ul > li').hide();
           hideMoves();
           showPokemon();
+          $('#poke-box-ol > li').css("display", "block");
           $('#add-party-button').attr('disabled', true);
       } else { }
     });
@@ -414,11 +421,13 @@ $(function (_SelectionProcess2) {
 $(function (_PokemonSearchBoxFilter) {
   $("#input-pokemon").on("input", function() {
     var currentInput = $(this).val().toLowerCase();
-    if (currentInput == "") {
-      $('#poke-box-ol > li').hide();
-    } else {
-      $('#poke-box-ol > li:not(:contains(' + currentInput + '))').hide(); 
-      $('#poke-box-ol > li:contains(' + currentInput + ')').show();  
+    for (pokeLine of pokeArr) {
+      var isIn = inStr(pokeLine.text().toLowerCase(), currentInput);
+      if (isIn) {
+        $('#' + pokeLine.attr('id')).css("display", "block");
+      } else {
+        $('#' + pokeLine.attr('id')).css("display", "none");
+      }
     }
   });
 });
@@ -427,8 +436,22 @@ $(function (_PokemonSearchBoxFilter) {
 $(function (_MovesSearchBoxFilter) {
   $("#input-moves").on("input", function() {
     var currentInput = $(this).val().toLowerCase();
-    $('#move-box-ul > li:not(:contains(' + currentInput + '))').hide();
-    $('#move-box-ul > li:contains(' + currentInput + ')').show();
+    for (moveLine of moveArr) {
+      var isIn = inStr(moveLine.find('#move-box-name').text().toLowerCase(), currentInput);
+      // console.log(moveLine.find('#move-box-name').text() + " : " + currentInput + " : " + isIn);
+      // console.log('#' + moveLine.attr('id'));
+      if (isIn) {
+        $('#' + moveLine.attr('id')).css("display", "block");
+      } else {
+        $('#' + moveLine.attr('id')).css("display", "none");
+      }
+    }
+
+
+
+    // $('#move-box-ul > li:not(:contains(' + currentInput + '))').hide();
+    // $('#move-box-ul > li:contains(' + currentInput + ')').show();
+
     // if (currentInput == "") {
     //   $('#move-box-ul > li').hide();
     // } else {
