@@ -178,7 +178,7 @@ var moveArr = [];
 // Selection Process - Up To "Add To Party"
 $(function(_SelectionProcess1) {
   hideMoves();
-  $.get(baseURL + "pokemon?limit=20").done(function(data) { //Max Limit: 964
+  $.get(baseURL + "pokemon?limit=151").done(function(data) { //Max Limit: 964
     $.each(data['results'], function(index, value) {
       $.get(value['url']).done(function(data, status) {
         var pokemonName = data['name'];
@@ -452,6 +452,46 @@ $(function (_MouseHoverToolTip) {
     track: true
   });
 });
+
+
+// Remove Pokemon From Party
+$(function(_RemovePokemonFromParty) {
+  $('#party-box-1').on("click", function() {
+    $(this).empty();
+  });
+  $('#party-box-2').on("click", function() {
+    $(this).empty();
+  });
+  $('#party-box-3').on("click", function() {
+    $(this).empty();
+  });
+  $('#party-box-4').on("click", function() {
+    $(this).empty();
+  });
+  $('#party-box-5').on("click", function() {
+    $(this).empty();
+  });
+  $('#party-box-6').on("click", function() {
+    $(this).empty();
+  });
+});
+
+// Remove Move From Pokemon
+$(function(_RemoveMoveFromPokemon) {
+  $('#selected-move-1').on("Click", function() {
+    $(this).empty();
+  });
+  $('#selected-move-2').on("Click", function() {
+    $(this).empty();
+  });
+  $('#selected-move-3').on("Click", function() {
+    $(this).empty();
+  });
+  $('#selected-move-4').on("Click", function() {
+    $(this).empty();
+  });
+});
+
 
 // Moves Search Box Scroll Lock
 // $(function(_MovesSearchBoxScrollLock) {
