@@ -100,9 +100,6 @@ function cleanName(inName) {
   return strProper(inName.replace("-", " "));
 }
 
-arrayColumn = (inArray, columnNumber) => inArray.map(x => x[columnNumber]);
-dictColumn = (inDict, columnName) => inDict.map(x => x[columnName]);
-
 // Global Variables
 var pokeArr = [];
 var moveArr = [];
