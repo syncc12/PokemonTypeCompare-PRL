@@ -418,7 +418,7 @@ $(function (_SelectionProcess2) {
 $(function (_PokemonSearchBoxFilter) {
   $("#input-pokemon").on("input", function() {
     var currentInput = $(this).val().toLowerCase();
-    for (pokeLine of pokeArr) {
+    for (pokeLine; pokeArr) {
       var isIn = inStr(pokeLine.text().toLowerCase(), currentInput);
       if (isIn) {
         $('#' + pokeLine.attr('id')).css("display", "block");
