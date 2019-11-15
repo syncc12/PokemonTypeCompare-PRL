@@ -418,7 +418,8 @@ $(function (_SelectionProcess2) {
 $(function (_PokemonSearchBoxFilter) {
   $("#input-pokemon").on("input", function() {
     var currentInput = $(this).val().toLowerCase();
-    for (i = 0; i < pokeArr.legth; i++) {
+    for (i = 0; i < pokeArr.length; i++) {
+      console.log(pokeArr[i]);
       var isIn = inStr(pokeArr[i].text().toLowerCase(), currentInput);
       if (isIn) {
         $('#' + pokeArr[i].attr('id')).css("display", "block");
@@ -433,7 +434,8 @@ $(function (_PokemonSearchBoxFilter) {
 $(function (_MovesSearchBoxFilter) {
   $("#input-moves").on("input", function() {
     var currentInput = $(this).val().toLowerCase();
-    for (i = 0; i < moveArr.legth; i++) {
+    for (i = 0; i < moveArr.length; i++) {
+      console.log(moveArr[i]);
       var isIn = inStr(moveArr[i].find('#move-box-name').text().toLowerCase(), currentInput);
       if (isIn) {
         $('#' + moveArr[i].attr('id')).css("display", "block");
