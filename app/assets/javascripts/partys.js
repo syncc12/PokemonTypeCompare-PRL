@@ -418,12 +418,12 @@ $(function (_SelectionProcess2) {
 $(function (_PokemonSearchBoxFilter) {
   $("#input-pokemon").on("input", function() {
     var currentInput = $(this).val().toLowerCase();
-    for (pokeLine; pokeArr) {
-      var isIn = inStr(pokeLine.text().toLowerCase(), currentInput);
+    for (i = 0; i < pokeArr.legth; i++) {
+      var isIn = inStr(pokeArr[i].text().toLowerCase(), currentInput);
       if (isIn) {
-        $('#' + pokeLine.attr('id')).css("display", "block");
+        $('#' + pokeArr[i].attr('id')).css("display", "block");
       } else {
-        $('#' + pokeLine.attr('id')).css("display", "none");
+        $('#' + pokeArr[i].attr('id')).css("display", "none");
       }
     }
   });
@@ -433,29 +433,14 @@ $(function (_PokemonSearchBoxFilter) {
 $(function (_MovesSearchBoxFilter) {
   $("#input-moves").on("input", function() {
     var currentInput = $(this).val().toLowerCase();
-    for (moveLine of moveArr) {
-      var isIn = inStr(moveLine.find('#move-box-name').text().toLowerCase(), currentInput);
-      // console.log(moveLine.find('#move-box-name').text() + " : " + currentInput + " : " + isIn);
-      // console.log('#' + moveLine.attr('id'));
+    for (i = 0; i < moveArr.legth; i++) {
+      var isIn = inStr(moveArr[i].find('#move-box-name').text().toLowerCase(), currentInput);
       if (isIn) {
-        $('#' + moveLine.attr('id')).css("display", "block");
+        $('#' + moveArr[i].attr('id')).css("display", "block");
       } else {
-        $('#' + moveLine.attr('id')).css("display", "none");
+        $('#' + moveArr[i].attr('id')).css("display", "none");
       }
     }
-
-
-
-    // $('#move-box-ul > li:not(:contains(' + currentInput + '))').hide();
-    // $('#move-box-ul > li:contains(' + currentInput + ')').show();
-
-    // if (currentInput == "") {
-    //   $('#move-box-ul > li').hide();
-    // } else {
-    //   $('#move-box-ul > li:not(:contains(' + currentInput + '))').hide(); 
-    //   $('#move-box-ul > li:contains(' + currentInput + ')').show();  
-    // }
-
   });
 });
 
