@@ -10,33 +10,31 @@
   </head>
 
   <body>
-    <div class="container-fluid">
+    <div id="flex-content-container">
       <div class="row">
-        <div id="static-header" class="col-12">
+        <div id="static-header">
           My Pokemon Party
         </div>
       </div>
-    </div>
 
 
       <div class="row">
-        <div id="static-sidebar" class="col-1">
-          <ul id="ul-link-sidebar">
-            <li class="li-link-sidebar"><%= link_to 'Home', root_path, class: 'a-link-sidebar nav-link' %></li><br />
-            <li class="li-link-sidebar"><%= link_to 'My Party', partys_path, class: 'a-link-sidebar nav-link' %></li>
-          </ul>
+        <div class="col-1">
+          <nav id="static-sidebar">
+            <%= link_to 'My Party', root_path, class: 'a-link-sidebar nav-link' %>
+            <%= link_to 'How To Use', how_to_use_path, class: 'a-link-sidebar nav-link' %>
+          </nav>
         </div>
+          
 
-        
 
-
-        <div id="content" class="col-11">
-          <%= yield %>
-        </div>
+          <div class="col-11">
+            <div id="content">
+              <%= yield %>
+            </div>
+          </div>
       </div>
-
     </div>
-
     
   </body>
 </html>

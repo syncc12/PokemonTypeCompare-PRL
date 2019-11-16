@@ -39,25 +39,29 @@ function pokemonBoxHTML(inPokemonName, inPokemonTypes, inPokemonSprite, inPokede
 
 
 function strProper(inString) {
-  var splitStr = inString.split(" ");
   var outStr = "";
-  for (i in splitStr) {
-    outStr = outStr + " " + splitStr[i].substring(0,1).toUpperCase() + splitStr[i].substring(1).toLowerCase();
+  if (inString != undefined) {
+    var splitStr = inString.split(" ");
+    for (i in splitStr) {
+      outStr = outStr + " " + splitStr[i].substring(0,1).toUpperCase() + splitStr[i].substring(1).toLowerCase();
+    }
+    outStr = outStr.trim();
   }
-  outStr = outStr.trim();
   return outStr  
 }
 
 function strInitials(inString) {
   var outInitials = "";
-  if (inStr(inString, " ")) {
-    var splitStr = inString.split(" ");
-    for (i in splitStr) {
-      outInitials = outInitials + " " + splitStr[i].substring(0,1);
+  if (inString != undefined) {
+    if (inStr(inString, " ")) {
+      var splitStr = inString.split(" ");
+      for (i in splitStr) {
+        outInitials = outInitials + " " + splitStr[i].substring(0,1);
+      }
+      outInitials = outInitials.toUpperCase().trim();
+    } else {
+      outInitials =inString.substring(0,1).toUpperCase().trim();
     }
-    outInitials = outInitials.toUpperCase().trim();
-  } else {
-    outInitials =inString.substring(0,1).toUpperCase().trim();
   }
   return outInitials;
 }
@@ -69,40 +73,39 @@ function visibleSwap(visibleFirst, visibleSecond) {
 
 function inStr(searchString, findString) {
   var isInStr = false;
-  var strIndex = searchString.indexOf(findString);
-  if (strIndex >= 0) {
-    var isInStr = true;
+  if (searchString != undefined && findString != undefined) {
+    var strIndex = searchString.indexOf(findString);
+    if (strIndex >= 0) {
+      var isInStr = true;
+    }
   }
   return isInStr;
 }
 
-function hideMoves() {
-  $('#party-box-hold, #add-party-button, #move-column, #input-moves, #input-moves-div, #input-moves-div row, #move-column-sub, #move-column-sub row').css("display", "none")
-  // $('.move-family').css("display", "none")
-}
-
-function showMoves() {
-  $('#party-box-hold, #add-party-button, #move-column, #input-moves, #input-moves-div, #input-moves-div row, #move-column-sub, #move-column-sub row').css("display", "block")
-  // $('.move-family').css("display", "block")
-}
-
-function hidePokemon() {
-  $('#poke-box').css("display", "none");
-  // $('.pokemon-box-family').css("display", "none");
-}
-
-function showPokemon() {
+function pokemonSelectionDisplay() {
   $('#poke-box').css("display", "block");
-  // $('.pokemon-box-family').css("display", "block");
+  $('#party-box-hold, #add-party-button, #move-column').css("display","none");
+  $('#pokemon-box-column-sub').css("overflow-y", "scroll");
+}
+
+function moveSelectionDisplay() {
+  $('#poke-box').css("display", "none");
+  $('#party-box-hold, #add-party-button, #move-column').css("display","block");
+  $('#pokemon-box-column-sub').css("overflow-y", "hidden");
 }
 
 function cleanName(inName) {
+  if (inName != undefined) {
   return strProper(inName.replace("-", " "));
+  } else {
+    return ""
+  }
 }
 
 // Global Variables
 var pokeArr = [];
 var moveArr = [];
+var selMovArr = [];
 
 // Pokemon Data Collection
 // var pokeDataArray = [];
@@ -177,7 +180,7 @@ var moveArr = [];
 
 // Selection Process - Up To "Add To Party"
 $(function(_SelectionProcess1) {
-  hideMoves();
+  pokemonSelectionDisplay();
   $.get(baseURL + "pokemon?limit=151").done(function(data) { //Max Limit: 964
     $.each(data['results'], function(index, value) {
       $.get(value['url']).done(function(data, status) {
@@ -203,20 +206,18 @@ $(function(_SelectionProcess1) {
       selected: function(event, ui) {
         $('#move-box-ul').empty();
         $('#input-pokemon').val('');
-        // $('#poke-box-ol > li').hide();
         var insertHTML = (
           '<div id="party-box-hold"><div class="container-fluid"><div class="row">' + 
             ui['selected'].innerHTML + 
           '</div></div></div>'
         );
-        hidePokemon();
-        showMoves();
+        moveSelectionDisplay();
         $('#party-box-hold').replaceWith(insertHTML);
         $('#add-party-button').trigger('partyBoxHoldChange')
         _SelectMoves();
       }
     });
-  })
+  });
 });
 
 // Select Moves
@@ -246,46 +247,43 @@ function _SelectMoves() {
 
         $('#move-box-ul').append(insertHTML);
         moveArr.push($('#move-box-ul > li').last());
-        // $('#move-box-ul > li').hide();
         
         
-        $('#move-box-ul').selectable({ 
+        $('#move-box-ul').selectable({
           selected: function(event, ui) {
             var moveJSON = $(ui['selected']['dataset']);
             var selMoveName = moveJSON[0]['moveName'];
             var selMoveType = moveJSON[0]['moveType'];
-            // var selMoveSplitName = selMoveName.split(" ")
-            // var selMoveInitials = "";
-            
-            
-            // for (i in selMoveSplitName) {
-            //   selMoveInitials = selMoveInitials + " " + selMoveSplitName[i].substring(0,1)
-            // }
-            // selMoveInitials = selMoveInitials.toUpperCase().trim();
 
-            var selMoveInitials = strInitials(selMoveName);
+            if (selMovArr.includes(selMoveName) == false) {
+              selMovArr.push(selMoveName);
+              
+              var selMoveInitials = strInitials(selMoveName);
 
-            var insertHTML = '<div class="mt-small-' + selMoveType + '" data-move-name="' + selMoveName + '" data-move-type="' + selMoveType + '" title="' + cleanName(selMoveName) + '"><p class="p-mt-small">' + selMoveInitials + '</p></div>'
+              if (selMoveInitials != "") {
+                var insertHTML = '<div class="mt-small-' + selMoveType + '" data-move-name="' + selMoveName + '" data-move-type="' + selMoveType + '" title="' + cleanName(selMoveName) + '"><p class="p-mt-small">' + selMoveInitials + '</p></div>'
 
-            function isEmpty(inElement) {
-              return !$.trim($(inElement).html())
+                function isEmpty(inElement) {
+                  return !$.trim($(inElement).html())
+                }
+                function isNotEmpty(inElement) {
+                  return !isEmpty(inElement)
+                }
+                if (isEmpty('#party-box-hold #selected-move-1')) {
+                  $('#party-box-hold #selected-move-1').append(insertHTML);
+                  $('#add-party-button').trigger('partyBoxHoldChange');
+                } else if (isEmpty('#party-box-hold #selected-move-2')) {
+                  $('#party-box-hold #selected-move-2').append(insertHTML);
+                  $('#add-party-button').trigger('partyBoxHoldChange');
+                } else if (isEmpty('#party-box-hold #selected-move-3')) {
+                  $('#party-box-hold #selected-move-3').append(insertHTML);
+                  $('#add-party-button').trigger('partyBoxHoldChange');
+                } else if (isEmpty('#party-box-hold #selected-move-4')) {
+                  $('#party-box-hold #selected-move-4').append(insertHTML);
+                  $('#add-party-button').trigger('partyBoxHoldChange');
+                } else {}
+              }
             }
-            function isNotEmpty(inElement) {
-              return !isEmpty(inElement)
-            }
-            if (isEmpty('#party-box-hold #selected-move-1')) {
-              $('#party-box-hold #selected-move-1').append(insertHTML);
-              $('#add-party-button').trigger('partyBoxHoldChange');
-            } else if (isEmpty('#party-box-hold #selected-move-2')) {
-              $('#party-box-hold #selected-move-2').append(insertHTML);
-              $('#add-party-button').trigger('partyBoxHoldChange');
-            } else if (isEmpty('#party-box-hold #selected-move-3')) {
-              $('#party-box-hold #selected-move-3').append(insertHTML);
-              $('#add-party-button').trigger('partyBoxHoldChange');
-            } else if (isEmpty('#party-box-hold #selected-move-4')) {
-              $('#party-box-hold #selected-move-4').append(insertHTML);
-              $('#add-party-button').trigger('partyBoxHoldChange');
-            } else {}
           }
         });
         
@@ -335,11 +333,9 @@ $(function (_SelectionProcess2) {
           var openPartyBox = nextOpenPartyBox();
           $(openPartyBox).append($('#party-box-hold').html());
           $('#party-box-hold').empty();
+          selMovArr = [];
           $('#input-moves').val('');
-          $('#move-box-ul > li').hide();
-          hideMoves();
-          showPokemon();
-          $('#poke-box-ol > li').css("display", "block");
+          pokemonSelectionDisplay();
           $('#add-party-button').attr('disabled', true);
       } else { }
     });
@@ -419,7 +415,6 @@ $(function (_PokemonSearchBoxFilter) {
   $("#input-pokemon").on("input", function() {
     var currentInput = $(this).val().toLowerCase();
     for (i = 0; i < pokeArr.length; i++) {
-      console.log(pokeArr[i]);
       var isIn = inStr(pokeArr[i].text().toLowerCase(), currentInput);
       if (isIn) {
         $('#' + pokeArr[i].attr('id')).css("display", "block");
@@ -435,7 +430,6 @@ $(function (_MovesSearchBoxFilter) {
   $("#input-moves").on("input", function() {
     var currentInput = $(this).val().toLowerCase();
     for (i = 0; i < moveArr.length; i++) {
-      console.log(moveArr[i]);
       var isIn = inStr(moveArr[i].find('#move-box-name').text().toLowerCase(), currentInput);
       if (isIn) {
         $('#' + moveArr[i].attr('id')).css("display", "block");
@@ -491,16 +485,3 @@ $(function(_RemoveMoveFromPokemon) {
     $(this).empty();
   });
 });
-
-
-// Moves Search Box Scroll Lock
-// $(function(_MovesSearchBoxScrollLock) {
-//   $('#move-column').on("scroll", function() {
-//     if (window.pageYoffset > stickyOffset) {
-//       $('#input-moves').addClass('sticky');
-//     } else {
-//       $('#input-moves').removeClass('sticky');
-//     }
-//   });
-
-// });

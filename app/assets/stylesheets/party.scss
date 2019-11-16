@@ -106,23 +106,6 @@
   padding: 0px;
 }
 
-/* #selected-move-1, #selected-move-2 {
-  border-right: 1px solid black;
-  border-left: 1px solid black;
-}
-
-#selected-move-1, #selected-move-3 {
-  border-bottom: 1px solid black;
-}
-
-#selected-move-3, #selected-move-4 {
-  border-top: 1px solid black;
-}
-
-#selected-move-1, #selected-move-4 {
-  border-right: 1px solid black;
-} */
-
 #selected-moves .container-fluid {
   margin: 0px;
   padding: 0px;
@@ -145,7 +128,7 @@
 }
 
 #input-moves {
-  display: none;
+  // display: none;
   background-color: white;
 }
 
