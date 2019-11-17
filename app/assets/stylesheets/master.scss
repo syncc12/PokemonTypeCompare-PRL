@@ -1,8 +1,39 @@
 @import "bootstrap";
+@font-face {
+  font-family: "Pokemon Solid";
+  src: url('Pokemon Solid.ttf') format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+// Yellow: #ffcb05;
+// Yellow Shadow: #c7a008;
+// Light Blue: #2a75bb;
+// Dark Blue: #3c5aa6;
+
+$poke-yellow: #ffcb05;
+$poke-yellow-shadow: #c7a008;
+$poke-light-blue: #2a75bb;
+$poke-dark-blue: #3c5aa6;
+$poke-black: #000000;
+$ash-gray: #B2BEB5;
+$mb-black: #383330;
+$mb-blue: #362D5C;
+$mb-purple: #8984A4;
+$mb-pink: #A25C7E;
+$mb-gray: #CBCBC9;
 
 div {
   
 }
+
+// body {
+//   background-color: $poke-light-blue;
+// }
+
+// #content {
+//   background-color: #3D7DCA;
+// }
 
 .dbg {
   border: 1px solid black;
@@ -36,17 +67,23 @@ div {
 }
 
 #static-header {
-  background-color: #010101;
-  color: #FEFEFE;
-  height: 60px;
+  background-color: $poke-black;
+  color: $poke-yellow;
+  text-shadow: -6px 0 $poke-light-blue,
+              6px 0 $poke-light-blue,
+              6px 0 $poke-light-blue,
+              -6px 0 $poke-light-blue;
+              // 2px 2px 1px $poke-yellow-shadow;
+  height: 130px;
   width: 100vw;
   text-align: center;
-  font-size: 40px;
+  font-size: 80px;
   vertical-align: center;
+  font-family: "Pokemon Solid";
 }
 
 #static-sidebar {
-  background-color: black;
+  background-color: $poke-dark-blue;
   height: 100vh;
   padding: 1px;
   margin: 0px;
@@ -67,12 +104,20 @@ div {
   list-style-type: none;
 }
 
-a.a-link-sidebar {
-  text-color: #FFFFFF;
+.a-link-sidebar {
+  color: white;
   text-decoration: none;
-  text-size: 18px;
+  font-size: 18px;
   padding: 0px;
   margin: 0px;
+}
+
+.a-link-sidebar:hover {
+  color: $poke-yellow;
+}
+
+.a-link-sidebar:active {
+  color: $poke-yellow-shadow;
 }
 
 .poke-button {
@@ -116,4 +161,19 @@ a.a-link-sidebar {
   position: -webkit-sticky; /* Safari */
   position: sticky;
   top: 0;
+}
+
+#static-footer{
+  background-color: #010101;
+  color: #FFFFFF;
+  height:50px;
+  width: 100vw;
+  padding: 15px;
+  vertical-align: center;
+}
+
+#footer-div {
+  height: 20px;
+  font-size: 15px;
+  text-align: center;
 }

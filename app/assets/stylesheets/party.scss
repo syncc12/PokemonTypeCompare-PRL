@@ -88,6 +88,16 @@
   padding: 0px;
   height: 25px;
   width: 50px;
+  // background-color: white;
+}
+
+.poke-box-div {
+  // background-color: white;
+  // border: 1px solid black;
+}
+
+#party-box-1, #party-box-2, #party-box-3, #party-box-4, #party-box-5, #party-box-6 {
+  // background-color: white;
 }
 
 #selected-moves tr {
@@ -165,6 +175,7 @@
 
 #move-column {
   border: 1px solid black;
+  // background-color: white;
 }
 
 #move-column .row, #pokemon-box-column .row {
@@ -324,6 +335,9 @@
   width: 250px;
 }
 
+#pokemon-box-column {
+  // background-color: white;
+}
 
 $check-size: 1em;
 $check-height: $check-size/2;
