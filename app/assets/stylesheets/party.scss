@@ -2,6 +2,18 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+$poke-yellow: #ffcb05;
+$poke-yellow-shadow: #c7a008;
+$poke-light-blue: #2a75bb;
+$poke-dark-blue: #3c5aa6;
+$poke-black: #000000;
+$ash-gray: #B2BEB5;
+$mb-black: #383330;
+$mb-blue: #362D5C;
+$mb-purple: #8984A4;
+$mb-pink: #A25C7E;
+$mb-gray: #CBCBC9;
+
 #poke-box {
   margin: 0px;
   padding: 0px;
@@ -427,4 +439,14 @@ $check-width: $check-height/2;
 }
 
 #save-party-button-div {
+}
+
+.column-title {
+  color: $poke-dark-blue;
+  font-weight: bold;
+  // text-shadow: -1px 0 $poke-yellow-shadow,
+  //             1px 0 $poke-yellow-shadow,
+  //             1px 0 $poke-yellow-shadow,
+  //             -1px 0 $poke-yellow-shadow;
+  font-size: 25px;
 }

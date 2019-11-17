@@ -84,13 +84,13 @@ function inStr(searchString, findString) {
 
 function pokemonSelectionDisplay() {
   $('#poke-box').css("display", "block");
-  $('#party-box-hold, #add-party-button, #move-column').css("display","none");
+  $('#party-box-hold, #add-party-button, #move-column, #move-column-title').css("display","none");
   $('#pokemon-box-column-sub').css("overflow-y", "scroll");
 }
 
 function moveSelectionDisplay() {
   $('#poke-box').css("display", "none");
-  $('#party-box-hold, #add-party-button, #move-column').css("display","block");
+  $('#party-box-hold, #add-party-button, #move-column, #move-column-title').css("display","block");
   $('#pokemon-box-column-sub').css("overflow-y", "hidden");
 }
 
