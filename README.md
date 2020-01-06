@@ -3,6 +3,8 @@
 ## Application:<br>
 This application is located here: https://pokemontc-patricklyden.herokuapp.com
 
+![Home_Page](../Saved-Images/My_Pokemon_Party_Home_Page.png)
+
 ## Purpose:<br>
 This project allows Pokemon fans to create their very own Pokemon party.  Whether you're a casual fan who just wants to see what their party will look like, or are a competitive fan who wants to check and balance their party before a match, this application is the perfect tool for you.
 
